@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BME 105 Exam 2 Study App</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d2e;
+    --surface2: #252840;
+    --accent: #6c63ff;
+    --accent2: #ff6584;
+    --accent3: #43e97b;
+    --text: #e8eaf6;
+    --text2: #9e9ec8;
+    --border: #2e3150;
+    --correct: #43e97b;
+    --wrong: #ff6584;
+    --warning: #ffd166;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
+
+  /* NAV */
+  nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; position: sticky; top: 0; z-index: 100; }
+  nav .logo { font-size: 1.1rem; font-weight: 700; color: var(--accent); padding: 14px 0; margin-right: 12px; white-space: nowrap; }
+  nav button { background: none; border: none; color: var(--text2); padding: 14px 12px; cursor: pointer; font-size: 0.85rem; font-weight: 500; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; }
+  nav button:hover { color: var(--text); }
+  nav button.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* PAGES */
+  .page { display: none; padding: 24px; max-width: 1100px; margin: 0 auto; }
+  .page.active { display: block; }
+
+  h1 { font-size: 1.8rem; margin-bottom: 6px; }
+  h2 { font-size: 1.3rem; margin-bottom: 16px; color: var(--accent); }
+  h3 { font-size: 1rem; margin-bottom: 10px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.05em; }
+  p { line-height: 1.6; color: var(--text2); margin-bottom: 12px; }
+
+  .subtitle { color: var(--text2); margin-bottom: 28px; }
+
+  /* CARDS GRID */
+  .lecture-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .lecture-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; cursor: pointer; transition: all 0.2s; }
+  .lecture-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(108,99,255,0.15); }
+  .lecture-card .lnum { font-size: 0.75rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .lecture-card .ltitle { font-size: 1rem; font-weight: 600; margin-bottom: 10px; }
+  .lecture-card .lpreview { font-size: 0.82rem; color: var(--text2); line-height: 1.5; }
+  .lecture-card .tag-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+  .tag { font-size: 0.7rem; background: var(--surface2); border-radius: 20px; padding: 2px 10px; color: var(--text2); }
+
+  /* MODAL / DETAIL */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 200; overflow-y: auto; }
+  .modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; padding: 40px 16px; }
+  .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; width: 100%; max-width: 760px; padding: 32px; position: relative; }
+  .modal .close-btn { position: absolute; top: 16px; right: 16px; background: var(--surface2); border: none; color: var(--text2); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; }
+  .modal .close-btn:hover { color: var(--text); }
+  .modal h2 { font-size: 1.4rem; color: var(--text); margin-bottom: 4px; }
+  .modal .lnum { color: var(--accent); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+  .bullet-section { margin-bottom: 20px; }
+  .bullet-section h4 { font-size: 0.82rem; color: var(--warning); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; font-weight: 600; }
+  .bullet-list { list-style: none; padding: 0; }
+  .bullet-list li { padding: 6px 0 6px 18px; position: relative; font-size: 0.9rem; color: var(--text2); line-height: 1.55; border-bottom: 1px solid var(--border); }
+  .bullet-list li:last-child { border-bottom: none; }
+  .bullet-list li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
+  .bullet-list.sub li::before { content: '–'; color: var(--text2); }
+  .bullet-list.sub { margin-left: 18px; }
+  .key-term { background: var(--surface2); border-left: 3px solid var(--accent); padding: 10px 14px; border-radius: 0 8px 8px 0; margin: 8px 0; font-size: 0.88rem; }
+  .key-term strong { color: var(--accent); }
+
+  /* BUTTONS */
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; font-weight: 600; transition: all 0.2s; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: #5a52e0; }
+  .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-success { background: var(--correct); color: #000; }
+  .btn-danger { background: var(--wrong); color: #fff; }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* FLASHCARDS */
+  .fc-controls { display: flex; gap: 12px; align-items: center; margin-bottom: 24px; flex-wrap: wrap; }
+  .fc-select { background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: 8px 12px; border-radius: 8px; font-size: 0.88rem; }
+  .fc-progress { color: var(--text2); font-size: 0.85rem; margin-left: auto; }
+  .fc-area { display: flex; flex-direction: column; align-items: center; }
+  .fc-card-wrap { perspective: 1000px; width: 100%; max-width: 640px; height: 320px; cursor: pointer; }
+  .fc-card { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.5s; }
+  .fc-card.flipped { transform: rotateY(180deg); }
+  .fc-face { position: absolute; inset: 0; backface-visibility: hidden; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px; text-align: center; }
+  .fc-face.back { transform: rotateY(180deg); background: var(--surface2); }
+  .fc-face .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text2); margin-bottom: 16px; }
+  .fc-face .content { font-size: 1.05rem; line-height: 1.6; }
+  .fc-face.front .content { font-weight: 600; font-size: 1.1rem; }
+  .fc-face.back .content { color: var(--text2); font-size: 0.95rem; }
+  .fc-nav { display: flex; gap: 16px; align-items: center; margin-top: 24px; }
+  .fc-hint { font-size: 0.78rem; color: var(--text2); margin-top: 12px; }
+  .known-bar { display: flex; gap: 10px; margin-top: 20px; font-size: 0.82rem; color: var(--text2); }
+  .known-bar span { display: flex; align-items: center; gap: 5px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .dot.green { background: var(--correct); }
+  .dot.red { background: var(--wrong); }
+  .dot.grey { background: var(--border); }
+
+  /* QUIZ */
+  .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+  .quiz-score-badge { background: var(--surface2); border-radius: 8px; padding: 6px 14px; font-size: 0.85rem; }
+  .progress-bar { height: 4px; background: var(--surface2); border-radius: 2px; margin-bottom: 24px; }
+  .progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.3s; }
+  .q-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 28px; margin-bottom: 20px; }
+  .q-lec { font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; font-weight: 600; }
+  .q-text { font-size: 1.05rem; font-weight: 500; margin-bottom: 22px; line-height: 1.55; }
+  .q-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 560px) { .q-options { grid-template-columns: 1fr; } }
+  .q-opt { background: var(--surface2); border: 2px solid var(--border); border-radius: 10px; padding: 12px 16px; cursor: pointer; font-size: 0.9rem; line-height: 1.45; transition: all 0.2s; text-align: left; color: var(--text); }
+  .q-opt:hover:not(.locked) { border-color: var(--accent); }
+  .q-opt.correct { border-color: var(--correct); background: rgba(67,233,123,0.1); color: var(--correct); }
+  .q-opt.wrong { border-color: var(--wrong); background: rgba(255,101,132,0.1); color: var(--wrong); }
+  .q-opt.locked { cursor: default; }
+  .q-explanation { background: var(--surface2); border-left: 3px solid var(--accent); padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 0.88rem; color: var(--text2); margin-top: 16px; line-height: 1.55; }
+  .quiz-start { text-align: center; padding: 60px 20px; }
+  .quiz-result { text-align: center; padding: 40px 20px; }
+  .result-circle { width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--accent); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 24px; }
+  .result-circle .big { font-size: 2rem; font-weight: 700; }
+  .result-circle .small { font-size: 0.8rem; color: var(--text2); }
+
+  /* MATCHING */
+  .match-controls { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; align-items: center; }
+  .match-board { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 620px) { .match-board { grid-template-columns: 1fr; } }
+  .match-col h3 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text2); margin-bottom: 12px; }
+  .match-item { background: var(--surface); border: 2px solid var(--border); border-radius: 10px; padding: 12px 16px; margin-bottom: 8px; cursor: pointer; font-size: 0.88rem; line-height: 1.45; transition: all 0.2s; user-select: none; }
+  .match-item:hover:not(.matched):not(.locked) { border-color: var(--accent); }
+  .match-item.selected { border-color: var(--accent); background: rgba(108,99,255,0.1); }
+  .match-item.matched { border-color: var(--correct); background: rgba(67,233,123,0.08); color: var(--text2); cursor: default; opacity: 0.7; }
+  .match-item.wrong-flash { border-color: var(--wrong); background: rgba(255,101,132,0.1); animation: shake 0.4s; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+  .match-score { margin-top: 16px; font-size: 0.9rem; color: var(--text2); }
+  .match-timer { font-size: 1rem; font-weight: 600; color: var(--warning); margin-left: auto; }
+
+  /* FORMULA SHEET */
+  .formula-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  .formula-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .formula-card h4 { color: var(--accent); font-size: 0.85rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .formula { font-family: 'Courier New', monospace; background: var(--surface2); padding: 10px 14px; border-radius: 8px; font-size: 1rem; color: var(--warning); margin-bottom: 10px; text-align: center; }
+  .formula-desc { font-size: 0.82rem; color: var(--text2); line-height: 1.55; }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+  .tl-item { position: relative; margin-bottom: 28px; }
+  .tl-dot { position: absolute; left: -27px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); }
+  .tl-lec { font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-bottom: 4px; }
+  .tl-title { font-size: 0.98rem; font-weight: 600; margin-bottom: 6px; }
+  .tl-summary { font-size: 0.84rem; color: var(--text2); line-height: 1.5; }
+
+  /* HOME STATS */
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
+  .stat-card .sval { font-size: 2rem; font-weight: 700; color: var(--accent); }
+  .stat-card .slabel { font-size: 0.78rem; color: var(--text2); margin-top: 4px; }
+  .game-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .game-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; cursor: pointer; transition: all 0.2s; }
+  .game-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(108,99,255,0.15); }
+  .game-card .icon { font-size: 2rem; margin-bottom: 12px; }
+  .game-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; color: var(--text); text-transform: none; letter-spacing: 0; }
+  .game-card p { font-size: 0.83rem; margin: 0; }
+
+  .section-title { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .section-title h2 { margin: 0; }
+  .badge { background: var(--accent); color: #fff; font-size: 0.7rem; border-radius: 12px; padding: 2px 8px; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">BME 105 — Exam 2</div>
+  <button class="active" onclick="showPage('home')">Home</button>
+  <button onclick="showPage('guide')">Study Guide</button>
+  <button onclick="showPage('flashcards')">Flashcards</button>
+  <button onclick="showPage('quiz')">Quiz</button>
+  <button onclick="showPage('matching')">Matching</button>
+  <button onclick="showPage('formulas')">Formulas</button>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <h1>Exam 2 Study Hub</h1>
+  <p class="subtitle">BME 105 Winter 2026 — Lectures 13–23</p>
+
+  <div class="stat-row">
+    <div class="stat-card"><div class="sval">11</div><div class="slabel">Lectures Covered</div></div>
+    <div class="stat-card"><div class="sval" id="stat-fc">60+</div><div class="slabel">Flashcards</div></div>
+    <div class="stat-card"><div class="sval">40+</div><div class="slabel">Quiz Questions</div></div>
+    <div class="stat-card"><div class="sval">3</div><div class="slabel">Study Games</div></div>
+  </div>
+
+  <div class="section-title"><h2>Study Games</h2></div>
+  <div class="game-cards" style="margin-bottom:40px">
+    <div class="game-card" onclick="showPage('flashcards')">
+      <div class="icon">🃏</div>
+      <h3>Flashcards</h3>
+      <p>Flip through key terms and concepts. Mark cards as known or still learning.</p>
+    </div>
+    <div class="game-card" onclick="showPage('quiz')">
+      <div class="icon">📝</div>
+      <h3>Multiple Choice Quiz</h3>
+      <p>Test your knowledge with exam-style questions. Get instant explanations.</p>
+    </div>
+    <div class="game-card" onclick="showPage('matching')">
+      <div class="icon">🔗</div>
+      <h3>Term Matching</h3>
+      <p>Match terms to definitions against the clock. Trains rapid recall.</p>
+    </div>
+  </div>
+
+  <div class="section-title"><h2>Topics at a Glance</h2></div>
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-lec">Lecture 13</div><div class="tl-title">Linking Genotype to Phenotype</div><div class="tl-summary">Forward vs. reverse genetics, complementation tests, fine-scale mapping limits.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-lec">Lecture 14</div><div class="tl-title">Gene Regulation & Epigenetics</div><div class="tl-summary">Non-coding DNA, DNA methylation, nucleosome packaging, histone mods, cis/trans regulation, ChIP-seq, ATAC-seq, Hi-C.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-lec">Lecture 15</div><div class="tl-title">DNA Methylation & Imprinting</div><div class="tl-summary">CpG islands, genomic imprinting, bisulfite sequencing, parental conflict hypothesis.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-lec">Lecture 16</div><div class="tl-title">GWAS & QTL Mapping</div><div class="tl-summary">Continuous traits, linkage disequilibrium, haplotype blocks, fine-scale vs. coarse mapping.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-lec">Lecture 17</div><div class="tl-title">Transgenes, RNAi, Reporters</div><div class="tl-summary">Delivery mechanisms, reporter genes, RNAi knockdown, enhancer/promoter/gene traps.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-lec">Lecture 18</div><div class="tl-title">Model Organism Genetics</div><div class="tl-summary">Why model organisms, logistical vs. biological requirements, experimental design.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-lec">Lecture 19</div><div class="tl-title">CRISPR-Cas9 Gene Editing</div><div class="tl-summary">Antibiotic selection, conditional knockouts, guide RNA design, LoxP/Cre, HDR.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-lec">Lecture 20</div><div class="tl-title">Population Genetics & HWE</div><div class="tl-summary">Gene pools, p²+2pq+q²=1, 5 HWE assumptions, chi-squared test, genetic drift, founder effect.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-lec">Lecture 21</div><div class="tl-title">Natural Selection</div><div class="tl-summary">Selected vs. neutral sites, relative fitness W, balancing selection, dN/dS ratio.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-lec">Lecture 22</div><div class="tl-title">Microbial Symbiosis</div><div class="tl-summary">Endosymbiosis, holobiont concept, microbiome, MWAS challenges vs. GWAS.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-lec">Lecture 23</div><div class="tl-title">Phylogenetics</div><div class="tl-summary">Tree terminology, shared derived characters, parsimony, bootstrap, molecular clocks, gene vs. species trees.</div></div>
+  </div>
+</div>
+
+<!-- STUDY GUIDE -->
+<div id="page-guide" class="page">
+  <h1>Study Guide</h1>
+  <p class="subtitle">Click any lecture card for full details.</p>
+  <div class="lecture-grid" id="lecture-grid"></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal-content">
+    <button class="close-btn" onclick="closeModalDirect()">✕</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<!-- FLASHCARDS -->
+<div id="page-flashcards" class="page">
+  <h1>Flashcards</h1>
+  <div class="fc-controls">
+    <select class="fc-select" id="fc-filter" onchange="initFlashcards()">
+      <option value="all">All Lectures</option>
+      <option value="13">Lecture 13</option>
+      <option value="14">Lecture 14</option>
+      <option value="15">Lecture 15</option>
+      <option value="16">Lecture 16</option>
+      <option value="17">Lecture 17</option>
+      <option value="18">Lecture 18</option>
+      <option value="19">Lecture 19</option>
+      <option value="20">Lecture 20</option>
+      <option value="21">Lecture 21</option>
+      <option value="22">Lecture 22</option>
+      <option value="23">Lecture 23</option>
+    </select>
+    <button class="btn btn-secondary" onclick="shuffleCards()">Shuffle</button>
+    <button class="btn btn-secondary" onclick="resetKnown()">Reset Progress</button>
+    <span class="fc-progress" id="fc-progress"></span>
+  </div>
+  <div class="fc-area">
+    <div class="fc-card-wrap" onclick="flipCard()">
+      <div class="fc-card" id="fc-card">
+        <div class="fc-face front">
+          <div class="label">Term / Concept</div>
+          <div class="content" id="fc-front"></div>
+        </div>
+        <div class="fc-face back">
+          <div class="label">Definition / Explanation</div>
+          <div class="content" id="fc-back"></div>
+        </div>
+      </div>
+    </div>
+    <p class="fc-hint">Click card to flip • Use buttons to navigate</p>
+    <div class="fc-nav">
+      <button class="btn btn-secondary" onclick="prevCard()">← Prev</button>
+      <button class="btn btn-danger" onclick="markCard(false)" title="Still learning">✗ Still Learning</button>
+      <button class="btn btn-success" onclick="markCard(true)" title="Got it">✓ Know It</button>
+      <button class="btn btn-secondary" onclick="nextCard()">Next →</button>
+    </div>
+    <div class="known-bar">
+      <span><span class="dot green"></span> Known: <strong id="known-count">0</strong></span>
+      <span><span class="dot red"></span> Learning: <strong id="learning-count">0</strong></span>
+      <span><span class="dot grey"></span> Unseen: <strong id="unseen-count">0</strong></span>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div id="page-quiz" class="page">
+  <div id="quiz-start-screen" class="quiz-start">
+    <h1>Multiple Choice Quiz</h1>
+    <p class="subtitle" style="margin-bottom:24px">Exam-style questions covering Lectures 13–23</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:28px">
+      <select class="fc-select" id="quiz-filter">
+        <option value="all">All Lectures</option>
+        <option value="13">Lecture 13</option>
+        <option value="14">Lecture 14</option>
+        <option value="15">Lecture 15</option>
+        <option value="16">Lecture 16</option>
+        <option value="17">Lecture 17</option>
+        <option value="18">Lecture 18</option>
+        <option value="19">Lecture 19</option>
+        <option value="20">Lecture 20</option>
+        <option value="21">Lecture 21</option>
+        <option value="22">Lecture 22</option>
+        <option value="23">Lecture 23</option>
+      </select>
+      <select class="fc-select" id="quiz-count">
+        <option value="10">10 Questions</option>
+        <option value="20" selected>20 Questions</option>
+        <option value="40">40 Questions (All)</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" style="font-size:1rem;padding:14px 32px" onclick="startQuiz()">Start Quiz</button>
+  </div>
+  <div id="quiz-active-screen" style="display:none">
+    <div class="quiz-header">
+      <h2 style="color:var(--text);margin:0">Question <span id="q-num">1</span> of <span id="q-total">20</span></h2>
+      <div class="quiz-score-badge">Score: <strong id="q-score">0</strong> / <span id="q-answered">0</span></div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="q-progress-fill"></div></div>
+    <div id="q-area"></div>
+    <button class="btn btn-primary" id="q-next-btn" onclick="nextQuestion()" style="display:none">Next Question →</button>
+  </div>
+  <div id="quiz-result-screen" class="quiz-result" style="display:none">
+    <h1>Quiz Complete!</h1>
+    <div class="result-circle" style="margin-top:24px">
+      <div class="big" id="result-score"></div>
+      <div class="small">correct</div>
+    </div>
+    <p id="result-msg" style="font-size:1.1rem;margin-bottom:24px"></p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="startQuiz()">Try Again</button>
+      <button class="btn btn-secondary" onclick="document.getElementById('quiz-start-screen').style.display='';document.getElementById('quiz-result-screen').style.display='none'">Change Settings</button>
+    </div>
+  </div>
+</div>
+
+<!-- MATCHING -->
+<div id="page-matching" class="page">
+  <h1>Term Matching</h1>
+  <div class="match-controls">
+    <select class="fc-select" id="match-filter">
+      <option value="all">All Lectures</option>
+      <option value="13">Lecture 13</option>
+      <option value="14">Lecture 14</option>
+      <option value="15">Lecture 15</option>
+      <option value="16">Lecture 16</option>
+      <option value="17">Lecture 17</option>
+      <option value="18">Lecture 18</option>
+      <option value="19">Lecture 19</option>
+      <option value="20">Lecture 20</option>
+      <option value="21">Lecture 21</option>
+      <option value="22">Lecture 22</option>
+      <option value="23">Lecture 23</option>
+    </select>
+    <button class="btn btn-primary" onclick="startMatching()">New Game</button>
+    <div class="match-timer" id="match-timer">⏱ 0:00</div>
+  </div>
+  <div class="match-board">
+    <div><h3>Terms</h3><div id="match-terms"></div></div>
+    <div><h3>Definitions</h3><div id="match-defs"></div></div>
+  </div>
+  <div class="match-score" id="match-score"></div>
+</div>
+
+<!-- FORMULAS -->
+<div id="page-formulas" class="page">
+  <h1>Key Formulas & Concepts</h1>
+  <p class="subtitle">Quick-reference for quantitative topics on Exam 2.</p>
+  <div class="formula-grid">
+    <div class="formula-card">
+      <h4>Hardy-Weinberg Equilibrium</h4>
+      <div class="formula">p² + 2pq + q² = 1</div>
+      <div class="formula">p + q = 1</div>
+      <div class="formula-desc"><strong>p</strong> = freq of dominant allele (A), <strong>q</strong> = freq of recessive allele (a). <strong>p²</strong> = AA, <strong>2pq</strong> = Aa, <strong>q²</strong> = aa. Assumes: random mating, no mutation, no gene flow, no selection, infinite pop size.</div>
+    </div>
+    <div class="formula-card">
+      <h4>Chi-Squared Test (HWE)</h4>
+      <div class="formula">χ² = Σ (O − E)² / E</div>
+      <div class="formula-desc">Compare observed genotype counts to expected (from HWE). df = (# genotype classes − 1). If χ² > critical value → reject HWE.</div>
+    </div>
+    <div class="formula-card">
+      <h4>Recombination Frequency</h4>
+      <div class="formula">RF = recombinant offspring / total offspring</div>
+      <div class="formula">1 cM ≈ 1% recombination</div>
+      <div class="formula-desc">RF is the limiting factor for fine-scale mapping. Unlinked loci have RF = 50%.</div>
+    </div>
+    <div class="formula-card">
+      <h4>Relative Fitness (Selection)</h4>
+      <div class="formula">W = 1 / (1 − s)</div>
+      <div class="formula">w̄ = p²W_AA + 2pqW_Aa + q²W_aa</div>
+      <div class="formula-desc"><strong>s</strong> = selection coefficient (0–1). Fitness values normalized to most-fit genotype. <strong>w̄</strong> = mean population fitness.</div>
+    </div>
+    <div class="formula-card">
+      <h4>dN/dS Ratio</h4>
+      <div class="formula">dN/dS = ratio of non-syn to syn mutations</div>
+      <div class="formula-desc">dN/dS &lt; 1 → purifying/stabilizing selection (conserved). dN/dS = 1 → neutral. dN/dS &gt; 1 → positive selection. Used to detect selected vs. neutral sites.</div>
+    </div>
+    <div class="formula-card">
+      <h4>Allele Frequency Change (Selection)</h4>
+      <div class="formula">Δq ≈ −sq²(1−q) / w̄</div>
+      <div class="formula-desc">Change in recessive allele frequency per generation under selection. Recessive alleles "hide" in heterozygotes → exponential decay of q² (aa frequency).</div>
+    </div>
+    <div class="formula-card">
+      <h4>Complementation Test</h4>
+      <div class="formula">Cross: m₁/+ × m₂/+</div>
+      <div class="formula-desc">If offspring show mutant phenotype → m₁ and m₂ are in the <strong>same</strong> gene (fail to complement). If offspring are WT → different genes (complementation). Tests whether two mutations are alleles of the same gene.</div>
+    </div>
+    <div class="formula-card">
+      <h4>GWAS / QTL Mapping</h4>
+      <div class="formula">association p-value threshold: ~5×10⁻⁸</div>
+      <div class="formula-desc">GWAS: coarse mapping via SNP association in natural populations (high linkage). QTL: fine-scale mapping in crosses (more recombination). Associated SNP may not be causal — it's in a linked haplotype block.</div>
+    </div>
+    <div class="formula-card">
+      <h4>Bisulfite Sequencing</h4>
+      <div class="formula">unmethylated C → U (reads as T)</div>
+      <div class="formula">methylated C → C (unchanged)</div>
+      <div class="formula-desc">Used to detect DNA methylation genome-wide. Compare to reference to identify methylated cytosines at single-base resolution.</div>
+    </div>
+    <div class="formula-card">
+      <h4>Guide RNA (CRISPR)</h4>
+      <div class="formula">crRNA: ~20 nt complementary to target</div>
+      <div class="formula">PAM: NGG (Cas9)</div>
+      <div class="formula-desc">Guide RNA must match target DNA sequence immediately upstream of a PAM site. Cas9 cuts ~3 bp upstream of PAM. Off-target cutting is minimized by specificity of 20 nt match.</div>
+    </div>
+    <div class="formula-card">
+      <h4>Molecular Clock</h4>
+      <div class="formula">divergence time = mutations / rate</div>
+      <div class="formula-desc">Neutral mutations accumulate at a roughly constant rate. Used to date evolutionary events. Requires calibration with fossil records or known divergence events.</div>
+    </div>
+    <div class="formula-card">
+      <h4>Genetic Drift</h4>
+      <div class="formula">Effect ∝ 1 / N_e</div>
+      <div class="formula-desc">Larger the effective population size (N_e), the smaller the drift effect. Fixation (allele goes to 100%) is more likely in small populations. Founder effect: extreme drift in a new small population.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===================== DATA =====================
+const lectures = [
+  {
+    id: 13,
+    title: "Linking Genotype to Phenotype",
+    tags: ["Forward Genetics","Reverse Genetics","Complementation"],
+    preview: "Forward vs. reverse genetics; complementation tests to count genes; recombination as mapping limit.",
+    sections: [
+      {
+        heading: "Core Concepts",
+        items: [
+          "Biology links genotype → phenotype; research works in reverse to discover how.",
+          "Forward genetics: phenotype motivates discovery of underpinning genotype (e.g., EMS mutagenesis screen).",
+          "Reverse genetics: genotype motivates testing effects on phenotype (e.g., knockout a gene, observe result).",
+          "Complementation test: cross two homozygous mutants — if offspring are mutant, same gene (fail to complement); if WT, different genes.",
+          "Recombination frequency is the limiting factor to fine-scale trait mapping genome-wide."
+        ]
+      },
+      {
+        heading: "Key Terms",
+        items: [
+          "Forward genetics — unbiased screen; phenotype first, gene second.",
+          "Reverse genetics — gene first, phenotype second.",
+          "Complementation — two alleles in trans; tests if mutations are in the same gene.",
+          "Fine-scale mapping — requires many recombination events to resolve close loci."
+        ]
+      }
+    ]
+  },
+  {
+    id: 14,
+    title: "Gene Regulation & Epigenetics",
+    tags: ["Epigenetics","Chromatin","ChIP-seq","cis/trans"],
+    preview: "Non-coding DNA importance, DNA methylation, nucleosome packaging, histone modifications, cis/trans regulation, ChIP-seq, ATAC-seq, Hi-C.",
+    sections: [
+      {
+        heading: "Core Concepts",
+        items: [
+          "Most trait- and disease-linked SNPs reside in non-coding regions of the genome.",
+          "Epigenetics: heritable alteration in gene expression NOT due to mutation in DNA sequence.",
+          "DNA methylation closes chromatin and blocks transcription.",
+          "Nucleosome packaging: histone octamer + DNA; tighter packing = less transcription.",
+          "Histone modifications: methylation (repressive or activating context-dependent) and acetylation (typically activating — opens chromatin).",
+          "Euchromatin = open, transcriptionally active. Heterochromatin = closed, silenced.",
+          "Cis elements: promoters, enhancers, insulators (act on same chromosome).",
+          "Trans elements: transcription factors, activators/coactivators, repressors/corepressors (act from different loci).",
+          "Transcription factors bind DNA motifs; can activate OR repress depending on cofactors.",
+          "Long non-coding RNAs (lncRNAs) bind DNA reverse complements to recruit chromatin-modifying proteins.",
+          "ChIP-seq: immunoprecipitate protein-bound DNA → sequence to find binding sites genome-wide.",
+          "ATAC-seq: assay for transposase-accessible chromatin; identifies open chromatin regions.",
+          "Hi-C: captures 3D genome contacts; identifies TADs and loop domains.",
+          "Computational associations (GWAS, eQTL) must be validated in vivo/vitro."
+        ]
+      }
+    ]
+  },
+  {
+    id: 15,
+    title: "DNA Methylation & Imprinting",
+    tags: ["CpG Islands","Imprinting","Bisulfite-seq"],
+    preview: "CpG islands, genomic imprinting, bisulfite sequencing, parental conflict hypothesis, Nanopore/PacBio methylation detection.",
+    sections: [
+      {
+        heading: "DNA Methylation Mechanisms",
+        items: [
+          "Methylation at cytosines (5-methylcytosine, 5mC) — occurs mostly at CpG dinucleotides in mammals.",
+          "Methylation closes chromatin → blocks transcription.",
+          "Methylation can ALSO block transcription of ncRNAs that normally block transcription → paradoxically promotes transcription (double negative).",
+          "CpG islands: clusters of CpG dinucleotides often at promoters; recruit both methylation machinery AND activators — bidirectional control.",
+          "DNA methylation is epigenetically inherited through mitosis (DNMT1 maintains hemi-methylated DNA after replication).",
+          "Methylation is globally rewritten (erased and re-established) during meiosis/gametogenesis."
+        ]
+      },
+      {
+        heading: "Genomic Imprinting",
+        items: [
+          "Genomic imprinting: parent-of-origin specific gene expression — one allele silenced based on which parent contributed it.",
+          "Imprinting is controlled by methylation at imprinting control regions (ICRs).",
+          "You can integrate pedigree analysis with imprinting to predict carrier/affected offspring probabilities.",
+          "Parental conflict hypothesis: imprinting evolved due to conflict between maternal and paternal genomes over resource allocation to offspring.",
+          "Classic examples: IGF2 (paternal expressed), H19 (maternal expressed)."
+        ]
+      },
+      {
+        heading: "Detection Methods",
+        items: [
+          "Bisulfite sequencing: treat DNA with bisulfite → unmethylated C converts to U (reads as T); methylated C is protected and reads as C.",
+          "Nanopore and PacBio long reads can detect base modifications (methylation) directly from electrical signal without bisulfite treatment."
+        ]
+      }
+    ]
+  },
+  {
+    id: 16,
+    title: "GWAS & QTL Mapping",
+    tags: ["GWAS","QTL","Linkage Disequilibrium","Continuous Traits"],
+    preview: "Continuous traits, gene-gene interactions, GWAS vs. QTL, linkage disequilibrium, haplotype blocks, eQTL integration.",
+    sections: [
+      {
+        heading: "Core Concepts",
+        items: [
+          "Continuous traits arise from multiple loci + environment; each locus has smaller effect as number of genes increases.",
+          "Gene-gene interactions (epistasis) and allelic diversity increase phenotypic diversity.",
+          "GWAS (Genome-Wide Association Study): test SNP associations in natural populations — coarse mapping due to high linkage.",
+          "QTL (Quantitative Trait Locus) mapping: use experimental crosses with known recombination — fine-scale mapping.",
+          "Recombination enables independent association testing between alleles and phenotypes.",
+          "Linkage disequilibrium (LD): non-random association of alleles at different loci on the same haplotype.",
+          "A QTL/associated SNP may NOT be causal — it could be in linkage with the causal variant within a haplotype block.",
+          "eQTL: expression QTL — integrates RNA-seq with genetic mapping to link variants to gene expression changes.",
+          "GWAS significance threshold: ~5×10⁻⁸ (Bonferroni correction for ~1M independent tests)."
+        ]
+      }
+    ]
+  },
+  {
+    id: 17,
+    title: "Transgenes, RNAi & Reporters",
+    tags: ["Transgenics","RNAi","Reporter Genes","Traps"],
+    preview: "Transgene delivery (transfection, transduction, conjugation), reporter genes, RNAi knockdown, enhancer/promoter/gene traps, recombinant DNA vectors.",
+    sections: [
+      {
+        heading: "Transgene Basics",
+        items: [
+          "Transgenics are necessary to confirm forward-genetic hypotheses (validate gene function).",
+          "Transgenes can be: overexpression constructs, knockouts, reporter fusions, dominant negatives, rescue constructs.",
+          "Delivered as: naked DNA/RNA, plasmid vectors, or viral vectors (retrovirus, lentivirus, AAV, adenovirus)."
+        ]
+      },
+      {
+        heading: "Delivery Mechanisms",
+        items: [
+          "Transfection: delivery of DNA/RNA into eukaryotic cells (lipofection, electroporation, Ca-phosphate).",
+          "Transformation: delivery into bacteria or plants.",
+          "Transduction: delivery via viral vector.",
+          "Conjugation: bacterial gene transfer via direct cell contact."
+        ]
+      },
+      {
+        heading: "Applications",
+        items: [
+          "Reporter genes: encode detectable proteins (GFP, luciferase, lacZ) to visualize gene expression patterns.",
+          "RNAi (RNA interference): dsRNA → Dicer cleaves to siRNA → RISC complex degrades complementary mRNA → gene knockdown.",
+          "Enhancer trap: reporter inserted near enhancers → reveals tissue-specific enhancer activity.",
+          "Promoter trap: reporter driven by endogenous promoter sequences.",
+          "Gene trap: reporter inserted into intron → captures endogenous gene expression and disrupts it."
+        ]
+      }
+    ]
+  },
+  {
+    id: 18,
+    title: "Model Organism Genetics",
+    tags: ["Model Organisms","C. elegans","Drosophila","Mouse","Zebrafish"],
+    preview: "Why model systems are necessary, logistical vs. biological requirements, selecting the right model for a question.",
+    sections: [
+      {
+        heading: "Why Model Organisms?",
+        items: [
+          "Enable validation of mechanistic genotype ↔ phenotype hypotheses.",
+          "Concentrated research effort → shared knowledge, resources, protocols, mutant libraries.",
+          "Two key requirements: logistical AND biological."
+        ]
+      },
+      {
+        heading: "Logistical Requirements",
+        items: [
+          "Genetically tractable (can make mutations, crosses).",
+          "Culturable / breedable in the lab.",
+          "Short generation time.",
+          "Large number of progeny (for statistical power)."
+        ]
+      },
+      {
+        heading: "Biological Requirements",
+        items: [
+          "Conserved functions with organisms of interest (especially humans).",
+          "Must be a good model/proxy for the biological process of interest.",
+          "Common models: E. coli (bacteria), S. cerevisiae (yeast), C. elegans (nematode), Drosophila (fly), Danio rerio (zebrafish), Mus musculus (mouse), Arabidopsis (plant)."
+        ]
+      },
+      {
+        heading: "Experimental Design",
+        items: [
+          "To test gene function: create loss-of-function (knockout/RNAi) AND gain-of-function (overexpression) in appropriate model.",
+          "Use rescue experiments (re-introduce WT gene) to confirm specificity.",
+          "Choose organism based on biological conservation AND practical tractability for your specific question."
+        ]
+      }
+    ]
+  },
+  {
+    id: 19,
+    title: "CRISPR-Cas9 Gene Editing",
+    tags: ["CRISPR","Cas9","Guide RNA","LoxP/Cre","HDR"],
+    preview: "CRISPR mechanism, guide RNA design, antibiotic selection, conditional knockouts, LoxP/Cre, knockin via HDR.",
+    sections: [
+      {
+        heading: "CRISPR-Cas9 Mechanism",
+        items: [
+          "Guide RNA (gRNA) = crRNA (target-specific, ~20 nt) + tracrRNA (scaffold for Cas9 binding).",
+          "crRNA base-pairs with target DNA strand; Cas9 cuts both strands ~3 bp upstream of PAM (NGG for SpCas9).",
+          "PAM (Protospacer Adjacent Motif): NGG on the non-target strand — required for Cas9 binding and cutting.",
+          "NHEJ (non-homologous end joining): error-prone repair → indels → frameshift → knockout.",
+          "HDR (homology-directed repair): use repair template → precise knockin or sequence replacement."
+        ]
+      },
+      {
+        heading: "Selection Systems",
+        items: [
+          "Antibiotic selection: cells expressing antibiotic resistance survive; used to select for successful integration.",
+          "Toxin selection: cells expressing a gene converting pro-drug to toxin are killed (negative selection).",
+          "Combined positive + negative selection enriches for precise edits."
+        ]
+      },
+      {
+        heading: "Conditional Knockouts",
+        items: [
+          "LoxP sites flanking a gene + Cre recombinase → excision of floxed region in specific tissue/time.",
+          "Allows tissue-specific or inducible knockout (avoiding lethality of full knockouts).",
+          "Can use Cre driven by tissue-specific promoters or tamoxifen-inducible Cre-ERT2."
+        ]
+      },
+      {
+        heading: "Advantages Over Earlier Methods",
+        items: [
+          "Earlier: zinc finger nucleases (ZFNs), TALENs — complex protein engineering required.",
+          "CRISPR: only need to change the 20 nt crRNA sequence — highly efficient, accurate, and scalable.",
+          "Off-target effects remain a concern — mitigated by high-fidelity Cas9 variants and careful guide RNA design."
+        ]
+      }
+    ]
+  },
+  {
+    id: 20,
+    title: "Population Genetics & HWE",
+    tags: ["HWE","Genetic Drift","Founder Effect","Chi-squared"],
+    preview: "Population, gene pool, HWE equation, 5 assumptions, chi-squared test for HWE, genetic drift, fixation, founder effect.",
+    sections: [
+      {
+        heading: "Definitions",
+        items: [
+          "Population: group of individuals of the same species capable of interbreeding.",
+          "Gene pool: all alleles in a population at a given time.",
+          "Sample: a subset of the population measured to infer population parameters.",
+          "Genotype frequency: proportion of individuals with a specific genotype.",
+          "Allele frequency: proportion of a specific allele among all allele copies."
+        ]
+      },
+      {
+        heading: "Hardy-Weinberg Equilibrium",
+        items: [
+          "HWE equation: p² + 2pq + q² = 1 (binomial expansion of biallelic system).",
+          "5 assumptions for HWE: (1) random mating, (2) no mutations, (3) no gene flow (migration), (4) no natural selection, (5) infinite population size (no genetic drift).",
+          "A population in HWE is NOT evolving (allele frequencies constant across generations).",
+          "Chi-squared test: χ² = Σ(O−E)²/E compares observed genotype counts to HWE expectations.",
+          "If p-value < 0.05 → population deviates from HWE → one or more assumptions violated."
+        ]
+      },
+      {
+        heading: "Genetic Drift",
+        items: [
+          "Genetic drift: random change in allele frequencies due to finite population size.",
+          "Effect is inversely proportional to population size (large N_e = less drift).",
+          "Allele fixation: allele reaches frequency of 1.0 (100%) — all other alleles lost.",
+          "Founder effect: a small founding group establishes a new population → extreme drift, reduced diversity.",
+          "Bottleneck: temporary severe reduction in population size → similar to founder effect."
+        ]
+      }
+    ]
+  },
+  {
+    id: 21,
+    title: "Natural Selection",
+    tags: ["Fitness","Selection","dN/dS","Balancing Selection"],
+    preview: "Selected vs. neutral sites, relative fitness W, purifying/positive/balancing selection, dN/dS ratio, mutation vs. substitution.",
+    sections: [
+      {
+        heading: "Core Concepts",
+        items: [
+          "Selected sites: positions in the genome where mutations affect fitness (e.g., coding exons, regulatory elements).",
+          "Neutral sites: mutations have no fitness effect (e.g., synonymous positions, intergenic regions).",
+          "Mutation: change in DNA sequence. Substitution: a mutation that has become fixed in a population.",
+          "Selection acts on phenotype; only alleles affecting phenotype are targets of selection.",
+          "Positive/directional selection: advantageous allele increases in frequency.",
+          "Purifying/negative selection: deleterious alleles removed from population.",
+          "Balancing selection: maintains multiple alleles at a locus (e.g., heterozygote advantage — sickle cell).",
+          "Molecular constraint: stabilizing selection preserves protein function → conserved amino acid sequences across species."
+        ]
+      },
+      {
+        heading: "Quantitative Selection",
+        items: [
+          "Relative fitness W: fitness of each genotype normalized to the most-fit genotype (W_max = 1).",
+          "Selection coefficient s: s = 1 − W (s=0 = neutral; s=1 = lethal).",
+          "Recessive deleterious alleles 'hide' in heterozygotes → much slower removal than dominant deleterious alleles.",
+          "q² (recessive homozygote) decays exponentially under selection; q decays slowly.",
+          "W̄ = mean population fitness = p²W_AA + 2pqW_Aa + q²W_aa."
+        ]
+      },
+      {
+        heading: "dN/dS Ratio",
+        items: [
+          "dN = rate of non-synonymous substitutions (changes amino acid).",
+          "dS = rate of synonymous substitutions (silent; neutral expectation).",
+          "dN/dS < 1: purifying selection (most genes).",
+          "dN/dS = 1: neutral evolution.",
+          "dN/dS > 1: positive selection (rare; e.g., immune genes, venom proteins)."
+        ]
+      }
+    ]
+  },
+  {
+    id: 22,
+    title: "Microbial Symbiosis",
+    tags: ["Endosymbiosis","Holobiont","Microbiome","MWAS"],
+    preview: "Bacteria vs. eukaryote coding content, endosymbiosis theory, holobiont concept, microbiome-wide association studies.",
+    sections: [
+      {
+        heading: "Bacteria vs. Eukaryotes",
+        items: [
+          "Bacteria: compact genomes, ~85-90% coding, operons, no introns, no nucleus.",
+          "Eukaryotes: larger genomes, ~1.5% coding (humans), introns, extensive non-coding regulatory sequences.",
+          "Bacterial genomes evolve rapidly via horizontal gene transfer (HGT) — not limited to vertical inheritance."
+        ]
+      },
+      {
+        heading: "Endosymbiosis Theory",
+        items: [
+          "Endosymbiosis theory: mitochondria and chloroplasts evolved from bacterial endosymbionts engulfed by ancestral eukaryotes.",
+          "Evidence: mitochondria have their own circular DNA, bacterial-sized ribosomes, double membranes, divide by binary fission, and are maternally inherited.",
+          "Chloroplasts evolved from cyanobacterial endosymbionts."
+        ]
+      },
+      {
+        heading: "Holobiont & Microbiome",
+        items: [
+          "Holobiont: host organism + all its associated microorganisms (microbiome).",
+          "The microbiome can influence host genetics/phenotype; host genetics influence microbiome composition.",
+          "Microbiome-Wide Association Study (MWAS): identify microbial taxa/genes associated with host phenotypes."
+        ]
+      },
+      {
+        heading: "MWAS Challenges vs. GWAS",
+        items: [
+          "Microbiome composition is dynamic (diet, antibiotics, environment alter it).",
+          "Microbial taxonomy is complex — 16S rRNA or shotgun metagenomics needed.",
+          "Cause vs. effect is harder to establish (is the microbiome causing the phenotype or vice versa?).",
+          "Host genetics AND environment both shape microbiome — confounding factors.",
+          "Much larger and more variable 'genome' than host SNP genotyping."
+        ]
+      }
+    ]
+  },
+  {
+    id: 23,
+    title: "Phylogenetics",
+    tags: ["Phylogenetics","Molecular Clocks","Bootstrap","Gene Tree"],
+    preview: "Tree terminology, shared derived characters, parsimony/ML, bootstrap, molecular clocks, gene tree vs. species tree, COVID phylogenetics.",
+    sections: [
+      {
+        heading: "Tree Terminology",
+        items: [
+          "Root: the common ancestor of all taxa in the tree.",
+          "Branch (edge): lineage connecting nodes or nodes to tips.",
+          "Node: divergence event (speciation or gene duplication).",
+          "Tip (leaf): sampled taxon (species, individual, sequence).",
+          "Clade: a node + all its descendants (monophyletic group).",
+          "Taxa: the organisms/sequences being compared."
+        ]
+      },
+      {
+        heading: "Phylogenetic Inference",
+        items: [
+          "Only shared and DERIVED character states are phylogenetically informative (represent shared ancestry = homology).",
+          "Shared ancestral characters (plesiomorphies) and unique derived characters (autapomorphies) are NOT informative.",
+          "Characters used: DNA/protein sequences, morphology, anatomy, behavior.",
+          "Monophyletic clades = identified by shared derived characters (synapomorphies).",
+          "Phylogenetic inference is NP-hard → heuristics required for large datasets.",
+          "Optimality criteria: distance (neighbor-joining), parsimony (minimum changes), maximum likelihood (statistical model).",
+          "Bootstrap analysis: resample alignment columns → build trees → report support values at nodes (>70% = reasonable support)."
+        ]
+      },
+      {
+        heading: "Molecular Clocks & Applications",
+        items: [
+          "Molecular clock: neutral mutations accumulate at roughly constant rate → use to date divergence events.",
+          "Calibrated with fossil records or known geological/biogeographic events.",
+          "Many loci needed: nucleotide substitutions saturate, recombination unlinks locus histories, constraint limits signal.",
+          "Gene tree vs. species tree: gene tree shows history of a single gene (may differ from species tree due to ILS, HGT, gene duplication).",
+          "COVID-19: viral mutations revealed transmission paths and phylogenetic tracking of spread (SARS-CoV-2 phylogenomics)."
+        ]
+      }
+    ]
+  }
+];
+
+// ===================== FLASHCARDS DATA =====================
+const allFlashcards = [
+  // L13
+  { lec: 13, q: "What is forward genetics?", a: "A phenotype-first approach: screen for mutants with interesting phenotypes, then identify the underlying gene. Example: EMS mutagenesis screen." },
+  { lec: 13, q: "What is reverse genetics?", a: "A genotype-first approach: start with a gene of interest, modify it, and observe phenotypic effects. Example: CRISPR knockout." },
+  { lec: 13, q: "How does a complementation test work?", a: "Cross two homozygous recessive mutants in trans (m₁/+ × m₂/+). If offspring have mutant phenotype → same gene (fail to complement). If WT → different genes (complement)." },
+  { lec: 13, q: "Why is recombination the limiting factor for fine-scale mapping?", a: "You need recombination events between the marker and causal SNP to resolve them. Rare recombination means nearby loci cannot be separated without massive sample sizes." },
+  { lec: 13, q: "What does 'fail to complement' mean in a complementation test?", a: "Both mutations are in the same gene — each copy of the gene is non-functional, so no WT protein is produced and the mutant phenotype appears." },
+  // L14
+  { lec: 14, q: "Define epigenetics.", a: "Heritable alteration in gene expression that is NOT due to a mutation in the DNA sequence. Examples: DNA methylation, histone modifications." },
+  { lec: 14, q: "Where do most trait/disease-linked SNPs reside?", a: "In non-coding regions of the genome (regulatory elements like enhancers, promoters, insulators) — not in protein-coding exons." },
+  { lec: 14, q: "What is the difference between euchromatin and heterochromatin?", a: "Euchromatin: open, accessible, transcriptionally active. Heterochromatin: closed, compact, transcriptionally silenced." },
+  { lec: 14, q: "What is histone acetylation associated with?", a: "Transcriptional activation — acetylation neutralizes positive charge on histone tails, loosening DNA-histone interaction and opening chromatin." },
+  { lec: 14, q: "What are cis regulatory elements? Give examples.", a: "DNA sequences that regulate nearby genes on the same chromosome. Examples: promoters, enhancers, insulators." },
+  { lec: 14, q: "What does ChIP-seq do?", a: "Chromatin Immunoprecipitation + sequencing. Immunoprecipitates protein-bound DNA (e.g., a transcription factor) then sequences to identify genome-wide binding sites." },
+  { lec: 14, q: "What does ATAC-seq measure?", a: "Assay for Transposase-Accessible Chromatin. Uses Tn5 transposase to insert sequencing adapters into open chromatin regions → maps accessible (open) chromatin genome-wide." },
+  { lec: 14, q: "What does Hi-C measure?", a: "3D genome organization — captures chromatin contacts using proximity ligation + sequencing. Identifies TADs (topologically associating domains) and chromatin loops." },
+  { lec: 14, q: "What is the role of lncRNAs in epigenetic regulation?", a: "Long non-coding RNAs bind to DNA reverse complements to localize chromatin-modifying proteins to specific genomic loci (e.g., Xist lncRNA in X inactivation)." },
+  // L15
+  { lec: 15, q: "What is genomic imprinting?", a: "Parent-of-origin specific gene expression — one allele is silenced based on which parent contributed it. Controlled by DNA methylation at imprinting control regions (ICRs)." },
+  { lec: 15, q: "How does bisulfite sequencing detect DNA methylation?", a: "Bisulfite converts unmethylated cytosines to uracil (reads as T). Methylated cytosines are protected and read as C. Comparing to reference identifies methylation positions." },
+  { lec: 15, q: "What is a CpG island?", a: "A region of the genome with high density of CpG dinucleotides, often near gene promoters. Associated with regulatory control — can be methylated (silenced) or unmethylated (active)." },
+  { lec: 15, q: "What is the parental conflict hypothesis for imprinting?", a: "Paternal genome 'wants' maximum resource extraction from mother for offspring; maternal genome 'wants' to conserve resources for future offspring. This conflict shaped the evolution of imprinting." },
+  { lec: 15, q: "How is DNA methylation inherited through mitosis?", a: "After replication, DNA is hemi-methylated. DNMT1 (maintenance methyltransferase) recognizes hemi-methylated DNA and methylates the new strand → faithful inheritance." },
+  { lec: 15, q: "What advantage do Nanopore/PacBio sequencing have for methylation detection?", a: "They can directly detect base modifications (including 5-methylcytosine) from the electrical signal without bisulfite treatment — preserving the original DNA." },
+  // L16
+  { lec: 16, q: "What is the difference between GWAS and QTL mapping?", a: "GWAS: natural populations, coarse mapping, high LD. QTL: experimental crosses, fine-scale mapping, more recombination to resolve loci. GWAS finds associations; QTL maps with more precision." },
+  { lec: 16, q: "What is linkage disequilibrium (LD)?", a: "Non-random association of alleles at different loci — alleles found together on the same haplotype more often than expected by chance. Decays with recombination over generations." },
+  { lec: 16, q: "Why might a GWAS hit not be the causal variant?", a: "The associated SNP may be in LD with the actual causal variant within a haplotype block. The association is real but the specific SNP isn't necessarily functional." },
+  { lec: 16, q: "What is an eQTL?", a: "Expression QTL — a genetic locus associated with variation in gene expression levels (RNA abundance). Integrates genetic mapping with transcriptomic data." },
+  { lec: 16, q: "Why do continuous traits arise?", a: "Multiple genes (polygenic), gene-gene interactions (epistasis), allelic diversity, and environmental influences combine to produce a continuous distribution of phenotypes." },
+  // L17
+  { lec: 17, q: "What is transfection vs. transduction?", a: "Transfection: non-viral delivery of nucleic acids into eukaryotic cells (lipofection, electroporation). Transduction: delivery via viral vector (retrovirus, lentivirus, AAV)." },
+  { lec: 17, q: "What is RNAi and how does it work?", a: "RNA interference: dsRNA (or shRNA) is processed by Dicer into siRNA (~21 nt). siRNA loads into RISC complex → binds complementary mRNA → mRNA degradation → gene knockdown." },
+  { lec: 17, q: "What is a reporter gene?", a: "A gene encoding a detectable protein (GFP, luciferase, lacZ) fused to or placed downstream of a gene of interest's regulatory elements — used to visualize when/where a gene is expressed." },
+  { lec: 17, q: "What is the difference between an enhancer trap and a gene trap?", a: "Enhancer trap: reporter placed near enhancers to reveal tissue-specific activity (doesn't disrupt gene). Gene trap: reporter inserted into intron, captures endogenous expression AND disrupts the gene." },
+  { lec: 17, q: "Why are transgenics needed after forward genetics?", a: "Forward genetics identifies candidate genes but correlation. Transgenic rescue or knockout of the candidate gene in model organisms provides mechanistic proof of causality." },
+  // L18
+  { lec: 18, q: "What are the two categories of requirements for a model organism?", a: "Logistical: genetically tractable, culturable, short generation time, many progeny. Biological: conserved functions with organism of interest (especially humans)." },
+  { lec: 18, q: "Name 5 common model organisms and their uses.", a: "E. coli (bacterial genetics), S. cerevisiae (cell biology/yeast genetics), C. elegans (development, RNAi), Drosophila (genetics, development), Mus musculus (mammalian disease models)." },
+  { lec: 18, q: "How would you design an experiment to test gene X function in a model organism?", a: "1) Create LOF (knockout/RNAi/CRISPR). 2) Observe phenotype. 3) Create GOF (overexpression). 4) Rescue with WT gene to confirm specificity. 5) Choose organism based on conservation of gene function." },
+  // L19
+  { lec: 19, q: "Describe the CRISPR-Cas9 mechanism.", a: "gRNA (crRNA + tracrRNA) guides Cas9 to target DNA. crRNA base-pairs with 20 nt target; Cas9 cuts both strands ~3 bp upstream of PAM (NGG). Repair by NHEJ (indels/KO) or HDR (precise edit)." },
+  { lec: 19, q: "What is the PAM sequence for SpCas9?", a: "NGG — required immediately downstream of the protospacer on the non-target strand. Cas9 cannot cut without a PAM." },
+  { lec: 19, q: "What is a conditional knockout and why is it useful?", a: "A knockout restricted to a specific tissue or time point using loxP/Cre or inducible Cre-ERT2. Avoids embryonic lethality of full knockouts and enables tissue-specific gene function studies." },
+  { lec: 19, q: "How does LoxP/Cre recombination work?", a: "Two loxP sites flank the gene of interest. When Cre recombinase is expressed, it catalyzes recombination between loxP sites, excising the intervening sequence → gene knocked out." },
+  { lec: 19, q: "What is NHEJ vs. HDR in CRISPR editing?", a: "NHEJ: error-prone repair → small insertions/deletions → frameshift/knockout. HDR: use a repair template → precise sequence knockin. HDR requires template and is less efficient." },
+  { lec: 19, q: "How do you design a crRNA to target a gene?", a: "Find a ~20 nt sequence in your target gene immediately upstream of an NGG PAM. The crRNA sequence matches the non-template strand (same as target strand, except T→U)." },
+  // L20
+  { lec: 20, q: "State the Hardy-Weinberg equation.", a: "p² + 2pq + q² = 1, where p = freq of allele A, q = freq of allele a. p² = AA freq, 2pq = Aa freq, q² = aa freq. Also: p + q = 1." },
+  { lec: 20, q: "List the 5 assumptions of Hardy-Weinberg Equilibrium.", a: "1) Random mating, 2) No mutations, 3) No gene flow (migration), 4) No natural selection, 5) Infinite population size (no genetic drift)." },
+  { lec: 20, q: "What does it mean if a population is in HWE?", a: "The population is NOT evolving — allele frequencies are stable across generations. All five HWE assumptions are met." },
+  { lec: 20, q: "What is genetic drift?", a: "Random fluctuation in allele frequencies due to finite population size. Larger effect in small populations. Can lead to fixation or loss of alleles." },
+  { lec: 20, q: "What is the founder effect?", a: "A type of genetic drift where a new population is established by a small number of individuals from a larger population → reduced genetic diversity and random allele frequency changes." },
+  { lec: 20, q: "How do you perform a chi-squared test for HWE?", a: "1) Calculate expected genotype frequencies from allele frequencies (p, q). 2) Multiply by N to get expected counts. 3) χ² = Σ(O−E)²/E. 4) Compare to critical value (df = 1 for biallelic locus). If χ² > critical → reject HWE." },
+  // L21
+  { lec: 21, q: "What is the difference between a mutation and a substitution?", a: "Mutation: any change in DNA sequence (may be new, at any frequency). Substitution: a mutation that has become fixed in the population (reached frequency = 1)." },
+  { lec: 21, q: "What is balancing selection? Give an example.", a: "Selection that maintains multiple alleles in a population (polymorphism). Example: heterozygote advantage — sickle cell anemia (HbA/HbS heterozygotes have malaria resistance)." },
+  { lec: 21, q: "Interpret a dN/dS ratio of 0.1.", a: "dN/dS < 1 → purifying (negative) selection. Amino acid changes are being removed; the protein sequence is functionally constrained. Only 10% as many non-synonymous substitutions as expected under neutrality." },
+  { lec: 21, q: "Why do recessive deleterious alleles persist longer in a population?", a: "Recessive deleterious alleles 'hide' in heterozygotes (which are not selected against) — selection only removes aa homozygotes. As q decreases, most copies are in Aa carriers → very slow removal." },
+  { lec: 21, q: "What is relative fitness W?", a: "Fitness of a genotype normalized to the most-fit genotype (W_max = 1). W = 1 − s, where s = selection coefficient. Allows comparison across genotypes on a 0–1 scale." },
+  // L22
+  { lec: 22, q: "What is the endosymbiosis theory?", a: "Mitochondria and chloroplasts evolved from free-living bacteria that were engulfed by ancestral eukaryotic cells and became permanent intracellular organelles. Supported by circular DNA, bacterial ribosomes, double membranes." },
+  { lec: 22, q: "What is a holobiont?", a: "A host organism together with all of its associated microorganisms (bacteria, fungi, viruses, etc.). The concept recognizes that host and microbiome are an evolutionary/ecological unit." },
+  { lec: 22, q: "Name three challenges of MWAS compared to GWAS.", a: "1) Microbiome is dynamic (changes with diet, antibiotics, environment). 2) Cause vs. effect is difficult to establish. 3) Microbiome 'genome' is vast and variable across individuals. 4) Host genetics AND environment both confound associations." },
+  { lec: 22, q: "What evidence supports the endosymbiotic origin of mitochondria?", a: "Circular mitochondrial DNA, bacterial-sized ribosomes (70S), double membrane, binary fission division, maternal inheritance, sequence similarity to α-proteobacteria." },
+  // L23
+  { lec: 23, q: "What characters are phylogenetically informative?", a: "Shared AND derived characters (synapomorphies) — they indicate homology from a common ancestor. Shared ancestral (plesiomorphic) and unique derived (autapomorphic) characters are NOT informative." },
+  { lec: 23, q: "What is a molecular clock?", a: "Neutral mutations accumulate at a roughly constant rate → use the number of differences between sequences + calibration from known events to estimate divergence times." },
+  { lec: 23, q: "What is the difference between a gene tree and a species tree?", a: "A gene tree shows the history of a single gene/allele (may differ from species history due to ILS, HGT, or gene duplication). A species tree shows the history of populations/species." },
+  { lec: 23, q: "What does bootstrap support tell you in a phylogenetic tree?", a: "The percentage of bootstrap replicates (resampled datasets) that recovered a given node/clade. Values >70–80% suggest robust support. Low values indicate uncertainty in that branch." },
+  { lec: 23, q: "Why are many loci needed for reliable phylogenetic inference?", a: "Nucleotide substitutions saturate (multiple hits), recombination unlinks locus histories, selection constrains informative sites, and any single locus may have idiosyncratic history (ILS, HGT)." },
+  { lec: 23, q: "What optimality criteria are used in phylogenetic inference?", a: "Distance (neighbor-joining: minimize distances), parsimony (minimize total evolutionary changes), maximum likelihood (find tree most likely to produce observed data under a model)." }
+];
+
+// ===================== QUIZ DATA =====================
+const allQuestions = [
+  // L13
+  { lec: 13, q: "A researcher screens thousands of flies for abnormal wing development and then clones the mutated gene. This is an example of:", options: ["Reverse genetics","Forward genetics","Complementation testing","QTL mapping"], correct: 1, exp: "Forward genetics starts with phenotype → identifies gene. The screen for phenotype comes first." },
+  { lec: 13, q: "You cross two white-eyed Drosophila mutants from different lines. All F1 offspring have white eyes. What does this tell you?", options: ["The mutations complement each other","The mutations are in different genes","The mutations fail to complement — same gene","The trait is X-linked"], correct: 2, exp: "If F1 show the mutant phenotype, the mutations fail to complement → they are in the same gene (cannot produce WT protein together)." },
+  { lec: 13, q: "Which approach starts with a known gene sequence and tests its function?", options: ["Forward genetics","Reverse genetics","Pedigree analysis","Chi-squared testing"], correct: 1, exp: "Reverse genetics: genotype → test effect on phenotype. Example: CRISPR out a gene, observe what happens." },
+  { lec: 13, q: "Fine-scale genetic mapping is limited by:", options: ["The number of SNPs genotyped","Recombination frequency between loci","The sequencing depth","Population size"], correct: 1, exp: "Recombination is necessary to separate linked loci. Without recombination between two nearby variants, they cannot be independently mapped." },
+  // L14
+  { lec: 14, q: "Epigenetics is best defined as:", options: ["Mutations in coding DNA that alter protein function","Heritable changes in gene expression not caused by DNA sequence changes","Changes in allele frequency across generations","Insertions and deletions in regulatory regions"], correct: 1, exp: "Epigenetics = heritable (through cell division) changes in gene expression NOT due to mutation." },
+  { lec: 14, q: "Which chromatin state is associated with active transcription?", options: ["Heterochromatin with high H3K27me3","Euchromatin with histone acetylation","Densely packed nucleosomes","Promoter CpG methylation"], correct: 1, exp: "Euchromatin + histone acetylation = open chromatin = transcriptionally permissive state." },
+  { lec: 14, q: "A transcription factor binds an enhancer on chromosome 3 and activates a gene on chromosome 3 nearby. This is an example of:", options: ["Trans regulation","Cis regulation","Epigenetic silencing","Post-translational modification"], correct: 1, exp: "Enhancers are cis-acting elements — they act on genes on the same chromosome. Even though TFs are trans-acting proteins, the enhancer itself is a cis element." },
+  { lec: 14, q: "ChIP-seq is used to:", options: ["Map open chromatin regions","Measure DNA methylation at CpG sites","Identify genome-wide binding sites of a protein","Capture 3D chromatin contacts"], correct: 2, exp: "ChIP-seq: immunoprecipitate protein-bound DNA → sequence → map where the protein binds across the genome." },
+  { lec: 14, q: "Hi-C measures:", options: ["Histone acetylation patterns","3D genome organization and chromatin contacts","Single-molecule methylation","Transcription factor occupancy"], correct: 1, exp: "Hi-C captures chromatin contacts via proximity ligation → reveals 3D genome structure including TADs and loops." },
+  // L15
+  { lec: 15, q: "In bisulfite sequencing, an unmethylated cytosine reads as:", options: ["C (unchanged)","G (complementary)","T (converted via U)","A (depurination)"], correct: 2, exp: "Bisulfite converts unmethylated C → U, which is read as T during sequencing. Methylated C is protected and stays as C." },
+  { lec: 15, q: "A child expresses a disease trait only when the mutant allele is inherited from the father, not the mother. This is consistent with:", options: ["Autosomal recessive inheritance","X-linked dominant inheritance","Genomic imprinting","Mitochondrial inheritance"], correct: 2, exp: "Parent-of-origin specific expression is the hallmark of genomic imprinting — one allele is silenced based on which parent it came from." },
+  { lec: 15, q: "The parental conflict hypothesis explains imprinting evolution in terms of:", options: ["Competition between siblings for resources","Conflict between maternal and paternal genomes over offspring resource allocation","Mother's immune system rejecting paternal genes","Epigenetic drift over generations"], correct: 1, exp: "Maternal and paternal genomes have different evolutionary interests regarding resource investment in offspring → drives evolution of imprinting." },
+  { lec: 15, q: "DNA methylation is maintained after mitotic replication by:", options: ["DNMT3a/3b (de novo methyltransferases)","DNMT1 (maintenance methyltransferase)","Histone deacetylases","ATAC-seq machinery"], correct: 1, exp: "DNMT1 preferentially methylates hemi-methylated DNA (template strand methylated, new strand not yet) → faithful epigenetic inheritance through replication." },
+  // L16
+  { lec: 16, q: "Compared to QTL mapping, GWAS typically provides:", options: ["Higher resolution due to more recombination","Coarser mapping due to high linkage disequilibrium","Better estimates of effect size","More causal variants identified directly"], correct: 1, exp: "GWAS uses natural populations with high LD → coarse mapping. QTL uses experimental crosses with controlled recombination → finer resolution." },
+  { lec: 16, q: "A SNP is significantly associated with height in a GWAS. This means:", options: ["The SNP is definitely the causal variant","The SNP changes an amino acid in a height-related gene","The SNP or a linked variant in its haplotype block may affect height","Height is monogenic"], correct: 2, exp: "GWAS hits are often in LD with the causal variant — not necessarily causal themselves. The causal variant lies within the haplotype block." },
+  { lec: 16, q: "Which of the following best describes an eQTL?", options: ["A locus associated with protein structure","A genetic variant associated with variation in gene expression levels","A QTL identified using epigenetic markers","A SNP that causes a frameshift mutation"], correct: 1, exp: "eQTL = expression QTL — maps genetic variants to differences in mRNA abundance. Integrates genetics with transcriptomics." },
+  // L17
+  { lec: 17, q: "RNAi causes gene knockdown by:", options: ["Editing the DNA sequence of the target gene","Methylating the target gene's promoter","Degrading the target mRNA via RISC-siRNA complex","Blocking translation by binding ribosomal RNA"], correct: 2, exp: "dsRNA → Dicer → siRNA → RISC → siRNA guides RISC to complementary mRNA → mRNA degraded → knockdown." },
+  { lec: 17, q: "A researcher inserts a GFP reporter into a Drosophila intron, which gets expressed in the same pattern as the endogenous gene and also disrupts its function. This is a:", options: ["Promoter trap","Enhancer trap","Gene trap","Reporter rescue"], correct: 2, exp: "Gene trap: reporter (GFP) inserted into an intron is spliced into the mRNA → captures endogenous expression and disrupts the gene simultaneously." },
+  { lec: 17, q: "Which delivery mechanism uses a viral vector to introduce DNA into a cell?", options: ["Transfection","Transduction","Conjugation","Transformation"], correct: 1, exp: "Transduction = gene delivery via virus (retrovirus, lentivirus, AAV, adenovirus). Transfection is non-viral, transformation is for bacteria/plants." },
+  // L18
+  { lec: 18, q: "Which of these is a logistical requirement for a model organism?", options: ["Conserved gene functions with humans","Short generation time","Vertebrate body plan","Large body size for dissection"], correct: 1, exp: "Logistical requirements include: genetically tractable, culturable/breedable, short generation time, many progeny." },
+  { lec: 18, q: "C. elegans is particularly useful for RNAi experiments because:", options: ["It has a very large genome","Feeding with dsRNA-producing bacteria causes systemic RNAi","It cannot be genetically modified otherwise","It has 10,000 chromosomes"], correct: 1, exp: "C. elegans takes up dsRNA by feeding → systemic RNAi knocks down genes throughout the organism. This makes genome-wide RNAi screens practical." },
+  // L19
+  { lec: 19, q: "SpCas9 requires which sequence immediately downstream of the protospacer?", options: ["ATG (start codon)","TATA box","NGG (PAM sequence)","CpG island"], correct: 2, exp: "PAM (Protospacer Adjacent Motif) = NGG for SpCas9, on the non-target strand. Required for Cas9 binding and DNA unwinding." },
+  { lec: 19, q: "NHEJ repair after CRISPR cutting typically results in:", options: ["Precise sequence insertion","Small insertions or deletions (indels)","Chromosomal translocation","Epigenetic silencing"], correct: 1, exp: "NHEJ is error-prone → small indels at the cut site → frameshift → premature stop → loss-of-function (knockout)." },
+  { lec: 19, q: "A conditional knockout using LoxP/Cre allows researchers to:", options: ["Insert any sequence precisely via HDR","Delete a gene only in a specific tissue or time point","Screen for off-target CRISPR effects","Multiplex guide RNAs simultaneously"], correct: 1, exp: "LoxP sites flank the gene; tissue-specific Cre expression catalyzes excision only in that tissue/time → conditional (not global) knockout." },
+  { lec: 19, q: "To create a precise knockin using CRISPR, you use:", options: ["NHEJ with a guide RNA only","HDR with a repair template containing the desired sequence","Two guide RNAs flanking the gene","Antibiotic selection only"], correct: 1, exp: "HDR (homology-directed repair) uses a provided template with the desired sequence flanked by homology arms → precise knockin." },
+  // L20
+  { lec: 20, q: "In a population with p = 0.6 and q = 0.4, the expected frequency of heterozygotes under HWE is:", options: ["0.24","0.48","0.36","0.16"], correct: 1, exp: "Heterozygote frequency = 2pq = 2(0.6)(0.4) = 0.48." },
+  { lec: 20, q: "A population's observed genotype frequencies differ significantly from HWE expectations. This could be due to:", options: ["Only random mating","Any violation of HWE assumptions (selection, drift, migration, mutation, non-random mating)","A very large population","Synonymous mutations only"], correct: 1, exp: "Any of the 5 HWE assumption violations (non-random mating, selection, drift, gene flow, mutation) can cause deviations." },
+  { lec: 20, q: "Which of the following populations would experience the largest effects of genetic drift?", options: ["A population of 1,000,000 individuals","A population of 50 individuals","A population with high gene flow","A population under strong selection"], correct: 1, exp: "Genetic drift effects are inversely proportional to effective population size. N=50 → very large drift → rapid allele frequency changes." },
+  { lec: 20, q: "The founder effect is best described as:", options: ["Inbreeding depression in large populations","A type of selection on founder alleles","Extreme genetic drift when a new population is founded by few individuals","A mutation rate increase in founder populations"], correct: 2, exp: "Founder effect: small group establishes new population → severe bottleneck → random loss/fixation of alleles → reduced diversity." },
+  // L21
+  { lec: 21, q: "A dN/dS ratio of 2.5 for an immune gene suggests:", options: ["Purifying selection conserving function","Neutral evolution","Positive (adaptive) selection favoring amino acid changes","Balancing selection maintaining diversity"], correct: 2, exp: "dN/dS > 1 → non-synonymous changes accumulate faster than synonymous → positive selection favoring amino acid change." },
+  { lec: 21, q: "Which scenario best illustrates balancing selection?", options: ["A lethal recessive allele being removed over time","HbA/HbS heterozygotes having higher fitness in malaria-endemic regions","A synonymous mutation fixing by genetic drift","Stabilizing selection on body weight"], correct: 1, exp: "Heterozygote advantage (overdominance) maintains both alleles in the population — classic balancing selection example." },
+  { lec: 21, q: "Why do recessive deleterious alleles decrease in frequency very slowly under selection?", options: ["They have high fitness in heterozygotes","Selection cannot see them when they are hidden in heterozygotes","They are co-dominant","They are on the Y chromosome"], correct: 1, exp: "As q decreases, most copies of the recessive allele are in Aa heterozygotes (not selected against) → very slow purging." },
+  // L22
+  { lec: 22, q: "Which of these is evidence that mitochondria evolved from bacterial endosymbionts?", options: ["Mitochondria have linear chromosomes like eukaryotes","Mitochondria have circular DNA and 70S ribosomes","Mitochondria are inherited from both parents","Mitochondria lack a membrane"], correct: 1, exp: "Circular DNA, 70S (bacterial-type) ribosomes, double membrane, and binary fission all support the endosymbiotic origin of mitochondria." },
+  { lec: 22, q: "A 'holobiont' refers to:", options: ["A bacterial genome plus its plasmids","A host organism plus all of its associated microorganisms","A phylogenetic clade including all gut bacteria","The collective genome of a microbiome"], correct: 1, exp: "Holobiont = host + all associated microorganisms (bacteria, fungi, viruses, archaea). Emphasizes the ecological unit of host + microbiome." },
+  { lec: 22, q: "A major challenge of MWAS compared to GWAS is:", options: ["The host genome is too small","Microbiome composition is dynamic and influenced by environment","There are too few microbiome taxa to analyze","Microbiomes cannot be sequenced"], correct: 1, exp: "Unlike host DNA, the microbiome changes with diet, antibiotics, illness — making it hard to determine if microbiome differences cause or result from phenotype." },
+  // L23
+  { lec: 23, q: "In a phylogenetic tree, a clade is defined as:", options: ["All taxa with a shared derived character only","A node and all of its descendants (monophyletic group)","Any group of organisms that look similar","The root and two outgroup taxa"], correct: 1, exp: "Clade = a node + all of its descendants. Equivalent to monophyletic group — defined by shared ancestry from that common ancestor." },
+  { lec: 23, q: "Bootstrap values in a phylogenetic tree represent:", options: ["The statistical significance of the molecular clock calibration","The percentage of resampled datasets that recover a given node","The number of parsimony-informative characters","The dN/dS ratio at each branch"], correct: 1, exp: "Bootstrap: resample alignment with replacement → rebuild tree many times → report % trees recovering each node. >70-80% = well-supported." },
+  { lec: 23, q: "Why might a gene tree differ from the species tree?", options: ["Gene trees and species trees always agree","Incomplete lineage sorting, HGT, or gene duplication can cause discordance","Molecular clocks only apply to species trees","Bootstrapping fixes gene tree errors"], correct: 1, exp: "ILS (incomplete lineage sorting), horizontal gene transfer, and gene duplication/loss can make a single gene's history different from the species history." },
+  { lec: 23, q: "Which characters are most useful for phylogenetic inference?", options: ["Characters shared by all taxa (ancestral)","Characters unique to one taxon (autapomorphies)","Shared derived characters (synapomorphies)","Any morphological differences"], correct: 2, exp: "Synapomorphies (shared, derived) indicate common ancestry. Ancestral characters could have been inherited from distant ancestors; autapomorphies only define one lineage." },
+];
+
+// ===================== MATCHING DATA =====================
+const matchingPairs = [
+  { lec: 13, term: "Forward genetics", def: "Screen for phenotype → identify gene" },
+  { lec: 13, term: "Complementation", def: "Test if two mutations are in the same gene" },
+  { lec: 14, term: "Epigenetics", def: "Heritable gene expression change without DNA sequence change" },
+  { lec: 14, term: "ChIP-seq", def: "Maps protein binding sites genome-wide" },
+  { lec: 14, term: "ATAC-seq", def: "Identifies open chromatin regions" },
+  { lec: 14, term: "Hi-C", def: "Captures 3D genome contacts" },
+  { lec: 14, term: "Euchromatin", def: "Open, transcriptionally active chromatin" },
+  { lec: 14, term: "Heterochromatin", def: "Closed, transcriptionally silenced chromatin" },
+  { lec: 15, term: "Bisulfite sequencing", def: "Unmethylated C→T; detects DNA methylation" },
+  { lec: 15, term: "Genomic imprinting", def: "Parent-of-origin specific gene expression" },
+  { lec: 15, term: "CpG island", def: "High-density CpG region near gene promoters" },
+  { lec: 15, term: "DNMT1", def: "Maintenance methyltransferase after replication" },
+  { lec: 16, term: "GWAS", def: "Coarse SNP association in natural populations" },
+  { lec: 16, term: "QTL mapping", def: "Fine-scale mapping in experimental crosses" },
+  { lec: 16, term: "Linkage disequilibrium", def: "Non-random allele association on haplotypes" },
+  { lec: 16, term: "eQTL", def: "Genetic variant linked to gene expression levels" },
+  { lec: 17, term: "RNAi", def: "dsRNA → siRNA → RISC → mRNA degradation" },
+  { lec: 17, term: "Transduction", def: "Gene delivery via viral vector" },
+  { lec: 17, term: "Gene trap", def: "Reporter in intron; captures and disrupts gene" },
+  { lec: 17, term: "Reporter gene", def: "GFP/luciferase to visualize gene expression" },
+  { lec: 18, term: "Model organism", def: "Genetically tractable + biologically conserved system" },
+  { lec: 19, term: "PAM (NGG)", def: "Sequence required for Cas9 binding and cutting" },
+  { lec: 19, term: "NHEJ", def: "Error-prone repair → indels → gene knockout" },
+  { lec: 19, term: "HDR", def: "Precise edit using a repair template" },
+  { lec: 19, term: "Conditional knockout", def: "Tissue-specific deletion via LoxP/Cre" },
+  { lec: 20, term: "HWE", def: "p² + 2pq + q² = 1; non-evolving population" },
+  { lec: 20, term: "Genetic drift", def: "Random allele frequency change in finite populations" },
+  { lec: 20, term: "Founder effect", def: "Extreme drift from small founding population" },
+  { lec: 20, term: "Allele fixation", def: "Allele reaches frequency = 1.0 in population" },
+  { lec: 21, term: "dN/dS > 1", def: "Positive selection on amino acid changes" },
+  { lec: 21, term: "Balancing selection", def: "Maintains multiple alleles; e.g., heterozygote advantage" },
+  { lec: 21, term: "Selection coefficient (s)", def: "s = 1 − W; measures fitness cost of allele" },
+  { lec: 21, term: "Purifying selection", def: "Removes deleterious alleles; dN/dS < 1" },
+  { lec: 22, term: "Holobiont", def: "Host + all associated microorganisms" },
+  { lec: 22, term: "Endosymbiosis", def: "Bacteria engulfed → became mitochondria/chloroplasts" },
+  { lec: 22, term: "MWAS", def: "Microbiome-wide association study" },
+  { lec: 23, term: "Synapomorphy", def: "Shared derived character state; phylogenetically informative" },
+  { lec: 23, term: "Molecular clock", def: "Uses neutral mutation rate to date divergence events" },
+  { lec: 23, term: "Bootstrap", def: "Resampling to assess phylogenetic node support" },
+  { lec: 23, term: "Gene tree vs. species tree", def: "Single gene history may differ from species history (ILS/HGT)" }
+];
+
+// ===================== LECTURE GUIDE RENDER =====================
+function renderLectureGrid() {
+  const grid = document.getElementById('lecture-grid');
+  grid.innerHTML = lectures.map(l => `
+    <div class="lecture-card" onclick="openLecture(${l.id})">
+      <div class="lnum">Lecture ${l.id}</div>
+      <div class="ltitle">${l.title}</div>
+      <div class="lpreview">${l.preview}</div>
+      <div class="tag-row">${l.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+    </div>
+  `).join('');
+}
+
+function openLecture(id) {
+  const l = lectures.find(x => x.id === id);
+  document.getElementById('modal-body').innerHTML = `
+    <div class="lnum">Lecture ${l.id}</div>
+    <h2>${l.title}</h2>
+    <div class="tag-row" style="margin-bottom:20px">${l.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+    ${l.sections.map(s => `
+      <div class="bullet-section">
+        <h4>${s.heading}</h4>
+        <ul class="bullet-list">${s.items.map(i => `<li>${i}</li>`).join('')}</ul>
+      </div>
+    `).join('')}
+  `;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function closeModal(e) { if (e.target === document.getElementById('modal-overlay')) closeModalDirect(); }
+function closeModalDirect() { document.getElementById('modal-overlay').classList.remove('open'); }
+
+// ===================== NAVIGATION =====================
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  event.target.classList.add('active');
+  if (id === 'flashcards') initFlashcards();
+  if (id === 'quiz') { /* reset to start */ }
+  if (id === 'matching') startMatching();
+}
+
+// ===================== FLASHCARDS =====================
+let fcDeck = [], fcIndex = 0, fcKnown = {}, fcFlipped = false;
+
+function getFilteredCards(filterId) {
+  const f = filterId || document.getElementById('fc-filter').value;
+  if (f === 'all') return [...allFlashcards];
+  return allFlashcards.filter(c => c.lec === parseInt(f));
+}
+
+function initFlashcards() {
+  const f = document.getElementById('fc-filter').value;
+  fcDeck = getFilteredCards(f);
+  fcIndex = 0;
+  fcFlipped = false;
+  updateFC();
+}
+
+function shuffleCards() {
+  for (let i = fcDeck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [fcDeck[i], fcDeck[j]] = [fcDeck[j], fcDeck[i]];
+  }
+  fcIndex = 0;
+  fcFlipped = false;
+  updateFC();
+}
+
+function resetKnown() {
+  fcKnown = {};
+  updateFC();
+}
+
+function flipCard() {
+  fcFlipped = !fcFlipped;
+  document.getElementById('fc-card').classList.toggle('flipped', fcFlipped);
+}
+
+function nextCard() {
+  if (fcIndex < fcDeck.length - 1) { fcIndex++; fcFlipped = false; updateFC(); }
+}
+
+function prevCard() {
+  if (fcIndex > 0) { fcIndex--; fcFlipped = false; updateFC(); }
+}
+
+function markCard(known) {
+  const card = fcDeck[fcIndex];
+  const key = card.lec + '|' + card.q;
+  fcKnown[key] = known;
+  updateFC();
+  nextCard();
+}
+
+function updateFC() {
+  if (!fcDeck.length) return;
+  const card = fcDeck[fcIndex];
+  document.getElementById('fc-front').textContent = card.q;
+  document.getElementById('fc-back').textContent = card.a;
+  document.getElementById('fc-card').classList.remove('flipped');
+  fcFlipped = false;
+  document.getElementById('fc-progress').textContent = `Card ${fcIndex + 1} of ${fcDeck.length}`;
+
+  let known = 0, learning = 0, unseen = 0;
+  fcDeck.forEach(c => {
+    const k = c.lec + '|' + c.q;
+    if (!(k in fcKnown)) unseen++;
+    else if (fcKnown[k]) known++;
+    else learning++;
+  });
+  document.getElementById('known-count').textContent = known;
+  document.getElementById('learning-count').textContent = learning;
+  document.getElementById('unseen-count').textContent = unseen;
+}
+
+// ===================== QUIZ =====================
+let quizDeck = [], quizIndex = 0, quizScore = 0, quizAnswered = 0;
+
+function startQuiz() {
+  const f = document.getElementById('quiz-filter').value;
+  const count = parseInt(document.getElementById('quiz-count').value);
+  let pool = f === 'all' ? [...allQuestions] : allQuestions.filter(q => q.lec === parseInt(f));
+  // shuffle
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  quizDeck = pool.slice(0, Math.min(count, pool.length));
+  quizIndex = 0; quizScore = 0; quizAnswered = 0;
+
+  document.getElementById('quiz-start-screen').style.display = 'none';
+  document.getElementById('quiz-result-screen').style.display = 'none';
+  document.getElementById('quiz-active-screen').style.display = '';
+  document.getElementById('q-total').textContent = quizDeck.length;
+  document.getElementById('q-next-btn').style.display = 'none';
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = quizDeck[quizIndex];
+  document.getElementById('q-num').textContent = quizIndex + 1;
+  document.getElementById('q-score').textContent = quizScore;
+  document.getElementById('q-answered').textContent = quizAnswered;
+  document.getElementById('q-progress-fill').style.width = ((quizIndex / quizDeck.length) * 100) + '%';
+
+  document.getElementById('q-area').innerHTML = `
+    <div class="q-card">
+      <div class="q-lec">Lecture ${q.lec}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="q-options">
+        ${q.options.map((opt, i) => `<button class="q-opt" onclick="answerQ(${i})" data-idx="${i}">${opt}</button>`).join('')}
+      </div>
+      <div id="q-exp" style="display:none" class="q-explanation">${q.exp}</div>
+    </div>
+  `;
+  document.getElementById('q-next-btn').style.display = 'none';
+}
+
+function answerQ(selected) {
+  const q = quizDeck[quizIndex];
+  quizAnswered++;
+  const opts = document.querySelectorAll('.q-opt');
+  opts.forEach(o => { o.classList.add('locked'); o.onclick = null; });
+  opts[q.correct].classList.add('correct');
+  if (selected === q.correct) { quizScore++; }
+  else { opts[selected].classList.add('wrong'); }
+  document.getElementById('q-exp').style.display = '';
+  document.getElementById('q-score').textContent = quizScore;
+  document.getElementById('q-answered').textContent = quizAnswered;
+  document.getElementById('q-next-btn').style.display = '';
+  if (quizIndex === quizDeck.length - 1) {
+    document.getElementById('q-next-btn').textContent = 'See Results';
+  }
+}
+
+function nextQuestion() {
+  quizIndex++;
+  if (quizIndex >= quizDeck.length) {
+    showResults();
+  } else {
+    renderQuestion();
+  }
+}
+
+function showResults() {
+  document.getElementById('quiz-active-screen').style.display = 'none';
+  document.getElementById('quiz-result-screen').style.display = '';
+  const pct = Math.round((quizScore / quizDeck.length) * 100);
+  document.getElementById('result-score').textContent = `${quizScore}/${quizDeck.length}`;
+  const msgs = ['Keep studying — you\'ve got this!', 'Getting there! Review the missed topics.', 'Good work! A little more practice.', 'Great job! Almost exam-ready.', 'Excellent! You\'re well prepared!'];
+  document.getElementById('result-msg').textContent = msgs[Math.min(Math.floor(pct / 20), 4)];
+  document.getElementById('q-progress-fill').style.width = '100%';
+}
+
+// ===================== MATCHING =====================
+let matchPairs = [], selectedTerm = null, selectedDef = null, matchedCount = 0, matchTimer = null, matchSeconds = 0;
+
+function startMatching() {
+  const f = document.getElementById('match-filter').value;
+  let pool = f === 'all' ? [...matchingPairs] : matchingPairs.filter(p => p.lec === parseInt(f));
+  // take 8 pairs
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  matchPairs = pool.slice(0, 8);
+  selectedTerm = null; selectedDef = null; matchedCount = 0;
+  if (matchTimer) clearInterval(matchTimer);
+  matchSeconds = 0;
+  document.getElementById('match-score').textContent = `Matched: 0 / ${matchPairs.length}`;
+
+  // Render terms (original order)
+  const termsEl = document.getElementById('match-terms');
+  const defsEl = document.getElementById('match-defs');
+  termsEl.innerHTML = matchPairs.map((p, i) =>
+    `<div class="match-item" data-type="term" data-idx="${i}" onclick="selectMatch(this)">${p.term}</div>`
+  ).join('');
+
+  // Shuffle defs
+  const defOrder = matchPairs.map((_, i) => i);
+  for (let i = defOrder.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [defOrder[i], defOrder[j]] = [defOrder[j], defOrder[i]];
+  }
+  defsEl.innerHTML = defOrder.map(i =>
+    `<div class="match-item" data-type="def" data-idx="${i}" onclick="selectMatch(this)">${matchPairs[i].def}</div>`
+  ).join('');
+
+  matchTimer = setInterval(() => {
+    matchSeconds++;
+    const m = String(Math.floor(matchSeconds / 60)).padStart(2, '0');
+    const s = String(matchSeconds % 60).padStart(2, '0');
+    document.getElementById('match-timer').textContent = `⏱ ${m}:${s}`;
+  }, 1000);
+}
+
+function selectMatch(el) {
+  if (el.classList.contains('matched') || el.classList.contains('locked')) return;
+  const type = el.dataset.type;
+  const idx = parseInt(el.dataset.idx);
+
+  if (type === 'term') {
+    if (selectedTerm) selectedTerm.classList.remove('selected');
+    selectedTerm = el;
+    el.classList.add('selected');
+  } else {
+    if (selectedDef) selectedDef.classList.remove('selected');
+    selectedDef = el;
+    el.classList.add('selected');
+  }
+
+  if (selectedTerm && selectedDef) {
+    const tIdx = parseInt(selectedTerm.dataset.idx);
+    const dIdx = parseInt(selectedDef.dataset.idx);
+    if (tIdx === dIdx) {
+      // correct
+      selectedTerm.classList.remove('selected');
+      selectedDef.classList.remove('selected');
+      selectedTerm.classList.add('matched');
+      selectedDef.classList.add('matched');
+      matchedCount++;
+      document.getElementById('match-score').textContent = `Matched: ${matchedCount} / ${matchPairs.length}`;
+      if (matchedCount === matchPairs.length) {
+        clearInterval(matchTimer);
+        const m = String(Math.floor(matchSeconds / 60)).padStart(2, '0');
+        const s = String(matchSeconds % 60).padStart(2, '0');
+        document.getElementById('match-score').textContent = `✓ Complete! Time: ${m}:${s} — All ${matchPairs.length} matched!`;
+      }
+    } else {
+      // wrong
+      selectedTerm.classList.add('wrong-flash');
+      selectedDef.classList.add('wrong-flash');
+      setTimeout(() => {
+        selectedTerm.classList.remove('wrong-flash', 'selected');
+        selectedDef.classList.remove('wrong-flash', 'selected');
+        selectedTerm = null; selectedDef = null;
+      }, 500);
+      return;
+    }
+    selectedTerm = null; selectedDef = null;
+  }
+}
+
+// ===================== INIT =====================
+renderLectureGrid();
+initFlashcards();
+</script>
+</body>
+</html>

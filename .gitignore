@@ -1,0 +1,7 @@
+# Large files exceeding GitHub's 100MB limit
+course_files_export.zip
+extracted/
+course_files_export/Leland*
+
+# Python scripts used for generation
+make_cheatsheet.py

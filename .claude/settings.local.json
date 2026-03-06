@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(unzip -l course_files_export.zip | head -50)",
+      "Bash(which pdftotext && pdftotext /mnt/c/Users/SajcS/Desktop/BME-105_exam-2/BME105_Unit1_StudyGuide_2026.pdf - 2>/dev/null | head -200)",
+      "Bash(unzip -l /mnt/c/Users/SajcS/Desktop/BME-105_exam-2/course_files_export.zip | grep -v \"^-\" | tail -80)",
+      "Bash(apt-get install -y poppler-utils 2>/dev/null | tail -5 || pip install pdfminer.six 2>/dev/null | tail -5)",
+      "Read(//tmp/**)",
+      "Bash(unzip -o \"/mnt/c/Users/SajcS/Desktop/BME-105_exam-2/course_files_export.zip\" \"StudyGuides/*\" -d bme105)",
+      "Bash(python3 -c \"import pdfminer; print\\('ok'\\)\" 2>/dev/null || pip3 install pdfminer.six -q 2>/dev/null; echo \"installed\")",
+      "Bash(python3 -c \"\nfrom pdfminer.high_level import extract_text\ntext = extract_text\\('/tmp/bme105/StudyGuides/BME105_Unit2_StudyGuide_2026.pdf'\\)\nprint\\(text[:8000]\\)\n\")",
+      "Bash(python3 -c \"\nfrom pdfminer.high_level import extract_text\ntext = extract_text\\('/tmp/bme105/StudyGuides/BME105_Unit1_StudyGuide_2026.pdf'\\)\nprint\\(text[:8000]\\)\n\")",
+      "Bash(python3 -c \"\nfrom pdfminer.high_level import extract_text\ntext = extract_text\\('/tmp/bme105/StudyGuides/BME105_Unit2_StudyGuide_2026.pdf'\\)\nprint\\(text[8000:]\\)\n\")",
+      "Bash(unzip -l course_files_export.zip | head -60)",
+      "Bash(unzip -l /mnt/c/Users/SajcS/Desktop/BME-105_exam-2/course_files_export.zip | grep -E \"StudyGuide|Previous Exams\")",
+      "Bash(unzip -o course_files_export.zip \"StudyGuides/BME105_Unit2_StudyGuide_2026.pdf\" \"Previous Exams/SP25/Exam2_Sp25_BME105_250430_1034.pdf\" -d extracted/)",
+      "Bash(which pandoc wkhtmltopdf python3 2>/dev/null; python3 -c \"import reportlab; print\\('reportlab ok'\\)\" 2>/dev/null; python3 -c \"import weasyprint; print\\('weasyprint ok'\\)\" 2>/dev/null)",
+      "Bash(python3 make_cheatsheet.py)",
+      "Bash(python3 -c \"\nfrom reportlab.lib.pagesizes import letter\nwith open\\('/mnt/c/Users/SajcS/Desktop/BME-105_exam-2/BME105_Exam2_CheatSheet.pdf','rb'\\) as f:\n    header = f.read\\(8\\)\n    print\\('Header:', header\\)\n\")",
+      "Bash(which git gh 2>/dev/null && git --version && gh --version 2>/dev/null)",
+      "Bash(gh auth status 2>&1)",
+      "Bash(git init && git add -A && git commit -m \"Initial commit: BME 105 Exam 2 study materials and cheat sheet\")"
+    ]
+  }
+}
