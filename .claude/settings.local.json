@@ -19,7 +19,22 @@
       "Bash(python3 -c \"\nfrom reportlab.lib.pagesizes import letter\nwith open\\('/mnt/c/Users/SajcS/Desktop/BME-105_exam-2/BME105_Exam2_CheatSheet.pdf','rb'\\) as f:\n    header = f.read\\(8\\)\n    print\\('Header:', header\\)\n\")",
       "Bash(which git gh 2>/dev/null && git --version && gh --version 2>/dev/null)",
       "Bash(gh auth status 2>&1)",
-      "Bash(git init && git add -A && git commit -m \"Initial commit: BME 105 Exam 2 study materials and cheat sheet\")"
+      "Bash(git init && git add -A && git commit -m \"Initial commit: BME 105 Exam 2 study materials and cheat sheet\")",
+      "Bash(gh repo list Sage-Clokey --json name,visibility --limit 100 2>&1)",
+      "Bash(gh repo create BME-105_exam-2 --private --source=. --remote=origin --push 2>&1)",
+      "Bash(gh repo edit Sage-Clokey/sages-computer --visibility private --yes 2>&1 && \\\\\ngh repo edit Sage-Clokey/sagent-creed-book --visibility private --yes 2>&1 && \\\\\ngh repo edit Sage-Clokey/yal-notes-pwa --visibility private --yes 2>&1 && \\\\\ngh repo edit Sage-Clokey/smart-notes-app --visibility private --yes 2>&1 && \\\\\ngh repo edit Sage-Clokey/claudeVideoEditing --visibility private --yes 2>&1)",
+      "Bash(for repo in sages-computer sagent-creed-book yal-notes-pwa smart-notes-app claudeVideoEditing; do\n  gh repo edit Sage-Clokey/$repo --visibility private 2>&1\n  echo \"Done: $repo\"\ndone)",
+      "Bash(git rm --cached course_files_export.zip 2>&1 && git rm -r --cached \"extracted/\" 2>&1)",
+      "Bash(git add .gitignore && git commit --amend -m \"Initial commit: BME 105 Exam 2 study materials and cheat sheet\" 2>&1)",
+      "Bash(git rm --cached \"course_files_export/Leland Hartwell, Michael L. Goldberg, Janice Fischer, Leroy Hood - Genetics_ From Genes to Genomes-McGraw-Hill \\(2017\\).pdf\" 2>&1)",
+      "Bash(git add .gitignore && git commit --amend -m \"Initial commit: BME 105 Exam 2 study materials and cheat sheet\" 2>&1 && git push --force origin master 2>&1)",
+      "Bash(gh repo list Sage-Clokey --json name,homepageUrl --limit 100 2>&1)",
+      "Bash(gh api repos/Sage-Clokey/Living-works-by-the-word/pages 2>&1\ngh repo view Sage-Clokey/Living-works-by-the-word --json homepageUrl,description,defaultBranchRef 2>&1)",
+      "Bash(gh api repos/Sage-Clokey/Living-works-by-the-word/contents/ --jq '.[].name' 2>&1)",
+      "Bash(gh api repos/Sage-Clokey/Living-works-by-the-word/pages \\\\\n  --method POST \\\\\n  --field source='{\"branch\":\"main\",\"path\":\"/\"}' 2>&1)",
+      "Bash(gh api repos/Sage-Clokey/Living-works-by-the-word/pages \\\\\n  --method POST \\\\\n  --input - <<'EOF'\n{\"source\": {\"branch\": \"main\", \"path\": \"/\"}}\nEOF)",
+      "Bash(unzip -l \"/mnt/c/Users/SajcS/Desktop/BME-105_exam-2/course_files_export.zip\" \"images/*\" \"course_image/*\" 2>/dev/null)",
+      "Bash(cd /mnt/c/Users/SajcS/Desktop/BME-105_exam-2/study-app && mkdir -p images && unzip -o \"../course_files_export.zip\" \\\\\n  \"images/complementation_pedigree.jpg\" \\\\\n  \"images/colorless_purple_to_blue.jpg\" \\\\\n  \"images/ATAC-seq_image.png\" \\\\\n  \"images/gwas_epigenomics.jpg\" \\\\\n  \"images/xist_tsix.jpg\" \\\\\n  \"images/reg_regions_GFP.png\" \\\\\n  \"images/imprinting.jpg\" \\\\\n  \"images/manhattan_plot.jpg\" \\\\\n  \"images/haplotype.png\" \\\\\n  \"images/eQTL.png\" \\\\\n  \"images/IRF4_manhattan_eQTL.png\" \\\\\n  \"images/plasmid.png\" \\\\\n  \"images/loxP.png\" \\\\\n  \"images/pCFD3.png\" \\\\\n  \"images/selection.jpg\" \\\\\n  \"images/rabbit_color.png\" \\\\\n  \"images/MRCA_withNodes.png\" \\\\\n  \"images/meiosis.png\" \\\\\n  \"images/codon_table.gif\" \\\\\n  \"images/meiosisI.svg.png\" \\\\\n  -d . 2>&1 | tail -5 && ls images/)"
     ]
   }
 }
