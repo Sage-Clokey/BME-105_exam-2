@@ -675,6 +675,7 @@ const lectures = [
     ]}
   ]},
   {id:22,title:"Microbial Symbiosis",tags:["Endosymbiosis","Holobiont","Microbiome","MWAS","HGT"],
+   images:[],
    sections:[
     {heading:"Bacteria vs. Eukaryotes",items:[
       "Bacteria: compact genomes, ~85-90% coding, operons, no introns, no nucleus.",
@@ -697,6 +698,9 @@ const lectures = [
     ]}
   ]},
   {id:23,title:"Phylogenetics",tags:["Tree Terminology","Molecular Clocks","Bootstrap","Gene Tree"],
+   images:[
+    {src:"images/MRCA_withNodes.png", caption:"Phylogenetic tree with mutations — nodes (blue ovals) mark most recent common ancestors (MRCAs). Red arrows show where mutations arose. Individuals sharing a mutation inherited it from the same ancestor. Illustrates how viral/disease transmission paths are reconstructed (e.g., COVID-19 phylogenomics)."},
+   ],
    sections:[
     {heading:"Tree Terminology",items:[
       "Root: common ancestor of all taxa in the tree.",
@@ -1040,6 +1044,29 @@ function renderLookupResults(terms, bullets, formulas, keywords) {
       <div class="res-formula-desc">${hlText(f.desc, keywords)}</div>
     </div>`;
   });
+
+  // Collect images from lectures that had matching bullets or terms
+  const matchedLecIds = new Set([
+    ...terms.map(t => t.lec),
+    ...bullets.map(b => b.lec)
+  ]);
+  const matchedImages = [];
+  lectures.forEach(l => {
+    if (matchedLecIds.has(l.id) && l.images && l.images.length) {
+      l.images.forEach(img => matchedImages.push({ lec: l.id, ...img }));
+    }
+  });
+  if (matchedImages.length) {
+    formulasHTML += `<div style="margin-top:14px">
+      <div class="lookup-col-title">Diagrams <span>${matchedImages.length}</span></div>
+      ${matchedImages.map(img => `
+        <div class="res-card" style="cursor:pointer" onclick="openLightbox('${img.src}','${img.caption.replace(/'/g,"\\'")}')">
+          <div class="res-card-head"><span class="res-lec">L${img.lec}</span><span class="res-type">Diagram — click to enlarge</span></div>
+          <img src="${img.src}" alt="${img.caption}" style="width:100%;max-height:160px;object-fit:contain;background:#fff;padding:6px;border-bottom:1px solid var(--border)">
+          <div class="res-formula-desc" style="padding:7px 12px">${img.caption}</div>
+        </div>`).join('')}
+    </div>`;
+  }
   formulasHTML += '</div>';
 
   body.innerHTML = termsHTML + bulletsHTML + formulasHTML;
@@ -1084,6 +1111,14 @@ function buildQuickRef() {
           <h4>${s.heading}</h4>
           <ul class="bl">${s.items.map(i=>`<li>${i}</li>`).join('')}</ul>
         </div>`).join('')}
+      ${l.images && l.images.length ? `
+        <div class="lec-images">
+          ${l.images.map(img=>`
+            <div class="lec-img-wrap" onclick="openLightbox('${img.src}','${img.caption.replace(/'/g,"\\'")}')">
+              <img src="${img.src}" alt="${img.caption}" loading="lazy">
+              <div class="lec-img-caption">${img.caption}</div>
+            </div>`).join('')}
+        </div>` : ''}
     </div>`).join('');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
