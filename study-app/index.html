@@ -254,6 +254,8 @@ mark{background:rgba(255,209,102,0.28);color:var(--warning);border-radius:2px;pa
   <button data-page="flashcards">Flashcards</button>
   <button data-page="quiz">Quiz</button>
   <button data-page="matching">Matching</button>
+  <button data-page="theory">Theory</button>
+  <button data-page="steward">Spiral Steward</button>
 </nav>
 
 <!-- ══════════════════════════════════════
@@ -453,6 +455,663 @@ mark{background:rgba(255,209,102,0.28);color:var(--warning);border-radius:2px;pa
   <div class="match-score" id="match-score"></div>
 </div>
 
+<!-- ══════════════════════════════════════
+     THEORY PAGE
+══════════════════════════════════════ -->
+<div id="page-theory" class="page">
+<h1>Biology & Political Economy</h1>
+<p class="subtitle">Living systems as models for political and economic principles — every major concept in BME 105 has a structural analogy in how societies organize themselves.</p>
+
+<style>
+.theory-intro{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 22px;margin-bottom:28px;font-size:0.88rem;color:var(--text2);line-height:1.7;}
+.theory-intro strong{color:var(--text);}
+.theory-section{margin-bottom:32px;}
+.theory-section-title{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent);font-weight:700;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+.theory-table{width:100%;border-collapse:collapse;font-size:0.83rem;margin-bottom:8px;}
+.theory-table th{text-align:left;padding:8px 12px;font-size:0.67rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--text3);border-bottom:2px solid var(--border);background:var(--surface2);}
+.theory-table th:first-child{width:28%;color:var(--accent2);}
+.theory-table th:last-child{color:var(--accent3);}
+.theory-table td{padding:9px 12px;border-bottom:1px solid rgba(46,49,80,0.4);vertical-align:top;line-height:1.55;}
+.theory-table tr:hover td{background:var(--surface);}
+.theory-table td:first-child{color:var(--text);font-weight:600;}
+.theory-table td:last-child{color:var(--text2);}
+.theory-callout{background:linear-gradient(135deg,rgba(108,99,255,0.12),rgba(67,233,123,0.08));border:1px solid var(--accent);border-radius:10px;padding:20px 24px;margin-top:28px;}
+.theory-callout h3{color:var(--accent);font-size:0.95rem;margin-bottom:10px;}
+.theory-callout p{font-size:0.86rem;color:var(--text2);line-height:1.75;margin-bottom:10px;}
+.theory-callout p:last-child{margin-bottom:0;}
+.theory-callout strong{color:var(--text);}
+</style>
+
+<div class="theory-intro">
+  Every living system solves the same fundamental problems that human societies face: <strong>how to allocate scarce resources, who controls information, how to handle conflict between individual and collective interest, and what rules govern cooperation vs. exploitation.</strong> Because biology solved these problems first — over billions of years of selection — its solutions are deep structural templates for political and economic thought.
+</div>
+
+<!-- ECOLOGY -->
+<div class="theory-section">
+  <div class="theory-section-title">Ecology &amp; Species Interactions</div>
+  <table class="theory-table">
+    <thead><tr><th>Biology</th><th>Political / Economic Analogy</th></tr></thead>
+    <tbody>
+      <tr><td>Mutualism</td><td>Voluntary trade — both parties consent and gain; positive-sum. Exit is always possible.</td></tr>
+      <tr><td>Commensalism</td><td>Passive coexistence — one benefits, the other is uninvolved and unaffected.</td></tr>
+      <tr><td>Parasitism</td><td>Coercive extraction — non-consensual taking; host fitness declines. Analogy: taxation, rent-seeking, tribute.</td></tr>
+      <tr><td>Predation</td><td>Conquest, war, expropriation — outright removal of host resources.</td></tr>
+      <tr><td>Competition</td><td>Market competition, geopolitical rivalry — zero-sum contest over shared resources.</td></tr>
+      <tr><td>Niche partitioning</td><td>Comparative advantage (Ricardo) — species specialize to avoid direct competition; trade exploits this.</td></tr>
+      <tr><td>Keystone species</td><td>Critical institutions — central banks, constitutions. Remove them and the system collapses disproportionately.</td></tr>
+      <tr><td>Invasive species</td><td>Colonialism, monopoly entry, disruptive technology — outcompetes natives by exploiting an unoccupied niche.</td></tr>
+      <tr><td>Carrying capacity</td><td>Malthusian resource limits, fiscal sustainability — populations (and debts) cannot grow beyond environmental constraints.</td></tr>
+      <tr><td>Biodiversity</td><td>Pluralism, market diversity — resilience comes from variety, not monoculture.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- EVOLUTION -->
+<div class="theory-section">
+  <div class="theory-section-title">Evolution &amp; Natural Selection</div>
+  <table class="theory-table">
+    <thead><tr><th>Biology</th><th>Political / Economic Analogy</th></tr></thead>
+    <tbody>
+      <tr><td>Natural selection</td><td>Market competition — fit firms and ideas survive; unfit ones fail. Schumpeter called this "creative destruction."</td></tr>
+      <tr><td>Fitness (W)</td><td>Utility / profit — the quantity being maximized at the individual level.</td></tr>
+      <tr><td>Purifying selection (dN/dS &lt; 1)</td><td>Conservative institutions — protecting what works, removing deviation from proven forms.</td></tr>
+      <tr><td>Positive selection (dN/dS &gt; 1)</td><td>Innovation and disruption — advantageous mutations spread rapidly through the population.</td></tr>
+      <tr><td>Neutral evolution</td><td>Bureaucratic drift — change that accumulates without purpose or fitness benefit.</td></tr>
+      <tr><td>Balancing selection</td><td>Checks and balances — maintaining multiple alleles (factions) prevents any one from dominating and fixating.</td></tr>
+      <tr><td>Genetic drift</td><td>Randomness in markets; small nations/firms are more vulnerable to luck than large ones (effect ∝ 1/N).</td></tr>
+      <tr><td>Founder effect</td><td>Founding documents — a small founding group's biases become constitutionally locked in and shape all future diversity.</td></tr>
+      <tr><td>Bottleneck</td><td>Economic depression, war collapse — catastrophic reduction in diversity and institutional capacity.</td></tr>
+      <tr><td>Punctuated equilibrium</td><td>Revolutionary political change — long stasis interrupted by sudden transformation; reform is rare and fast.</td></tr>
+      <tr><td>Arms race (co-evolution)</td><td>Geopolitical arms races, regulatory arms races, inflation spirals — each adaptation forces a counter-adaptation.</td></tr>
+      <tr><td>Red Queen hypothesis</td><td>You must keep running (innovating, legislating) just to maintain your relative position against competitors.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- GENETICS & INFORMATION -->
+<div class="theory-section">
+  <div class="theory-section-title">Genetics &amp; Information Flow</div>
+  <table class="theory-table">
+    <thead><tr><th>Biology</th><th>Political / Economic Analogy</th></tr></thead>
+    <tbody>
+      <tr><td>Central Dogma (DNA→RNA→Protein)</td><td>Law → enforcement → outcome — information flows one way; you cannot reverse-engineer just law from observed outcomes.</td></tr>
+      <tr><td>Gene regulation (on/off)</td><td>Policy activation — laws exist on the books but may be dormant until a regulatory signal triggers enforcement.</td></tr>
+      <tr><td>Transcription factors</td><td>Lobbyists, media — bind regulatory regions and amplify or silence downstream effects on gene (policy) expression.</td></tr>
+      <tr><td>Cis regulation</td><td>Local / state law — acts only on nearby genes within the same chromosomal jurisdiction.</td></tr>
+      <tr><td>Trans regulation</td><td>Federal law, international treaty — diffusible signal that acts everywhere regardless of chromosomal origin.</td></tr>
+      <tr><td>Enhancers</td><td>Subsidies, incentives — boost expression of a target industry/gene from a distance, in any orientation.</td></tr>
+      <tr><td>Silencers / RNAi</td><td>Censorship, deplatforming — block a specific message from ever being expressed, without changing the underlying code.</td></tr>
+      <tr><td>Epigenetics</td><td>Institutional culture — rules not written in law but heritably enforced across generations; very hard to erase.</td></tr>
+      <tr><td>DNA methylation</td><td>Taboo, social norm — marks certain ideas or behaviors as "off" without altering the underlying sequence.</td></tr>
+      <tr><td>Horizontal gene transfer</td><td>Technology transfer, espionage, idea diffusion — bypasses normal inheritance channels entirely.</td></tr>
+      <tr><td>Operon (bundled gene regulation)</td><td>Omnibus legislation, earmarks — genes (provisions) regulated as a package; you cannot activate one without the rest.</td></tr>
+      <tr><td>Forward genetics</td><td>Empirical policymaking — observe a social problem, then find its cause.</td></tr>
+      <tr><td>Reverse genetics</td><td>Ideological policymaking — start with a theory, impose it, and observe the results.</td></tr>
+      <tr><td>CRISPR / targeted editing</td><td>Surgical regulation — precise top-down intervention at a specific locus; contrasts with broad-spectrum approaches.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- POPULATION BIOLOGY -->
+<div class="theory-section">
+  <div class="theory-section-title">Population Biology</div>
+  <table class="theory-table">
+    <thead><tr><th>Biology</th><th>Political / Economic Analogy</th></tr></thead>
+    <tbody>
+      <tr><td>Hardy-Weinberg Equilibrium</td><td>The ideal free market — requires: no selection (no subsidies), random mating (no cartels), infinite N (no monopoly), no migration (no trade), no mutation (no innovation). Real markets, like real populations, always violate some assumption.</td></tr>
+      <tr><td>HWE violation</td><td>Market failure — statistical evidence that some distorting force (selection = policy, drift = shock) is acting on the system.</td></tr>
+      <tr><td>Allele frequency change</td><td>Shifting public opinion, electoral trends — slow generational change in the distribution of ideas across a population.</td></tr>
+      <tr><td>Fixation of an allele</td><td>Monopoly, one-party state — all competing variants eliminated; diversity gone.</td></tr>
+      <tr><td>Loss of an allele</td><td>Extinction of a political party, ideology, or competing product — permanently removed from the gene pool.</td></tr>
+      <tr><td>Recombination</td><td>Cross-pollination of ideas, coalition-building, compromise — mixing of distinct lineages produces novel combinations.</td></tr>
+      <tr><td>Assortative mating</td><td>Political polarization — like mates with like, reducing ideological diversity across generations.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- CELL & ORGANISM -->
+<div class="theory-section">
+  <div class="theory-section-title">Cell Biology &amp; Organism Design</div>
+  <table class="theory-table">
+    <thead><tr><th>Biology</th><th>Political / Economic Analogy</th></tr></thead>
+    <tbody>
+      <tr><td>Cell differentiation / specialization</td><td>Division of labor (Adam Smith) — cells specialize into liver, muscle, neuron; workers and nations specialize into comparative advantages.</td></tr>
+      <tr><td>Organ systems</td><td>Branches of government, departments — liver ≠ kidney; judiciary ≠ legislature. Each has a distinct function and failure mode.</td></tr>
+      <tr><td>Homeostasis</td><td>Monetary / fiscal stabilization — negative feedback loops correct deviation from a set point; the Fed as thermostat.</td></tr>
+      <tr><td>Apoptosis (programmed cell death)</td><td>Term limits, bankruptcy law, planned obsolescence — controlled removal of individual units for systemic health.</td></tr>
+      <tr><td>Cancer (unchecked proliferation)</td><td>Monopoly, authoritarianism — one cell type ignores all regulatory signals and consumes the whole organism's resources.</td></tr>
+      <tr><td>Immune system</td><td>National defense, law enforcement — self/non-self distinction; threats neutralized before they replicate.</td></tr>
+      <tr><td>Autoimmune disease</td><td>State attacking its own citizens — McCarthyism, internal purges, over-regulation that targets productive actors.</td></tr>
+      <tr><td>Emergent properties</td><td>Spontaneous order (Hayek) — complex adaptive behavior arises from simple rules without central design or direction.</td></tr>
+      <tr><td>Holobiont</td><td>Nation-state as collective — the "individual" organism is actually a community of many interacting agents.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- COOPERATION -->
+<div class="theory-section">
+  <div class="theory-section-title">Cooperation, Conflict &amp; Game Theory</div>
+  <table class="theory-table">
+    <thead><tr><th>Biology</th><th>Political / Economic Analogy</th></tr></thead>
+    <tbody>
+      <tr><td>Endosymbiosis (mitochondria origin)</td><td>Federalism, merger &amp; acquisition — formerly independent entity surrenders autonomy for collective benefit; over time loses ability to exist alone.</td></tr>
+      <tr><td>Kin selection / altruism</td><td>Nationalism, in-group preference — individuals sacrifice for those who share their genes or identity (Hamilton's rule: rb &gt; c).</td></tr>
+      <tr><td>Reciprocal altruism</td><td>Social contract, trade agreements — I help you now, you help me later. Breaks down without repeat interaction or enforcement.</td></tr>
+      <tr><td>Prisoner's dilemma</td><td>Arms control, trade wars — individually rational defection leads to a collectively worse outcome for both parties.</td></tr>
+      <tr><td>Tragedy of the commons</td><td>Public goods failure — shared resources overexploited without property rights or enforcement; overfishing, CO₂ emissions.</td></tr>
+      <tr><td>Selfish gene</td><td>Rational self-interest (homo economicus) — individual-level optimization that may conflict with group-level welfare.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- EVOLUTIONARY GUIDANCE SECTION -->
+<div class="theory-section" style="margin-top:36px;">
+  <div class="theory-section-title" style="font-size:0.85rem;letter-spacing:0.06em;color:var(--accent3);">Evolutionary Guidance: Designing Biological Systems Without Central Planning</div>
+
+  <div class="theory-intro" style="margin-bottom:20px;">
+    If markets and evolution are structurally identical — both decentralized, undirected, emergent — then the same critique of central planning applies to <strong>biological design</strong>. A genetic engineer who specifies every outcome is a central planner. The question is: <strong>what does it look like to guide evolution as an agent of it, rather than override it?</strong> Every tool in this course answers that question differently.
+  </div>
+
+  <!-- THE CORE DISTINCTION -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;">
+    <div style="background:rgba(255,101,132,0.08);border:1px solid rgba(255,101,132,0.3);border-radius:8px;padding:16px;">
+      <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--wrong);font-weight:700;margin-bottom:10px;">Central Planner Approach</div>
+      <ul style="list-style:none;padding:0;font-size:0.82rem;color:var(--text2);line-height:1.7;">
+        <li style="padding:3px 0 3px 14px;position:relative;"><span style="position:absolute;left:0;color:var(--wrong);">✗</span>Specify the desired outcome directly</li>
+        <li style="padding:3px 0 3px 14px;position:relative;"><span style="position:absolute;left:0;color:var(--wrong);">✗</span>Override the regulatory landscape</li>
+        <li style="padding:3px 0 3px 14px;position:relative;"><span style="position:absolute;left:0;color:var(--wrong);">✗</span>Ignore epistasis and pleiotropy</li>
+        <li style="padding:3px 0 3px 14px;position:relative;"><span style="position:absolute;left:0;color:var(--wrong);">✗</span>Reduce diversity to reach a fixed target</li>
+        <li style="padding:3px 0 3px 14px;position:relative;"><span style="position:absolute;left:0;color:var(--wrong);">✗</span>Permanent edits before understanding context</li>
+        <li style="padding:3px 0 3px 14px;position:relative;"><span style="position:absolute;left:0;color:var(--wrong);">✗</span>Trans-acting global interventions everywhere</li>
+        <li style="padding:3px 0 3px 14px;position:relative;"><span style="position:absolute;left:0;color:var(--wrong);">✗</span>Design from scratch rather than modify existing</li>
+      </ul>
+    </div>
+    <div style="background:rgba(67,233,123,0.08);border:1px solid rgba(67,233,123,0.3);border-radius:8px;padding:16px;">
+      <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--correct);font-weight:700;margin-bottom:10px;">Evolutionary Guidance Approach</div>
+      <ul style="list-style:none;padding:0;font-size:0.82rem;color:var(--text2);line-height:1.7;">
+        <li style="padding:3px 0 3px 14px;position:relative;"><span style="position:absolute;left:0;color:var(--correct);">✓</span>Change the fitness landscape, let selection act</li>
+        <li style="padding:3px 0 3px 14px;position:relative;"><span style="position:absolute;left:0;color:var(--correct);">✓</span>Read the regulatory landscape before touching it</li>
+        <li style="padding:3px 0 3px 14px;position:relative;"><span style="position:absolute;left:0;color:var(--correct);">✓</span>Map epistasis first — know your network</li>
+        <li style="padding:3px 0 3px 14px;position:relative;"><span style="position:absolute;left:0;color:var(--correct);">✓</span>Maintain diversity — it is the raw material</li>
+        <li style="padding:3px 0 3px 14px;position:relative;"><span style="position:absolute;left:0;color:var(--correct);">✓</span>Reversible before permanent</li>
+        <li style="padding:3px 0 3px 14px;position:relative;"><span style="position:absolute;left:0;color:var(--correct);">✓</span>Cis (local) before trans (global)</li>
+        <li style="padding:3px 0 3px 14px;position:relative;"><span style="position:absolute;left:0;color:var(--correct);">✓</span>Work with existing variation, not against it</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- THE TOOLKIT MAPPED TO PHILOSOPHY -->
+  <table class="theory-table" style="margin-bottom:20px;">
+    <thead><tr>
+      <th style="width:22%">Tool (from course)</th>
+      <th style="width:20%">Intervention Type</th>
+      <th>Evolutionary Guidance Role</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td>GWAS &amp; QTL Mapping</td>
+        <td style="color:var(--accent3);font-size:0.78rem;">Observe / Map</td>
+        <td>Survey existing natural variation — find what evolution has already solved. Never design from scratch what selection has already optimized. These are price signals: variants that are common and fit have survived selection pressure.</td>
+      </tr>
+      <tr>
+        <td>Forward Genetics (EMS screens)</td>
+        <td style="color:var(--accent3);font-size:0.78rem;">Observe / Map</td>
+        <td>Let random mutation explore sequence space; observe what phenotypes emerge. You create the conditions (mutagen + selection), evolution does the searching. The phenotype-first approach respects that biology knows things we don't.</td>
+      </tr>
+      <tr>
+        <td>ATAC-seq / ChIP-seq / Hi-C</td>
+        <td style="color:var(--accent3);font-size:0.78rem;">Observe / Map</td>
+        <td>Read the regulatory landscape before intervening. Enhancers, insulators, TADs — this is the evolved institutional structure of the genome. Acting without reading it is legislating without reading the constitution.</td>
+      </tr>
+      <tr>
+        <td>Reporter Genes (GFP, luciferase)</td>
+        <td style="color:var(--accent3);font-size:0.78rem;">Observe / Map</td>
+        <td>Observe without interfering — attach a sensor to existing regulation and watch. The purest form of not being a central planner: you listen to what the system is doing.</td>
+      </tr>
+      <tr>
+        <td>RNAi / Gene Knockdown</td>
+        <td style="color:var(--warning);font-size:0.78rem;">Reversible Modulation</td>
+        <td>Temporary silencing without permanent sequence change — the equivalent of a policy trial rather than a constitutional amendment. Test the phenotypic consequence before committing. If the effect is wrong, stop the RNAi.</td>
+      </tr>
+      <tr>
+        <td>Epigenetic Editing (methylation)</td>
+        <td style="color:var(--warning);font-size:0.78rem;">Reversible Modulation</td>
+        <td>Change gene expression without changing sequence — manipulate the institutional culture without rewriting the law. Heritable within mitotic lineages but erased in meiosis. Medium-term intervention with natural exit.</td>
+      </tr>
+      <tr>
+        <td>Conditional KO (LoxP / Cre-ERT2)</td>
+        <td style="color:var(--warning);font-size:0.78rem;">Targeted Intervention</td>
+        <td>Tissue-specific and time-inducible knockout — the most precise available intervention. You don't knock out a gene everywhere forever; you remove it in one cell type, at one time, to test one hypothesis. Minimal blast radius.</td>
+      </tr>
+      <tr>
+        <td>Complementation Test</td>
+        <td style="color:var(--warning);font-size:0.78rem;">Causal Verification</td>
+        <td>Before acting, verify causality — confirm the gene actually causes the phenotype. The political equivalent: before passing a law to fix a problem, confirm the problem is actually caused by what you think.</td>
+      </tr>
+      <tr>
+        <td>Rescue Experiment</td>
+        <td style="color:var(--warning);font-size:0.78rem;">Causal Verification</td>
+        <td>Re-introduce the wild-type gene to confirm the phenotype is gene-specific, not a side effect of disruption. Analogous to a policy rollback test — can you restore the original state?</td>
+      </tr>
+      <tr>
+        <td>Model Organisms (C. elegans, Drosophila)</td>
+        <td style="color:var(--accent2);font-size:0.78rem;">Scaled Testing</td>
+        <td>Test in small, fast, tractable populations before scaling to humans. This is the experimental analog of a pilot program or Special Economic Zone — try the intervention in a contained system before systemic rollout.</td>
+      </tr>
+      <tr>
+        <td>CRISPR-Cas9 (NHEJ knockout)</td>
+        <td style="color:var(--accent2);font-size:0.78rem;">Surgical Intervention</td>
+        <td>Precisely remove a single gene's function. The most targeted permanent intervention available — analogous to repealing a single law rather than rewriting the entire code. Still permanent; only use after all reversible approaches are exhausted and causality is proven.</td>
+      </tr>
+      <tr>
+        <td>HDR Knock-in</td>
+        <td style="color:var(--accent2);font-size:0.78rem;">Surgical Intervention</td>
+        <td>Replace a sequence with a designed template — the maximum intervention. Justified only when: (1) the causal variant is known exactly, (2) reversible methods failed, (3) the off-target risk is characterized. The constitutional amendment of the genome.</td>
+      </tr>
+      <tr>
+        <td>Phylogenetics &amp; Molecular Clock</td>
+        <td style="color:var(--accent3);font-size:0.78rem;">Historical Context</td>
+        <td>Understand evolutionary history before acting. Conserved sequences across species signal purifying selection — high constraint, dangerous to touch. Rapidly evolving regions are where selection permits more variation. Respect the dN/dS signal.</td>
+      </tr>
+      <tr>
+        <td>Population Genetics / HWE</td>
+        <td style="color:var(--accent3);font-size:0.78rem;">System Monitoring</td>
+        <td>Monitor the population for HWE violations — detect when selection, drift, or other forces are actively shaping allele frequencies. This is macroeconomic monitoring: look for market failures before intervening, and verify your intervention isn't causing new ones.</td>
+      </tr>
+      <tr>
+        <td>eQTL Mapping</td>
+        <td style="color:var(--accent3);font-size:0.78rem;">Regulatory Audit</td>
+        <td>Find genetic variants that change gene expression — identifies which regulatory regions are functionally variable in the population. Before editing an enhancer, check if natural variants already exist. If they do, they're the market price of that regulatory element.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- THE FIVE PRINCIPLES -->
+  <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--warning);font-weight:700;margin:20px 0 12px;">Five Principles of Evolutionary Guidance</div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:24px;">
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;">
+      <div style="color:var(--accent);font-weight:700;font-size:0.88rem;margin-bottom:7px;">1. Observe Before Acting</div>
+      <div style="font-size:0.81rem;color:var(--text2);line-height:1.6;">Forward genetics, GWAS, ATAC-seq, reporter genes — all are listening tools. The genome has already encoded billions of years of solutions. Map what exists before proposing what should exist. <strong style="color:var(--text);">Hayek's price signal problem:</strong> the regulatory genome is a distributed information system; read it before overriding it.</div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;">
+      <div style="color:var(--accent);font-weight:700;font-size:0.88rem;margin-bottom:7px;">2. Change Conditions, Not Outcomes</div>
+      <div style="font-size:0.81rem;color:var(--text2);line-height:1.6;">The evolutionary way to get a different organism is to change the <em>selection environment</em> and let variation + selection do the work. QTL mapping reveals which variants are fit under which conditions. <strong style="color:var(--text);">You design the fitness landscape; you don't specify the winner.</strong> This is how breeders domesticated wheat — not by engineering the genome, but by selecting over generations.</div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;">
+      <div style="color:var(--accent);font-weight:700;font-size:0.88rem;margin-bottom:7px;">3. Reversible Before Permanent</div>
+      <div style="font-size:0.81rem;color:var(--text2);line-height:1.6;">RNAi → epigenetic editing → conditional KO → CRISPR KO → HDR knock-in. Each step is more permanent and more consequential. <strong style="color:var(--text);">Never use a constitutional amendment when a policy trial will do.</strong> Epistemically, you don't know enough to be permanent yet. The Cre-ERT2 system embodies this — tamoxifen-inducible, meaning you can choose when to cross the threshold.</div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;">
+      <div style="color:var(--accent);font-weight:700;font-size:0.88rem;margin-bottom:7px;">4. Respect Epistasis &amp; Pleiotropy</div>
+      <div style="font-size:0.81rem;color:var(--text2);line-height:1.6;">Every gene interacts with others (epistasis) and affects multiple traits (pleiotropy). There is no such thing as an isolated intervention. <strong style="color:var(--text);">The central planner's error:</strong> assuming you can change one variable while holding all others constant. Complementation tests and rescue experiments exist precisely because this assumption fails constantly. Map the network before you pull a node.</div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;">
+      <div style="color:var(--accent);font-weight:700;font-size:0.88rem;margin-bottom:7px;">5. Preserve Diversity as Capital</div>
+      <div style="font-size:0.81rem;color:var(--text2);line-height:1.6;">Genetic diversity is the raw material of future adaptation. A bottleneck (low N, high drift) eliminates options permanently. <strong style="color:var(--text);">Fixing one allele is closing a market.</strong> Balancing selection (HbA/HbS) exists because keeping multiple alleles has adaptive value that no single optimal allele captures. In biological design: maintain a diversity of approaches rather than optimizing toward a single solution.</div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;">
+      <div style="color:var(--accent);font-weight:700;font-size:0.88rem;margin-bottom:7px;">6. Honor the Holobiont</div>
+      <div style="font-size:0.81rem;color:var(--text2);line-height:1.6;">The organism is not a closed system — it is a holobiont, a community of host + microbiome + symbionts. Intervening in "the organism" without accounting for its microbial partners is the central-planner error of treating the economy as if it had no informal institutions. <strong style="color:var(--text);">The microbiome is not noise; it is co-evolved infrastructure.</strong></div>
+    </div>
+
+  </div>
+
+  <!-- THE LADDER OF INTERVENTION -->
+  <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--warning);font-weight:700;margin:20px 0 12px;">The Ladder of Intervention — From Agent to Planner</div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:24px;">
+    <table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
+      <thead>
+        <tr style="background:var(--surface2);">
+          <th style="padding:8px 12px;text-align:left;color:var(--text3);font-size:0.67rem;text-transform:uppercase;width:5%;">Level</th>
+          <th style="padding:8px 12px;text-align:left;color:var(--text3);font-size:0.67rem;text-transform:uppercase;width:22%;">Tool</th>
+          <th style="padding:8px 12px;text-align:left;color:var(--text3);font-size:0.67rem;text-transform:uppercase;width:15%;">Permanence</th>
+          <th style="padding:8px 12px;text-align:left;color:var(--text3);font-size:0.67rem;text-transform:uppercase;">Philosophy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="padding:8px 12px;color:var(--accent3);font-weight:700;">1</td><td style="padding:8px 12px;color:var(--text);">Observation (GWAS, ATAC-seq, reporters)</td><td style="padding:8px 12px;color:var(--accent3);">None</td><td style="padding:8px 12px;color:var(--text2);">Pure listening. You are a scientist, not a designer. Respect for emergent order.</td></tr>
+        <tr style="background:var(--surface2);"><td style="padding:8px 12px;color:var(--accent3);font-weight:700;">2</td><td style="padding:8px 12px;color:var(--text);">Selection environment design (experimental evolution, breeding)</td><td style="padding:8px 12px;color:var(--accent3);">Low</td><td style="padding:8px 12px;color:var(--text2);">Change the fitness landscape. Let variation + selection find the solution. Farmer, not engineer.</td></tr>
+        <tr><td style="padding:8px 12px;color:var(--warning);font-weight:700;">3</td><td style="padding:8px 12px;color:var(--text);">RNAi knockdown</td><td style="padding:8px 12px;color:var(--warning);">Transient</td><td style="padding:8px 12px;color:var(--text2);">Temporary silencing to probe function. Policy trial. Fully reversible.</td></tr>
+        <tr style="background:var(--surface2);"><td style="padding:8px 12px;color:var(--warning);font-weight:700;">4</td><td style="padding:8px 12px;color:var(--text);">Epigenetic editing (DNMT/demethylase)</td><td style="padding:8px 12px;color:var(--warning);">Mitotically heritable, meiotically erased</td><td style="padding:8px 12px;color:var(--text2);">Medium-term institutional change. Affects cell lineage but resets at reproduction.</td></tr>
+        <tr><td style="padding:8px 12px;color:var(--warning);font-weight:700;">5</td><td style="padding:8px 12px;color:var(--text);">Conditional KO (LoxP/Cre-ERT2)</td><td style="padding:8px 12px;color:var(--warning);">Permanent in targeted cells only</td><td style="padding:8px 12px;color:var(--text2);">Tissue-specific, time-controlled. Minimum blast radius permanent intervention.</td></tr>
+        <tr style="background:var(--surface2);"><td style="padding:8px 12px;color:var(--accent2);font-weight:700;">6</td><td style="padding:8px 12px;color:var(--text);">CRISPR NHEJ knockout</td><td style="padding:8px 12px;color:var(--accent2);">Permanent, heritable</td><td style="padding:8px 12px;color:var(--text2);">Surgical removal of function. Justified only after causality is proven. Constitutional repeal.</td></tr>
+        <tr><td style="padding:8px 12px;color:var(--wrong);font-weight:700;">7</td><td style="padding:8px 12px;color:var(--text);">HDR knock-in / transgene overexpression</td><td style="padding:8px 12px;color:var(--wrong);">Permanent, heritable, additive</td><td style="padding:8px 12px;color:var(--text2);">Maximum intervention — you are now writing sequence. Highest epistatic risk. Central planning zone.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- THE IMPRINTING CASE STUDY -->
+  <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--warning);font-weight:700;margin:20px 0 12px;">Case Study: Genomic Imprinting as a Negotiated Settlement</div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:16px;font-size:0.83rem;color:var(--text2);line-height:1.75;">
+    <p style="margin-bottom:10px;">The parental conflict hypothesis says: <strong style="color:var(--text);">the paternal genome maximizes resource extraction from the mother; the maternal genome conserves resources for future offspring.</strong> Imprinting — silencing one parental allele via DNA methylation — is the evolved <em>settlement</em> of this conflict. IGF2 (paternal, expressed) drives fetal growth. H19 (maternal, expressed) suppresses it. The organism runs both simultaneously and reaches a phenotype neither parent would have chosen unilaterally.</p>
+    <p style="margin-bottom:10px;">This is the biological version of a <strong style="color:var(--text);">constitutional compromise between competing interests</strong>. Neither party has full control. The regulatory mechanism (ICR methylation) is enforced by the system itself, not by either party. The "design" emerged from conflict, not from a plan.</p>
+    <p><strong style="color:var(--text);">Lesson for biological design:</strong> when two selection pressures conflict (growth vs. conservation, offense vs. defense, short-term vs. long-term), do not simply maximize one. Build a negotiation mechanism — a regulatory region that senses both signals and integrates them. This is what evolution did. It is what institutional design should do.</p>
+  </div>
+
+  <!-- THE ENDOSYMBIOSIS CASE STUDY -->
+  <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--warning);font-weight:700;margin:20px 0 12px;">Case Study: Endosymbiosis as the Greatest Non-Planned Integration</div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:16px;font-size:0.83rem;color:var(--text2);line-height:1.75;">
+    <p style="margin-bottom:10px;">Mitochondria are the result of an ancient mutualistic event: a proteobacterium was engulfed by an archaeon and, instead of being digested, became a permanent energy-producing partner. No designer specified this. The evidence — circular mtDNA, 70S ribosomes, double membranes, binary fission, maternal inheritance — shows these organelles are evolutionarily independent organisms that were integrated over time.</p>
+    <p style="margin-bottom:10px;"><strong style="color:var(--text);">This is the most important "design" decision in the history of eukaryotic life, and it was not designed.</strong> It emerged from a mutualistic interaction that happened to be more fit than either party alone. The mitochondria eventually transferred most of its genes to the nuclear genome — a process of integration over hundreds of millions of years that no engineer would have specified.</p>
+    <p><strong style="color:var(--text);">Lesson:</strong> the best biological "design" may come from creating conditions for mutualistic integration, not from engineering a monolithic system. The holobiont strategy — host + microbiome — follows the same logic. You don't design the microbiome; you create a gut environment where beneficial microbes outcompete harmful ones.</p>
+  </div>
+
+</div>
+
+<!-- SPIRAL STEWARD SECTION MOVED TO OWN PAGE -->
+<div class="theory-section" style="margin-top:36px;display:none;">
+  <div class="theory-section-title" style="font-size:0.85rem;letter-spacing:0.06em;color:var(--accent2);">The Spiral Steward: A Framework for Biological Design Without Domination</div>
+
+  <style>
+  .spiral-quote{border-left:3px solid var(--accent2);padding:12px 18px;margin:14px 0;font-style:italic;font-size:0.86rem;color:var(--text2);line-height:1.75;background:rgba(255,101,132,0.05);border-radius:0 6px 6px 0;}
+  .spiral-quote cite{display:block;margin-top:6px;font-style:normal;font-size:0.72rem;color:var(--text3);letter-spacing:0.04em;}
+  .spiral-block{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 18px;margin-bottom:12px;font-size:0.83rem;color:var(--text2);line-height:1.7;}
+  .spiral-block strong{color:var(--text);}
+  .spiral-block h4{font-size:0.78rem;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px;font-weight:700;}
+  </style>
+
+  <!-- THE CORE DUALITY -->
+  <div class="spiral-quote">
+    "There are two ways to build a world. One way begins with a ruler, a blueprint, and a grid. It assumes that order must be imposed, that coherence must be commanded, that life must be shaped by an external mind standing above it... The Block believes that complexity is chaos and must be disciplined. It extracts, standardizes, and dominates. It says: 'We will decide what is good, and everything else must conform.' For a time, the Block appears powerful. But beneath the surface, brittleness accumulates. The Block produces the illusion of order while seeding the reality of collapse. This is not merely a political mistake. It is a biological one."
+    <cite>— Spirals Remember. Blocks Forget. (Sagent Creed)</cite>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
+    <div style="background:rgba(255,101,132,0.06);border:1px solid rgba(255,101,132,0.25);border-radius:8px;padding:16px;">
+      <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--wrong);font-weight:700;margin-bottom:10px;">The Mason — The Block</div>
+      <div style="font-size:0.81rem;color:var(--text2);line-height:1.75;">Turns the natural world <em>first into blocks</em>, then builds with them. Imposes structure from outside. Flattens hills, straightens rivers, replaces forests with plantations. Optimizes one variable and collapses the ecosystem that made it possible. Produces monocultures that look efficient but are fragile.<br><br>In biology: specifies the exact sequence, overrides regulatory networks, ignores epistasis, drives alleles to fixation, treats the organism as a machine to be engineered part by part.</div>
+    </div>
+    <div style="background:rgba(67,233,123,0.06);border:1px solid rgba(67,233,123,0.25);border-radius:8px;padding:16px;">
+      <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--correct);font-weight:700;margin-bottom:10px;">The Steward — The Spiral</div>
+      <div style="font-size:0.81rem;color:var(--text2);line-height:1.75;">Utilizes the natural shape and <em>allows the spiral</em> in their design. Does not ask "What shall we force this place to become?" but "What wants to grow here?" Designs not finished products but <strong>possibility spaces</strong> — resilient sets of options that allow organisms and communities to adapt.<br><br>In biology: reads the regulatory landscape, changes conditions rather than outcomes, maintains diversity, uses reversible tools, lets selection do the searching. A gardener, not a ruler.</div>
+    </div>
+  </div>
+
+  <div class="spiral-quote">
+    "There are the masons and the stewards. The masons turn the natural world first into blocks then they used those blocks to build. The stewards utilize the natural shape and allows the spiral in their design and designs with nature instead of against it."
+    <cite>— Sagent Creed (original note)</cite>
+  </div>
+
+  <!-- THE SPIRAL IN BIOLOGY -->
+  <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--warning);font-weight:700;margin:20px 0 12px;">Where the Spiral Appears in Biology</div>
+  <table class="theory-table" style="margin-bottom:20px;">
+    <thead><tr>
+      <th style="width:28%">Biological Structure</th>
+      <th>Why It Is a Spiral, Not a Block</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>DNA double helix</td><td>The code of life is literally a spiral — not a flat grid. Information is encoded in the geometry of a continuous, self-complementary curl that unwinds locally to be read and re-winds to be stored.</td></tr>
+      <tr><td>Gene regulatory networks</td><td>Enhancers, silencers, transcription factors, insulators — no gene acts alone. The genome is a network of feedback loops, not a list of commands. Pulling one node changes the whole topology.</td></tr>
+      <tr><td>Epigenetic landscape</td><td>Waddington's epigenetic landscape: a cell rolls downhill through a landscape of valleys (attractors). The landscape is not fixed — it is shaped by history, signal, and environment. You can tilt the landscape; you cannot push the cell to an arbitrary point.</td></tr>
+      <tr><td>Population allele frequencies</td><td>Never static. Always moving under the composite forces of selection, drift, migration, and mutation — a continuous spiral through frequency space, never arriving at a final state unless fixed or lost.</td></tr>
+      <tr><td>Phylogenetic tree</td><td>Not a straight line of progress. A branching, looping, reticulating tree where lineages split, merge (horizontal gene transfer, endosymbiosis), and sometimes converge on the same solution independently (convergent evolution).</td></tr>
+      <tr><td>Holobiont / microbiome</td><td>The organism itself is not a closed unit — it is a community spiraling through ecological space in concert with millions of microbial partners. You cannot "design" the host without redesigning the relationship.</td></tr>
+      <tr><td>Imprinting / parental conflict</td><td>The genome embeds a negotiation between two competing optimization pressures (paternal extraction vs. maternal conservation). The output — IGF2/H19 balance — is not what either party "chose." It is the spiral equilibrium of the conflict.</td></tr>
+      <tr><td>Endosymbiosis (mitochondria)</td><td>The most powerful integration event in evolutionary history was not designed. It emerged from a mutualistic interaction. The "design" happened through billions of generations of co-evolution, not specification.</td></tr>
+    </tbody>
+  </table>
+
+  <!-- THE SAGENT -->
+  <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--warning);font-weight:700;margin:20px 0 12px;">The Sagent: An Agent Within the Evolutionary Process</div>
+
+  <div class="spiral-block">
+    <h4 style="color:var(--accent2);">What a Sagent Is</h4>
+    The Sagent is not a ruler who stands above the system and commands it. The Sagent is an <strong>agent within the living order</strong> — someone who acts from conscience, reads the system deeply, and intervenes with precision and humility. The Sagent's legitimacy comes not from authority but from alignment with truth.<br><br>
+    In biological terms: the Sagent is a biologist who has internalized that the genome is not their property to redesign, but a <strong>living covenant</strong> they are temporarily stewarding. They use tools that <em>listen before they speak</em>, that are reversible before permanent, that work with existing variation before introducing novel sequence. They understand that their deepest obligation is not to produce a specific outcome but to <strong>preserve the conditions under which life can continue adapting</strong>.
+  </div>
+
+  <div class="spiral-block">
+    <h4 style="color:var(--accent2);">The Sagent's Creed in the Lab</h4>
+    From the True Republic: <em>"Truth is Law. Conscience is Crown. Every Soul is Sovereign."</em><br><br>
+    Translated to biological design:<br>
+    <strong>Truth is Law</strong> — the genome, the regulatory landscape, the evolutionary history, the fitness consequences — these are facts that constrain what is possible. No ideological goal overrides them. The dN/dS ratio, the GWAS Manhattan plot, the bisulfite methylation map — these are the truth of the system. Read them first.<br><br>
+    <strong>Conscience is Crown</strong> — before any intervention, ask: does this preserve or destroy diversity? Does this work with the system's own logic or against it? Is there a more reversible path? The researcher's conscience is the final check that no IRB replaces.<br><br>
+    <strong>Every Soul is Sovereign</strong> — in biological design, every organism is a sovereign living system with its own evolved order. The model organism (C. elegans, Drosophila, mouse) is not a tool to be consumed but a window into evolutionary truth. The microbiome is not contamination but a co-evolved partner. The cell is not a chassis — it is an agent.
+  </div>
+
+  <!-- THE TRUE REPUBLIC IN BIOLOGICAL DESIGN -->
+  <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--warning);font-weight:700;margin:20px 0 12px;">Principles of the True Republic Applied to Biological Design</div>
+  <table class="theory-table" style="margin-bottom:20px;">
+    <thead><tr>
+      <th style="width:30%">True Republic Principle</th>
+      <th>Biological Design Application</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><strong>No rulers, only leaders</strong> — sovereignty belongs to the individual conscience, not to central authority</td><td>No single researcher or institution holds final authority over a genome. Biological knowledge is distributed across the scientific community; truth emerges from peer review and replication, not decree. The gene does not answer to the lab director — it answers to selection.</td></tr>
+      <tr><td><strong>Consent as the Crown</strong> — legitimacy flows from agreement, not compulsion</td><td>Interventions that are reversible (RNAi, conditional KO) respect the organism's "consent" to be modified — they can be undone. Permanent germline edits in human embryos are the coercive political act of the genome world: the organism never consented and cannot revoke.</td></tr>
+      <tr><td><strong>The Covenant of Conscience</strong> — law without morality is tyranny</td><td>A technically legal and IRB-approved experiment can still be morally wrong. The question is not "is it permitted?" but "does it work WITH the living system's own principles, or does it override them for a political/commercial outcome?"</td></tr>
+      <tr><td><strong>The Invisible Constitution</strong> — moral architecture written in action, not parchment</td><td>The epigenetic landscape IS the invisible constitution of the cell — rules enforced not by a written code but by a heritable pattern of chromatin marks that govern behavior without altering sequence. Good biological design respects this invisible layer.</td></tr>
+      <tr><td><strong>The Economy of Freedom — Commerce as Covenant</strong> — trade as mutual creation, not conquest</td><td>Mutualism in biology is the economic model: both parties gain. The holobiont (host + microbiome) is a commerce of metabolites. Endosymbiosis was the greatest mutualistic merger in history. Design toward mutualistic relationships between engineered components, not toward extraction.</td></tr>
+      <tr><td><strong>The Duty of Resistance</strong> — when the system commands wrongly, conscience overrides</td><td>Purifying selection IS resistance — the population's refusal to let harmful variants fix. dN/dS &lt; 1 means the genome is already doing its own quality control. Work with this natural conservatism; don't override it without understanding what it's protecting.</td></tr>
+    </tbody>
+  </table>
+
+  <!-- THE SOFTWARE VISION -->
+  <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--warning);font-weight:700;margin:20px 0 12px;">The Design Tool of the Future: CAD for Spirals, Not Blocks</div>
+
+  <div class="spiral-quote">
+    "A software that helps abstract the designing of organisms. Like SolidWorks or CAD but for living organisms so it isn't based on making blocks but growth patterns and feedback mechanisms. If computers were programmed with 1s and 0s there would be a lot less software. Bare code needs to be abstracted so that design in that can actually be done at scale. Living things need to be designed as living things instead of reducing it into parts. The design has to integrate the complexity well — this is where machine learning comes in for making predictions with what DNA sequences create which structures so that we can go from the abstracted design to the DNA."
+    <cite>— Sagent Creed (original note)</cite>
+  </div>
+
+  <div class="spiral-block">
+    <h4 style="color:var(--accent2);">Why This Matters</h4>
+    Traditional genetic engineering tools operate at the level of sequences — the 1s and 0s of biology. They are the biological equivalent of programming in assembly language: technically complete, but impossible to use at the scale and complexity that real biological design requires.<br><br>
+    What the Spiral Steward framework demands instead is <strong>abstraction layers that match how living systems actually work</strong>:<br><br>
+    <strong>Layer 1 — Growth patterns</strong> (not static parts): design in terms of developmental trajectories, not final states. A cell does not have a blueprint; it has a program that reads environmental signals and unfolds a trajectory. Design the trajectory.<br><br>
+    <strong>Layer 2 — Feedback mechanisms</strong> (not one-way commands): every designed circuit should include negative feedback (homeostasis) and the ability to self-correct. The gene regulatory network model from L14 is the template — enhancers, silencers, insulators, TFs all in feedback.<br><br>
+    <strong>Layer 3 — ML for sequence-to-structure</strong>: AlphaFold proved this layer exists. The next step is a generative model that goes from desired cellular behavior → regulatory network architecture → DNA sequence. This is the compiler for the biological programming language.<br><br>
+    <strong>Layer 4 — Evolutionary testing</strong>: the design isn't done until it has been run through a selection process — in model organisms first, then scaled. QTL mapping and experimental evolution are the beta-testing and iteration cycles. No release without running the population.
+  </div>
+
+  <!-- THE BIOINFORMATICS STEWARDSHIP SUMMARY -->
+  <div class="spiral-quote" style="border-color:var(--accent3);">
+    "Bioinformatics offers a different posture: attention before intervention. It reveals that life is not centrally designed, but emergent: a decentralized order created through layers of feedback, adaptation, and symbiosis. When you do computational biology, you are forced into humility. You learn that you cannot design an entire living world top-down. You can only nudge, explore, and make local improvements — then observe what the system does in response. The deeper your models become, the more obvious it becomes: life is not a block you carve into shape; it is a spiral you cultivate. Start designing like gardeners, not rulers. Not blocks. Spirals."
+    <cite>— Bioinformatics as Stewardship of Living Order (Sagent writings)</cite>
+  </div>
+
+  <!-- FINAL SYNTHESIS TABLE -->
+  <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--warning);font-weight:700;margin:20px 0 12px;">The Spiral Steward Creed — Applied to Every BME 105 Tool</div>
+  <table class="theory-table">
+    <thead><tr>
+      <th style="width:22%">BME 105 Tool</th>
+      <th style="width:18%">Mason Would Use It To...</th>
+      <th>Steward Uses It To...</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>GWAS / QTL</td><td>Find the "right" allele and fix it everywhere</td><td>Map what natural variation evolution has already produced; find the fitness landscape without touching it</td></tr>
+      <tr><td>ATAC-seq / ChIP-seq</td><td>Identify "off" regions to force open</td><td>Read the chromatin constitution before any intervention; understand what the cell has already decided is open or closed</td></tr>
+      <tr><td>Forward Genetics</td><td>Ignore — too slow, too random</td><td>Generate variation via mutagenesis and let phenotypic selection find solutions no designer specified in advance</td></tr>
+      <tr><td>Reporter Genes (GFP)</td><td>Unnecessary — we know what it does</td><td>Listen first. Attach a sensor and observe. The most Spiral tool in the kit: pure observation, zero intervention</td></tr>
+      <tr><td>RNAi</td><td>Silence the gene permanently</td><td>Probe function transiently, reversibly, before any permanent action — a policy trial, not a law</td></tr>
+      <tr><td>Epigenetics</td><td>Override the methylation landscape to force expression</td><td>Read the invisible constitution first; edit it only to restore a natural state that was lost, not to impose a new one</td></tr>
+      <tr><td>Conditional KO (LoxP/Cre)</td><td>Unavoidable technical requirement</td><td>The most Spiral-compatible permanent tool: tissue-specific, time-controlled, minimal blast radius. Closest to conscience-guided intervention</td></tr>
+      <tr><td>Model Organisms</td><td>Convenient substrates to optimize before humans</td><td>Test in small, fast populations — a Special Economic Zone for evolution to explore the fitness landscape before scaling</td></tr>
+      <tr><td>CRISPR KO / HDR</td><td>The primary tool — specify and impose</td><td>The last resort — used only after all reversible methods are exhausted, causality is fully mapped, and off-target risk is characterized</td></tr>
+      <tr><td>Phylogenetics</td><td>Irrelevant history</td><td>Constitutional history — the evolutionary record tells you what is conserved (do not touch), what is variable (here is where diversity is tolerated), and what is parallel (convergent solutions are validated by independent selection)</td></tr>
+      <tr><td>Population Genetics / HWE</td><td>Statistical formality</td><td>System monitoring — detecting whether an intervention is causing drift, selection, or fixation. The macroeconomic indicator board for the genome's health</td></tr>
+      <tr><td>Microbial Symbiosis / Holobiont</td><td>Contamination to be controlled</td><td>The most important reminder that the organism is never a closed system — you are always designing a community, not a unit</td></tr>
+    </tbody>
+  </table>
+
+</div>
+
+<!-- DEEP ANALOGY CALLOUT -->
+<div class="theory-callout">
+  <h3>The Deepest Structural Parallel: Evolution = Markets</h3>
+  <p>The most profound analogy is between <strong>evolution by natural selection</strong> and <strong>market competition</strong>. Both are <strong>decentralized, undirected processes</strong> that produce complex adaptive order without a designer. Both reward fitness/profit ruthlessly. Both eliminate what doesn't work through blind trial and error at massive scale.</p>
+  <p>Hayek's key insight — that prices aggregate distributed information no central planner can ever possess — is the economic equivalent of natural selection aggregating fitness information across an entire population. <strong>The market is the economy's natural selection.</strong> Both process more information, faster, than any top-down authority can.</p>
+  <p>The opposing view — central planning — maps to <strong>intelligent design</strong>: a designer specifies outcomes directly. The evolutionary/market critique is identical in both cases: the designer lacks the local, distributed, real-time information and feedback speed that the decentralized process has. Complexity cannot be imposed; it must be allowed to emerge.</p>
+  <p>This is also why <strong>parasitism is only evolutionarily stable at moderate rates</strong>: a parasite that kills its host too fast destroys its own resource base. The same constraint applies to any extractive system — there is a maximum sustainable extraction rate beyond which the host (productive population, economy) collapses, taking the parasite with it.</p>
+</div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     SPIRAL STEWARD PAGE
+══════════════════════════════════════ -->
+<div id="page-steward" class="page">
+
+<h1>The Spiral Steward</h1>
+<p class="subtitle">A framework for designing biological systems as an agent of evolution — not a ruler over it. Synthesizes the Sagent Creed, the True Republic, and the tools of BME 105.</p>
+
+<style>
+.spiral-quote{border-left:3px solid var(--accent2);padding:12px 18px;margin:14px 0;font-style:italic;font-size:0.86rem;color:var(--text2);line-height:1.75;background:rgba(255,101,132,0.05);border-radius:0 6px 6px 0;}
+.spiral-quote cite{display:block;margin-top:6px;font-style:normal;font-size:0.72rem;color:var(--text3);letter-spacing:0.04em;}
+.spiral-block{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 18px;margin-bottom:12px;font-size:0.83rem;color:var(--text2);line-height:1.7;}
+.spiral-block strong{color:var(--text);}
+.spiral-block h4{font-size:0.78rem;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px;font-weight:700;}
+.steward-section-title{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent2);font-weight:700;margin:24px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+</style>
+
+<!-- OPENING -->
+<div class="theory-intro" style="margin-bottom:24px;">
+  If evolution and markets are the same process — <strong>decentralized, undirected, emergent</strong> — then the same critique of central planning applies to biological design. A genetic engineer who specifies every outcome is a central planner. The biologist who listens first, changes conditions rather than outcomes, and works with variation rather than against it is something else entirely. <strong>They are a Steward.</strong>
+</div>
+
+<!-- THE CORE DUALITY -->
+<div class="spiral-quote">
+  "There are two ways to build a world. One way begins with a ruler, a blueprint, and a grid. It assumes that order must be imposed, that coherence must be commanded, that life must be shaped by an external mind standing above it... The Block believes that complexity is chaos and must be disciplined. It extracts, standardizes, and dominates. It says: 'We will decide what is good, and everything else must conform.' For a time, the Block appears powerful. But beneath the surface, brittleness accumulates. The Block produces the illusion of order while seeding the reality of collapse. This is not merely a political mistake. It is a biological one."
+  <cite>— Spirals Remember. Blocks Forget. (Sagent Creed)</cite>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;">
+  <div style="background:rgba(255,101,132,0.06);border:1px solid rgba(255,101,132,0.25);border-radius:8px;padding:16px;">
+    <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--wrong);font-weight:700;margin-bottom:10px;">The Mason — The Block</div>
+    <div style="font-size:0.81rem;color:var(--text2);line-height:1.75;">Turns the natural world <em>first into blocks</em>, then builds with them. Imposes structure from outside. Flattens hills, straightens rivers, replaces forests with plantations. Optimizes one variable and collapses the ecosystem that made it possible. Produces monocultures that look efficient but are fragile.<br><br>In biology: specifies the exact sequence, overrides regulatory networks, ignores epistasis, drives alleles to fixation, treats the organism as a machine to be engineered part by part.</div>
+  </div>
+  <div style="background:rgba(67,233,123,0.06);border:1px solid rgba(67,233,123,0.25);border-radius:8px;padding:16px;">
+    <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--correct);font-weight:700;margin-bottom:10px;">The Steward — The Spiral</div>
+    <div style="font-size:0.81rem;color:var(--text2);line-height:1.75;">Utilizes the natural shape and <em>allows the spiral</em> in their design. Does not ask "What shall we force this place to become?" but "What wants to grow here?" Designs not finished products but <strong>possibility spaces</strong> — resilient sets of options that allow organisms to adapt.<br><br>In biology: reads the regulatory landscape, changes conditions rather than outcomes, maintains diversity, uses reversible tools first, lets selection do the searching. A gardener, not a ruler.</div>
+  </div>
+</div>
+
+<div class="spiral-quote">
+  "There are the masons and the stewards. The masons turn the natural world first into blocks then they used those blocks to build. The stewards utilize the natural shape and allows the spiral in their design and designs with nature instead of against it."
+  <cite>— Sagent Creed (original note)</cite>
+</div>
+
+<!-- THE SPIRAL IN BIOLOGY -->
+<div class="steward-section-title">Where the Spiral Appears in Biology</div>
+<table class="theory-table" style="margin-bottom:20px;">
+  <thead><tr><th style="width:28%">Biological Structure</th><th>Why It Is a Spiral, Not a Block</th></tr></thead>
+  <tbody>
+    <tr><td>DNA double helix</td><td>The code of life is literally a spiral. Information is encoded in the geometry of a continuous, self-complementary curl that unwinds locally to be read and re-winds to be stored. The first lesson: even the substrate resists blocks.</td></tr>
+    <tr><td>Gene regulatory networks</td><td>No gene acts alone. Enhancers, silencers, transcription factors, insulators — the genome is a network of feedback loops, not a command list. Pulling one node changes the whole topology. This is epistasis, and it defeats every central planner.</td></tr>
+    <tr><td>Epigenetic landscape</td><td>Waddington's landscape: a cell rolls downhill through valleys (attractors). The landscape is not fixed — it is shaped by history, signal, and environment. You can tilt the landscape; you cannot push a cell to an arbitrary point. The invisible constitution of the cell.</td></tr>
+    <tr><td>Population allele frequencies</td><td>Never static. Always moving under selection, drift, migration, mutation — a continuous spiral through frequency space. HWE is the moment of stillness that never quite arrives in a real population.</td></tr>
+    <tr><td>Phylogenetic tree</td><td>Not a straight line of progress. A branching, looping, reticulating tree where lineages split, merge (HGT, endosymbiosis), and converge independently (convergent evolution). History is a spiral, not a ladder.</td></tr>
+    <tr><td>Holobiont / microbiome</td><td>The organism is not a closed unit. It is a community spiraling through ecological space with millions of microbial partners. You cannot design the host without designing the relationship.</td></tr>
+    <tr><td>Genomic imprinting</td><td>The genome embeds a negotiation between paternal extraction and maternal conservation. The output — IGF2/H19 balance — is the spiral equilibrium of competing selection pressures. Neither party specified it. Both shaped it.</td></tr>
+    <tr><td>Endosymbiosis (mitochondria)</td><td>The most powerful integration in evolutionary history was not designed. It emerged from mutualism. Billions of years of co-evolution produced what no engineer could have specified: an organelle that generates the energy of all complex life.</td></tr>
+  </tbody>
+</table>
+
+<!-- THE SAGENT -->
+<div class="steward-section-title">The Sagent: An Agent Within the Evolutionary Process</div>
+
+<div class="spiral-block">
+  <h4 style="color:var(--accent2);">What a Sagent Is</h4>
+  The Sagent is not a ruler who stands above the system and commands it. The Sagent is an <strong>agent within the living order</strong> — someone who acts from conscience, reads the system deeply, and intervenes with precision and humility. The Sagent's legitimacy comes not from authority but from alignment with truth.<br><br>
+  In biological terms: the Sagent is a biologist who understands that the genome is not theirs to redesign, but a <strong>living covenant</strong> they are temporarily stewarding. They use tools that <em>listen before they speak</em>, that are reversible before permanent, that work with existing variation before introducing novel sequence. Their deepest obligation is not to produce a specific outcome but to <strong>preserve the conditions under which life can continue adapting</strong>.
+</div>
+
+<div class="spiral-block">
+  <h4 style="color:var(--accent2);">The Sagent's Creed in the Lab</h4>
+  From the True Republic: <em>"Truth is Law. Conscience is Crown. Every Soul is Sovereign."</em><br><br>
+  <strong>Truth is Law</strong> — the genome, the regulatory landscape, the evolutionary history, the fitness consequences — these are facts that constrain what is possible. No ideological goal overrides them. The dN/dS ratio, the GWAS Manhattan plot, the bisulfite methylation map — these are the truth of the system. Read them first. Always.<br><br>
+  <strong>Conscience is Crown</strong> — before any intervention, ask: does this preserve or destroy diversity? Does it work with the system's logic or against it? Is there a more reversible path? The researcher's conscience is the final check that no IRB alone can replace.<br><br>
+  <strong>Every Soul is Sovereign</strong> — every organism is a sovereign living system with its own evolved order. The model organism is not a tool to be consumed but a window into evolutionary truth. The microbiome is not contamination but a co-evolved partner. The cell is not a chassis — it is an agent.
+</div>
+
+<!-- TRUE REPUBLIC PRINCIPLES -->
+<div class="steward-section-title">Principles of the True Republic Applied to Biological Design</div>
+<table class="theory-table" style="margin-bottom:20px;">
+  <thead><tr><th style="width:32%">True Republic Principle</th><th>Biological Design Application</th></tr></thead>
+  <tbody>
+    <tr><td><strong>No rulers, only leaders</strong> — sovereignty belongs to individual conscience, not central authority</td><td>No single researcher holds final authority over a genome. Biological knowledge is distributed; truth emerges from replication and peer review, not decree. The gene answers to selection, not the lab director.</td></tr>
+    <tr><td><strong>Consent as the Crown</strong> — legitimacy flows from agreement, not compulsion</td><td>Reversible interventions (RNAi, conditional KO) can be undone — they respect the organism's ongoing state. Permanent germline edits in human embryos are the coercive political act of the genome world: the organism never consented and cannot revoke.</td></tr>
+    <tr><td><strong>Commerce as Covenant</strong> — trade as mutual creation, not conquest</td><td>Mutualism is the economic model for biological design. The holobiont is a commerce of metabolites. Endosymbiosis was the greatest mutualistic merger in history. Design toward mutualistic relationships between components, not toward extraction from them.</td></tr>
+    <tr><td><strong>The Invisible Constitution</strong> — moral architecture written in action, not parchment</td><td>The epigenetic landscape IS the invisible constitution of the cell — rules enforced not by written code but by heritable chromatin marks that govern behavior without altering sequence. Good biological design reads this layer before touching it.</td></tr>
+    <tr><td><strong>The Duty of Resistance</strong> — when command is wrong, conscience overrides</td><td>Purifying selection IS the genome's resistance — the population's refusal to let harmful variants fix. dN/dS &lt; 1 is quality control from within. Work with this natural conservatism; don't override it without understanding what it is protecting.</td></tr>
+    <tr><td><strong>The False Republic</strong> — democracy that becomes a disguised empire</td><td>A lab that claims to "improve" an organism while actually imposing one researcher's preferred outcome on a system evolved over millions of years is the false republic of biology. The appearance of rational design concealing the reality of epistemic overreach.</td></tr>
+  </tbody>
+</table>
+
+<!-- THE SOFTWARE VISION -->
+<div class="steward-section-title">The Design Tool of the Future: CAD for Spirals, Not Blocks</div>
+
+<div class="spiral-quote">
+  "A software that helps abstract the designing of organisms. Like SolidWorks or CAD but for living organisms so it isn't based on making blocks but growth patterns and feedback mechanisms. If computers were programmed with 1s and 0s there would be a lot less software. Bare code needs to be abstracted so that design can actually be done at scale. Living things need to be designed as living things instead of reducing them to parts. The design has to integrate the complexity — this is where machine learning comes in for making predictions with what DNA sequences create which structures so that we can go from the abstracted design to the DNA."
+  <cite>— Sagent Creed (original note)</cite>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:24px;">
+  <div class="spiral-block" style="margin:0;">
+    <h4 style="color:var(--accent);">Layer 1 — Growth Patterns</h4>
+    Design in terms of <strong>developmental trajectories</strong>, not static end-states. A cell does not have a blueprint; it has a program that reads environmental signals and unfolds a trajectory. Design the trajectory — the conditions and the path — not the final pixel.
+  </div>
+  <div class="spiral-block" style="margin:0;">
+    <h4 style="color:var(--accent);">Layer 2 — Feedback Mechanisms</h4>
+    Every designed circuit must include <strong>negative feedback and self-correction</strong>. The gene regulatory network (enhancers, silencers, insulators, TFs) is the template. A living design with no feedback is a plantation. A living design with feedback is a forest.
+  </div>
+  <div class="spiral-block" style="margin:0;">
+    <h4 style="color:var(--accent);">Layer 3 — ML for Sequence-to-Structure</h4>
+    AlphaFold proved this layer exists. The next step is a generative model: desired cellular behavior → regulatory network architecture → DNA sequence. <strong>This is the compiler for the biological programming language.</strong> Abstract above the base pairs, like software abstracted from 1s and 0s.
+  </div>
+  <div class="spiral-block" style="margin:0;">
+    <h4 style="color:var(--accent);">Layer 4 — Evolutionary Testing</h4>
+    The design is not done until it has been run through a selection process — in model organisms first, then scaled. <strong>QTL mapping and experimental evolution are the beta-testing cycles.</strong> No release without running the population. This is the model organism strategy as design methodology.
+  </div>
+</div>
+
+<!-- BIOINFORMATICS STEWARDSHIP QUOTE -->
+<div class="spiral-quote" style="border-color:var(--accent3);">
+  "Bioinformatics offers a different posture: attention before intervention. It reveals that life is not centrally designed, but emergent: a decentralized order created through layers of feedback, adaptation, and symbiosis. When you do computational biology, you are forced into humility. You learn that you cannot design an entire living world top-down. You can only nudge, explore, and make local improvements — then observe what the system does in response. The deeper your models become, the more obvious it becomes: life is not a block you carve into shape; it is a spiral you cultivate. Start designing like gardeners, not rulers. Not blocks. Spirals."
+  <cite>— Bioinformatics as Stewardship of Living Order (Sagent writings)</cite>
+</div>
+
+<!-- FINAL SYNTHESIS TABLE -->
+<div class="steward-section-title">The Spiral Steward Creed — Applied to Every BME 105 Tool</div>
+<table class="theory-table" style="margin-bottom:20px;">
+  <thead><tr>
+    <th style="width:20%">BME 105 Tool</th>
+    <th style="width:25%">Mason Would Use It To...</th>
+    <th>Steward Uses It To...</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>GWAS / QTL</td><td>Find the "right" allele and fix it everywhere</td><td>Map what natural variation evolution has already produced — find the fitness landscape without touching it. These are the market prices of the genome.</td></tr>
+    <tr><td>ATAC-seq / ChIP-seq</td><td>Identify "off" regions to force open</td><td>Read the chromatin constitution before any intervention. Understand what the cell has already decided about what is open or closed.</td></tr>
+    <tr><td>Forward Genetics</td><td>Ignore — too slow, too random</td><td>Generate variation and let phenotypic selection find solutions no designer specified. The spiral's own search algorithm.</td></tr>
+    <tr><td>Reporter Genes (GFP)</td><td>Unnecessary overhead</td><td>The most Spiral tool in the kit: pure observation, zero intervention. Attach a sensor and listen before speaking.</td></tr>
+    <tr><td>RNAi</td><td>Silence the gene permanently</td><td>Probe function transiently, reversibly. A policy trial, not a law. The reversibility is the point.</td></tr>
+    <tr><td>Epigenetic editing</td><td>Override the methylation landscape to force expression</td><td>Read the invisible constitution first. Edit only to restore a natural state that was lost — not to impose a new one.</td></tr>
+    <tr><td>Conditional KO (LoxP/Cre)</td><td>Technical requirement for a specific experiment</td><td>The most Spiral-compatible permanent tool: tissue-specific, time-controlled, minimal blast radius. Closest to conscience-guided intervention in the entire toolkit.</td></tr>
+    <tr><td>Model Organisms</td><td>Convenient substrates before humans</td><td>Test in small, fast populations — a Special Economic Zone for evolution to explore the fitness landscape before scaling. Respect what each model teaches.</td></tr>
+    <tr><td>CRISPR KO / HDR</td><td>The primary design tool</td><td>The last resort — used only after reversible methods are exhausted, causality is fully mapped, and off-target risk is characterized. The constitutional amendment, not the first draft.</td></tr>
+    <tr><td>Phylogenetics</td><td>Historical curiosity</td><td>The evolutionary record tells you what is conserved (do not touch), what is variable (diversity is tolerated here), and what is parallel (convergent solutions are validated by independent selection).</td></tr>
+    <tr><td>Population Genetics / HWE</td><td>Statistical formality</td><td>System health monitoring — detecting whether an intervention is causing unintended drift, selection, or fixation. The macroeconomic dashboard for the genome.</td></tr>
+    <tr><td>Microbial Symbiosis</td><td>Contamination to be controlled</td><td>The most important reminder that the organism is never a closed system. You are always designing a community, not a unit. Ignore the holobiont and your design is already wrong.</td></tr>
+  </tbody>
+</table>
+
+<!-- CLOSING CALLOUT -->
+<div class="theory-callout" style="border-color:var(--accent2);background:linear-gradient(135deg,rgba(255,101,132,0.08),rgba(108,99,255,0.08));">
+  <h3 style="color:var(--accent2);">The Spiral Steward's Final Principle</h3>
+  <p>The greatest designs in biological history were not designed. Mitochondria were negotiated. The genetic code was selected. The immune system was evolved. The microbiome was co-discovered. Every time humans have tried to improve on these systems by imposing a block — monoculture agriculture, antibiotic overuse, single-gene therapy, ecosystem simplification — the result has been brittleness, resistance, collapse, and unintended consequences cascading through the epistatic network.</p>
+  <p>The Steward does not seek to replace natural selection. The Steward <strong>becomes a selection pressure</strong> — a conscientious, informed, reversible, locally-acting force that tilts the fitness landscape toward outcomes that serve both the organism and the broader living order. Not a ruler above the system. An agent within it.</p>
+  <p>This is what it means to do biology from conscience rather than from ambition. <strong>Not blocks. Spirals.</strong></p>
+</div>
+
+</div>
+
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">✕</button>
@@ -475,6 +1134,8 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
 const lectures = [
   {id:13,title:"Linking Genotype to Phenotype",tags:["Forward Genetics","Reverse Genetics","Complementation"],
    images:[
+    {src:"images/ai_genotype_phenotype.png", caption:"AI overview: DNA (genotype) → transcription/translation → phenotype (purple vs. white flowers). Visualizes the full genotype-to-phenotype pathway."},
+    {src:"images/ai_central_dogma.png", caption:"AI overview: Central Dogma — DNA → RNA → Protein. Transcription and translation shown as sequential steps."},
     {src:"images/complementation_pedigree.jpg", caption:"Complementation pedigree — multiple affected individuals across generations; used to count contributing genes."},
     {src:"images/colorless_purple_to_blue.jpg", caption:"Rabbit coat color allelic series (C > c^ch > c^h > c) — multiple alleles at one locus produce graded phenotypes."},
    ],
@@ -494,6 +1155,8 @@ const lectures = [
   ]},
   {id:14,title:"Gene Regulation & Epigenetics",tags:["Epigenetics","Chromatin","ChIP-seq","ATAC-seq","Hi-C","cis/trans"],
    images:[
+    {src:"images/ai_gene_regulation.png", caption:"AI overview: Heterochromatin (Gene OFF) vs. Euchromatin (Gene ON) — CH3 methyl marks and transcription factors shown on chromatin."},
+    {src:"images/ai_gene_expression_reg.png", caption:"AI overview: Four levels of gene expression regulation — Transcription Factors, Epigenetic Modifications, Post-Transcriptional Control, Post-Translational Control."},
     {src:"images/ATAC-seq_image.png", caption:"ATAC-seq output: peaks (read pileups) mark open chromatin; pink × marks show positions of functional regulatory elements."},
     {src:"images/xist_tsix.jpg", caption:"X Inactivation Center (XIC): Xist lncRNA (pink) coats and silences the X chromosome. Tsix (blue) is the antisense repressor of Xist."},
     {src:"images/gwas_epigenomics.jpg", caption:"H3K4me1 (enhancer mark) and RNA-seq across 30 cell types — tissue-specific enhancer activity (green) drives tissue-specific expression (blue). SNPs in these regions are GWAS hits."},
@@ -525,6 +1188,7 @@ const lectures = [
   ]},
   {id:15,title:"DNA Methylation & Imprinting",tags:["CpG Islands","Imprinting","Bisulfite-seq","DNMT1"],
    images:[
+    {src:"images/ai_dna_methylation.png", caption:"AI overview: Maternal vs. Paternal chromosomes with CH3 methyl groups blocking gene A vs. gene B — parent-of-origin imprinting concept."},
     {src:"images/imprinting.jpg", caption:"Imprinting pedigree — affected individuals (orange) appear only when inheriting from one specific parent. Note that II-1 and II-8 (affected) both passed trait only through certain children, consistent with parent-of-origin imprinting."},
     {src:"images/xist_tsix.jpg", caption:"Xist/Tsix at the XIC — Xist is a lncRNA that spreads along and silences the X chromosome via DNA methylation and chromatin compaction."},
    ],
@@ -554,6 +1218,7 @@ const lectures = [
   ]},
   {id:16,title:"GWAS & QTL Mapping",tags:["GWAS","QTL","LD","eQTL","Continuous Traits"],
    images:[
+    {src:"images/ai_gwas_qtl.png", caption:"AI overview: Manhattan plot with all 23 chromosomes, significance threshold line, and trait-associated SNP peaks — GWAS concept at a glance."},
     {src:"images/manhattan_plot.jpg", caption:"GWAS Manhattan plot — each dot is a SNP; x-axis = chromosomal position, y-axis = −log₁₀(p-value). Peaks above the threshold (~5×10⁻⁸) are significant associations. HLA region on chr6 has the strongest signal."},
     {src:"images/haplotype.png", caption:"Haplotype blocks — SNPs 4, 8, and 15 on different chromosomes define distinct haplotypes. SNPs in high LD are inherited together; a GWAS hit tags the whole block, not just the causal SNP."},
     {src:"images/eQTL.png", caption:"eQTL example — genotype at SNP rs7088318 (AA/AC/CC) is associated with PIP4K2A expression levels. AA homozygotes have highest expression. This is a cis-eQTL (p=0.001 and 0.02 in two cohorts)."},
@@ -573,6 +1238,7 @@ const lectures = [
   ]},
   {id:17,title:"Transgenes, RNAi & Reporters",tags:["Transgenics","RNAi","Reporter Genes","Traps","Delivery"],
    images:[
+    {src:"images/ai_transgenes_rnai.png", caption:"AI overview: Three panels — Transgene (GFP plasmid injected into cell), RNAi (Dicer cleaves dsRNA → siRNA silences mRNA), Reporter (GFP-glowing cell)."},
     {src:"images/plasmid.png", caption:"Recombinant DNA plasmid vector — contains an insert (gene of interest), origin of replication, and selectable marker (antibiotic resistance). Used for cloning and transgene delivery."},
     {src:"images/reg_regions_GFP.png", caption:"Reporter gene assay: regulatory region fragments fused to GFP. Fragments 3–5 drive expression (GFP=80); shorter fragments give 0 or 5. Identifies which cis elements are necessary for expression."},
     {src:"images/pCFD3.png", caption:"pCFD3 CRISPR guide RNA cloning vector — BbsI restriction sites (yellow region) are used to clone in the 20nt crRNA sequence. The blue region encodes the tracrRNA scaffold."},
@@ -595,7 +1261,9 @@ const lectures = [
     ]}
   ]},
   {id:18,title:"Model Organism Genetics",tags:["Model Organisms","C. elegans","Drosophila","Mouse"],
-   images:[],
+   images:[
+    {src:"images/ai_model_organisms.png", caption:"AI overview: E. coli, Yeast, C. elegans, Mouse, and Drosophila arranged around a central DNA helix — key traits of each model organism labeled."},
+   ],
    sections:[
     {heading:"Requirements",items:[
       "LOGISTICAL: genetically tractable, culturable/breedable, short generation time, many progeny.",
@@ -612,6 +1280,7 @@ const lectures = [
   ]},
   {id:19,title:"CRISPR-Cas9 Gene Editing",tags:["CRISPR","Cas9","Guide RNA","LoxP/Cre","HDR","NHEJ"],
    images:[
+    {src:"images/ai_crispr_cas9.png", caption:"AI overview: CRISPR steps — sgRNA binds DNA → Cas9 cuts → NHEJ (indels/knockout) vs. HDR (precise knock-in). Step-by-step mechanism."},
     {src:"images/loxP.png", caption:"LoxP/Cre conditional knockout — two loxP sites (yellow arrows) flank an exon. When Cre recombinase is expressed, it recombines the loxP sites and excises the exon, knocking out the gene in a tissue-specific or inducible manner."},
     {src:"images/pCFD3.png", caption:"pCFD3 guide RNA vector — clone your 20nt crRNA into the BbsI site (yellow) to direct SpCas9 to any target adjacent to an NGG PAM."},
    ],
@@ -633,7 +1302,9 @@ const lectures = [
     ]}
   ]},
   {id:20,title:"Population Genetics & HWE",tags:["HWE","Genetic Drift","Founder Effect","Chi-squared"],
-   images:[],
+   images:[
+    {src:"images/ai_population_hwe.png", caption:"AI overview: Gene pool (hexagonal grid of A/a alleles) + bar chart of HWE genotype frequencies (p², 2pq, q²) + equation p² + 2pq + q² = 1."},
+   ],
    sections:[
     {heading:"Definitions & HWE",items:[
       "Population: same-species individuals capable of interbreeding. Gene pool: all alleles in a population.",
@@ -652,6 +1323,7 @@ const lectures = [
   ]},
   {id:21,title:"Natural Selection",tags:["Fitness","dN/dS","Balancing Selection","Purifying Selection"],
    images:[
+    {src:"images/ai_natural_selection.png", caption:"AI overview: Four-panel beetle illustration — light/dark beetles on bark, predator picks off light ones, dark beetles survive, all-dark population on soot-covered bark. Directional selection."},
     {src:"images/selection.jpg", caption:"Allele frequency decay under selection — q (recessive deleterious allele) vs. generations. Blue = recessive (hidden in heterozygotes, slow decay). Red = co-dominant. Green = dominant (fastest removal). Recessive alleles persist much longer because selection can't see them in heterozygotes."},
     {src:"images/rabbit_color.png", caption:"Rabbit coat color allelic series cross table (C=chinchilla, H=himalayan, A=albino) — demonstrates multiple alleles at one locus and how cross outcomes reveal dominance relationships between alleles."},
    ],
@@ -675,7 +1347,9 @@ const lectures = [
     ]}
   ]},
   {id:22,title:"Microbial Symbiosis",tags:["Endosymbiosis","Holobiont","Microbiome","MWAS","HGT"],
-   images:[],
+   images:[
+    {src:"images/ai_microbial_symbiosis.png", caption:"AI overview: Mutualism (bacteria produce vitamins, host benefits), Commensalism (bacteria neutral, host unaffected), Parasitism (bacteria harm host) — three symbiosis types side by side."},
+   ],
    sections:[
     {heading:"Bacteria vs. Eukaryotes",items:[
       "Bacteria: compact genomes, ~85-90% coding, operons, no introns, no nucleus.",
@@ -695,6 +1369,14 @@ const lectures = [
       "Host genetics AND environment both shape microbiome — major confounding factors.",
       "Microbiome 'genome' is much larger and more variable than host SNP panel.",
       "16S rRNA or shotgun metagenomics required for microbial taxonomy."
+    ]},
+    {heading:"Analogy: Symbiosis & Political Economy",items:[
+      "MUTUALISM ↔ Voluntary trade — both parties consent and benefit; net positive-sum interaction. Neither can compel the other; exit is always possible.",
+      "COMMENSALISM ↔ Passive coexistence — one party benefits, the other is unaffected and uninvolved (e.g., a spectator who neither gains nor loses).",
+      "PARASITISM ↔ Coercive extraction — one party takes resources from the other without consent; host fitness declines. Classic analogy: taxation as parasitism on the productive host.",
+      "Key distinction: mutualism requires voluntary exchange (both parties better off); parasitism is non-consensual extraction (one party worse off by design).",
+      "Fitness lens: in evolutionary terms, parasitism is only stable if the parasite does not kill the host too quickly — a constraint that mirrors real-world limits on sustainable extraction rates.",
+      "Mnemonic: M = Mutual benefit (both smile), C = Commensal (one shrugs), P = Parasitic (host suffers, extractor gains)."
     ]}
   ]},
   {id:23,title:"Phylogenetics",tags:["Tree Terminology","Molecular Clocks","Bootstrap","Gene Tree"],
