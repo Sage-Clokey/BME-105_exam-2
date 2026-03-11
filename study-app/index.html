@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BME 105 Exam 2 — Open Note Reference</title>
+<title>BME 105 Final — Open Note Reference</title>
 <style>
 :root {
   --bg:#0f1117; --surface:#1a1d2e; --surface2:#252840; --surface3:#2e3255;
@@ -246,7 +246,7 @@ mark{background:rgba(255,209,102,0.28);color:var(--warning);border-radius:2px;pa
 <body>
 
 <nav>
-  <div class="logo">BME 105 · E2</div>
+  <div class="logo">BME 105 · Final</div>
   <button class="active" data-page="lookup">Lookup</button>
   <button data-page="ref">Notes</button>
   <button data-page="glossary">Glossary</button>
@@ -263,7 +263,7 @@ mark{background:rgba(255,209,102,0.28);color:var(--warning);border-radius:2px;pa
 ══════════════════════════════════════ -->
 <div id="page-lookup" class="page active" style="max-width:none;padding:0;">
   <div class="lookup-top">
-    <h1>Exam Lookup</h1>
+    <h1>Final Exam Lookup</h1>
     <div class="lookup-input-row">
       <textarea class="lookup-textarea" id="lookup-input"
         placeholder="Paste or type your exam question here… e.g. 'What does a dN/dS ratio greater than 1 indicate?'"
@@ -274,13 +274,23 @@ mark{background:rgba(255,209,102,0.28);color:var(--warning);border-radius:2px;pa
     </div>
     <div class="lookup-chips" id="lookup-chips">
       <span style="font-size:0.72rem;color:var(--text3);padding:3px 0;margin-right:4px;">Try:</span>
+      <span class="lookup-chip" onclick="chipSearch('What is Mendel law of segregation independent assortment dihybrid cross ratio?')">Mendel's Laws</span>
+      <span class="lookup-chip" onclick="chipSearch('How do you determine inheritance pattern from a pedigree autosomal recessive dominant X-linked?')">Pedigrees</span>
+      <span class="lookup-chip" onclick="chipSearch('What is conditional probability Bayesian analysis pedigree carrier?')">Conditional Prob</span>
+      <span class="lookup-chip" onclick="chipSearch('What are the differences between SNP RFLP STR microsatellite CNV indel variant?')">Variants</span>
+      <span class="lookup-chip" onclick="chipSearch('How does Illumina sequencing work read depth variant calling?')">HTS</span>
+      <span class="lookup-chip" onclick="chipSearch('What is mitosis versus meiosis crossing over nondisjunction?')">Mitosis/Meiosis</span>
+      <span class="lookup-chip" onclick="chipSearch('What is X-inactivation Xist Lyon hypothesis Barr body dosage compensation?')">X-inactivation</span>
+      <span class="lookup-chip" onclick="chipSearch('How does genetic linkage recombination frequency centimorgan three-point cross work?')">Linkage</span>
+      <span class="lookup-chip" onclick="chipSearch('What are chromosome rearrangements inversion translocation deletion duplication?')">Rearrangements</span>
+      <span class="lookup-chip" onclick="chipSearch('What is incomplete dominance codominance penetrance expressivity pleiotropy?')">Dominance Variants</span>
+      <span class="lookup-chip" onclick="chipSearch('What is epistasis 9:3:4 12:3:1 9:7 two-gene interaction suppressor?')">Epistasis</span>
+      <span class="lookup-chip" onclick="chipSearch('What is missense nonsense frameshift splice site LOF GOF dominant negative mutation?')">Mutations</span>
       <span class="lookup-chip" onclick="chipSearch('What is Hardy-Weinberg equilibrium?')">HWE</span>
       <span class="lookup-chip" onclick="chipSearch('How does CRISPR Cas9 work?')">CRISPR</span>
       <span class="lookup-chip" onclick="chipSearch('What is genomic imprinting and how is it inherited?')">Imprinting</span>
       <span class="lookup-chip" onclick="chipSearch('What is the difference between GWAS and QTL mapping?')">GWAS vs QTL</span>
-      <span class="lookup-chip" onclick="chipSearch('How does RNAi cause gene knockdown?')">RNAi</span>
       <span class="lookup-chip" onclick="chipSearch('What is natural selection fitness dN/dS ratio?')">Selection</span>
-      <span class="lookup-chip" onclick="chipSearch('What is a complementation test forward genetics reverse genetics?')">Complementation</span>
       <span class="lookup-chip" onclick="chipSearch('What is epigenetics DNA methylation histone modification?')">Epigenetics</span>
       <span class="lookup-chip" onclick="chipSearch('What is genetic drift founder effect population genetics?')">Genetic Drift</span>
       <span class="lookup-chip" onclick="chipSearch('How does phylogenetic inference work bootstrap molecular clock?')">Phylogenetics</span>
@@ -318,6 +328,10 @@ mark{background:rgba(255,209,102,0.28);color:var(--warning);border-radius:2px;pa
     <input class="gl-search" type="text" id="gl-search" placeholder="Filter by term or definition…" oninput="renderGlossary()">
     <select class="gl-filter" id="gl-lec-filter" onchange="renderGlossary()">
       <option value="all">All Lectures</option>
+      <option value="1">L1</option><option value="2">L2</option><option value="3">L3</option>
+      <option value="4">L4</option><option value="5">L5</option><option value="6">L6</option>
+      <option value="7">L7</option><option value="8">L8</option><option value="9">L9</option>
+      <option value="10">L10</option><option value="11">L11</option><option value="12">L12</option>
       <option value="13">L13</option><option value="14">L14</option><option value="15">L15</option>
       <option value="16">L16</option><option value="17">L17</option><option value="18">L18</option>
       <option value="19">L19</option><option value="20">L20</option><option value="21">L21</option>
@@ -337,8 +351,12 @@ mark{background:rgba(255,209,102,0.28);color:var(--warning);border-radius:2px;pa
 <!-- FORMULAS -->
 <div id="page-formulas" class="page">
   <h1>Formulas & Quantitative Reference</h1>
-  <p class="subtitle">Every calculation on Exam 2 in one place.</p>
+  <p class="subtitle">Every calculation across all lectures in one place.</p>
   <div class="formula-grid">
+    <div class="formula-card"><h4>Product Rule</h4><div class="formula">P(A and B) = P(A) × P(B)</div><div class="formula-desc">For independent events occurring together. Multiply probabilities of each independent outcome.</div></div>
+    <div class="formula-card"><h4>Sum Rule</h4><div class="formula">P(A or B) = P(A) + P(B)</div><div class="formula-desc">For mutually exclusive outcomes. Add probabilities when any single alternative satisfies the condition.</div></div>
+    <div class="formula-card"><h4>Mendel's F2 Ratios</h4><div class="formula">Monohybrid: 3:1</div><div class="formula">Dihybrid: 9:3:3:1</div><div class="formula">Testcross: 1:1</div><div class="formula-desc">Assumes complete dominance, unlinked loci. Dihybrid AaBb×AaBb → 9 A_B_ : 3 A_bb : 3 aaB_ : 1 aabb.</div></div>
+    <div class="formula-card"><h4>Three-point Cross</h4><div class="formula">d(interval) = SCO + DCO</div><div class="formula">COC = obs DCO / exp DCO</div><div class="formula">I = 1 − COC</div><div class="formula-desc">Add single (SCO) + double crossovers (DCO) per interval. Positive interference (I>0) = one crossover suppresses nearby crossovers.</div></div>
     <div class="formula-card"><h4>Hardy-Weinberg Equilibrium</h4><div class="formula">p² + 2pq + q² = 1</div><div class="formula">p + q = 1</div><div class="formula-desc"><strong>p</strong>=freq(A), <strong>q</strong>=freq(a). p²=AA, 2pq=Aa, q²=aa.<br>5 assumptions: random mating · no mutation · no migration · no selection · infinite N</div></div>
     <div class="formula-card"><h4>Chi-Squared Test (HWE)</h4><div class="formula">χ² = Σ (O − E)² / E</div><div class="formula-desc">df = genotype classes − 1 (= 1 for biallelic). χ² > critical value → reject HWE. E = HWE expected freq × N.</div></div>
     <div class="formula-card"><h4>Recombination Frequency</h4><div class="formula">RF = recombinants / total offspring</div><div class="formula">1 cM ≈ 1% recombination</div><div class="formula-desc">Unlinked loci → RF = 50%. RF limits fine-scale mapping resolution.</div></div>
@@ -360,6 +378,12 @@ mark{background:rgba(255,209,102,0.28);color:var(--warning);border-radius:2px;pa
   <div class="fc-controls">
     <select class="fc-select" id="fc-filter" onchange="initFlashcards()">
       <option value="all">All Lectures</option>
+      <option value="1">L1 — Mendel & Inheritance</option><option value="2">L2 — Probabilities & Pedigrees</option>
+      <option value="3">L3 — Conditional Probability</option><option value="4">L4 — Genetic Variants</option>
+      <option value="5">L5 — HTS & Sequencing</option><option value="6">L6 — Chromosomes & Meiosis</option>
+      <option value="7">L7 — Sex Determination</option><option value="8">L8 — Linkage & Recombination</option>
+      <option value="9">L9 — Chromosome Rearrangements</option><option value="10">L10 — Single-gene Extensions</option>
+      <option value="11">L11 — Two-gene Interactions</option><option value="12">L12 — Mutations</option>
       <option value="13">L13 — Genotype→Phenotype</option><option value="14">L14 — Epigenetics</option>
       <option value="15">L15 — Methylation & Imprinting</option><option value="16">L16 — GWAS & QTL</option>
       <option value="17">L17 — Transgenes & RNAi</option><option value="18">L18 — Model Organisms</option>
@@ -401,6 +425,10 @@ mark{background:rgba(255,209,102,0.28);color:var(--warning);border-radius:2px;pa
     <div style="display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin-bottom:22px">
       <select class="fc-select" id="quiz-filter">
         <option value="all">All Lectures</option>
+        <option value="1">L1</option><option value="2">L2</option><option value="3">L3</option>
+        <option value="4">L4</option><option value="5">L5</option><option value="6">L6</option>
+        <option value="7">L7</option><option value="8">L8</option><option value="9">L9</option>
+        <option value="10">L10</option><option value="11">L11</option><option value="12">L12</option>
         <option value="13">L13</option><option value="14">L14</option><option value="15">L15</option>
         <option value="16">L16</option><option value="17">L17</option><option value="18">L18</option>
         <option value="19">L19</option><option value="20">L20</option><option value="21">L21</option>
@@ -440,6 +468,10 @@ mark{background:rgba(255,209,102,0.28);color:var(--warning);border-radius:2px;pa
   <div class="match-controls">
     <select class="fc-select" id="match-filter">
       <option value="all">All Lectures</option>
+      <option value="1">L1</option><option value="2">L2</option><option value="3">L3</option>
+      <option value="4">L4</option><option value="5">L5</option><option value="6">L6</option>
+      <option value="7">L7</option><option value="8">L8</option><option value="9">L9</option>
+      <option value="10">L10</option><option value="11">L11</option><option value="12">L12</option>
       <option value="13">L13</option><option value="14">L14</option><option value="15">L15</option>
       <option value="16">L16</option><option value="17">L17</option><option value="18">L18</option>
       <option value="19">L19</option><option value="20">L20</option><option value="21">L21</option>
@@ -1132,6 +1164,306 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
 // DATA
 // ═══════════════════════════════════════════════════════
 const lectures = [
+  {id:1,title:"Intro through Mendel",tags:["Mendel","Independent Assortment","Dominant","Recessive","Punnett Square"],
+   images:[],
+   sections:[
+    {heading:"Key Terms",items:[
+      "Gene: segment of DNA encoding a functional product (usually protein).",
+      "Allele: one of two or more alternative forms of a gene (e.g., A and a).",
+      "Genotype: the allele combination an organism carries (AA, Aa, or aa).",
+      "Phenotype: the observable characteristic produced by the genotype + environment.",
+      "Homozygous: both alleles identical (AA or aa).",
+      "Heterozygous: alleles differ (Aa).",
+      "Dominant allele: expressed in heterozygous organism; denoted with capital letter.",
+      "Recessive allele: only expressed when homozygous; denoted with lowercase letter."
+    ]},
+    {heading:"Mendel's Laws",items:[
+      "Law of Segregation: two alleles for a trait separate during gamete formation; each gamete carries ONE allele.",
+      "Law of Independent Assortment: alleles at different (unlinked) genes assort independently into gametes.",
+      "Monohybrid cross (Aa × Aa): 1 AA : 2 Aa : 1 aa genotype ratio; 3 dominant : 1 recessive phenotype ratio.",
+      "Dihybrid cross (AaBb × AaBb): 9:3:3:1 phenotypic ratio when genes are unlinked.",
+      "Testcross: cross unknown genotype with homozygous recessive (aa) to reveal unknown allele ratio.",
+      "P generation → F1 (all heterozygous if parents differ) → F2 (3:1 ratio for a single trait)."
+    ]},
+    {heading:"Probability Rules",items:[
+      "Product rule: P(A AND B) = P(A) × P(B) for independent events.",
+      "Sum rule: P(A OR B) = P(A) + P(B) for mutually exclusive events.",
+      "Probability of a specific genotype in F2: each allele independently segregates 50:50.",
+      "Binomial expansion: use (p+q)^n for multi-offspring problems."
+    ]}
+  ]},
+  {id:2,title:"Probabilities & Pedigrees",tags:["Pedigree","Autosomal Dominant","Autosomal Recessive","X-linked","Sum Rule","Product Rule"],
+   images:[],
+   sections:[
+    {heading:"Probability Rules",items:[
+      "Product rule: P(A AND B) = P(A) × P(B) — multiply probabilities for independent events occurring together.",
+      "Sum rule: P(A OR B) = P(A) + P(B) — add probabilities for mutually exclusive outcomes.",
+      "Chain rule: calculate probability of any pedigree outcome by multiplying per-generation probabilities."
+    ]},
+    {heading:"Pedigree Symbols & Rules",items:[
+      "Square = male; circle = female; filled = affected; half-filled or dot = carrier.",
+      "Horizontal line between individuals = mating; vertical/branch lines = offspring.",
+      "Double line = consanguineous mating (related individuals)."
+    ]},
+    {heading:"Inheritance Pattern Identification",items:[
+      "Autosomal dominant: affected in every generation (vertical pattern); every affected individual has ≥1 affected parent.",
+      "Autosomal recessive: can skip generations; two unaffected carriers can produce affected offspring; consanguinity increases risk.",
+      "X-linked recessive: predominantly affects males; carrier females unaffected; affected father cannot pass to sons (X→daughter, Y→son).",
+      "X-linked dominant: affected females (milder) and affected males (lethal or severe); no male-to-male transmission.",
+      "Y-linked: all sons of affected father affected; daughters never affected.",
+      "Mitochondrial: all offspring of affected mother affected; no paternal transmission."
+    ]}
+  ]},
+  {id:3,title:"Conditional Probability & Pedigrees",tags:["Conditional Probability","Bayesian","Carrier Probability","Pedigree Calculations"],
+   images:[],
+   sections:[
+    {heading:"Conditional Probability",items:[
+      "P(A | B) = P(A and B) / P(B) — probability of A given that B is known to be true.",
+      "Key in pedigrees: observing offspring phenotypes updates the probability of parental genotype.",
+      "Example: if two carrier parents (Aa × Aa) have 3 unaffected children, what is the probability the next child is affected? P(aa | 3 unaffected) via Bayes."
+    ]},
+    {heading:"Bayesian Pedigree Analysis",items:[
+      "Prior probability: probability of each genotype before observing children (from Mendelian ratios).",
+      "Conditional probability: probability of observing the data (children's phenotypes) given each genotype.",
+      "Joint probability: prior × conditional for each genotype.",
+      "Posterior probability: joint / sum of joints — updated probability after observing data.",
+      "Prior for child of two carriers: P(AA)=1/4, P(Aa)=1/2, P(aa)=1/4 for autosomal recessive."
+    ]},
+    {heading:"Key Worked Patterns",items:[
+      "Each unaffected child in a Aa × Aa cross is 1/3 AA, 2/3 Aa (given unaffected, recessive excluded from 3:1 → 1:2 ratio among unaffected).",
+      "For X-linked recessive: carrier female is unaffected; each son has 1/2 chance of being affected.",
+      "Combine product rule across generations for multi-generation pedigree probability calculations."
+    ]}
+  ]},
+  {id:4,title:"Identifying Genetic Variants",tags:["SNP","RFLP","STR","PCR","Sanger Sequencing","Gel Electrophoresis"],
+   images:[],
+   sections:[
+    {heading:"Types of Genetic Variants",items:[
+      "SNP (Single Nucleotide Polymorphism): single base substitution; most common type in humans (~1 per 1000 bp).",
+      "Indel: insertion or deletion of 1+ bases; can cause frameshift if in coding region.",
+      "STR/SSR (Short Tandem Repeat / Microsatellite): repeated 2–6 bp motif; highly variable in repeat number; used in forensics, paternity.",
+      "CNV (Copy Number Variant): large-scale duplications or deletions of chromosomal segments.",
+      "RFLP (Restriction Fragment Length Polymorphism): SNP creates/destroys a restriction site → different fragment sizes on gel."
+    ]},
+    {heading:"Detection Methods",items:[
+      "PCR: amplify specific locus with flanking primers; exponential amplification of target sequence.",
+      "Gel electrophoresis: separate DNA fragments by size; smaller fragments migrate farther.",
+      "Sanger sequencing: ddNTP chain termination + gel/capillary electrophoresis → single-molecule sequence reads up to ~1000 bp.",
+      "RFLP analysis: digest PCR product with restriction enzyme → run gel → distinct band patterns for different alleles.",
+      "STR genotyping: size PCR products flanking repeat → individuals differ by repeat number → allele ladder comparison.",
+      "Hybridization arrays (SNP chips): fixed probes on microarray; detect thousands of SNPs simultaneously."
+    ]}
+  ]},
+  {id:5,title:"High-Throughput Sequencing & Variant Detection",tags:["Illumina","Read Depth","Variant Calling","Cell-free DNA","Copy Number"],
+   images:[],
+   sections:[
+    {heading:"Illumina Sequencing by Synthesis",items:[
+      "Fragment DNA → ligate adapters → cluster amplification on flow cell → sequential fluorescent dNTP incorporation → image each cycle.",
+      "Reads ~150 bp (paired-end); billions of reads per run; short but cheap and high-throughput.",
+      "Read depth (coverage): average number of reads at each base; higher depth = better variant confidence.",
+      "30× coverage typical for whole-genome; 100–1000× for targeted panels or tumor sequencing."
+    ]},
+    {heading:"Variant Calling",items:[
+      "Align reads to reference genome → call SNPs and indels at positions where reads differ from reference.",
+      "Genotype calling: heterozygous SNP appears as ~50% alt reads; homozygous alt = ~100%; error typically <5%.",
+      "Quality filters: depth, mapping quality, strand balance remove false positives.",
+      "Copy number variation: detect by read depth deviation from expected diploid (2× baseline).",
+      "Structural variant detection: read pairs with unexpected orientation or spacing flag deletions/inversions."
+    ]},
+    {heading:"Clinical Applications",items:[
+      "Cell-free DNA (cfDNA): fetal DNA in maternal blood → non-invasive prenatal testing (NIPT) for trisomies.",
+      "Cancer sequencing: identify somatic mutations driving tumor growth (driver vs. passenger mutations).",
+      "Exome sequencing: captures ~1–2% protein-coding exons; cost-effective for rare disease diagnosis.",
+      "Whole-genome sequencing: complete picture; required for structural variants and non-coding variants."
+    ]}
+  ]},
+  {id:6,title:"Chromosomes, Ploidy, Mitosis & Meiosis",tags:["Karyotype","Diploid","Haploid","Mitosis","Meiosis","Nondisjunction","Ploidy"],
+   images:[
+    {src:"images/meiosis.png", caption:"Meiosis I and II — homologous chromosomes segregate in Meiosis I (reductional); sister chromatids separate in Meiosis II (equational). Result: 4 haploid cells."},
+    {src:"images/meiosisI.svg.png", caption:"Meiosis I detail: Prophase I (synapsis, crossing over) → Metaphase I (bivalents align) → Anaphase I (homologs separate) → Telophase I."},
+   ],
+   sections:[
+    {heading:"Ploidy & Chromosome Terminology",items:[
+      "Haploid (n): one set of chromosomes (e.g., gametes); humans n=23.",
+      "Diploid (2n): two sets of chromosomes (one maternal, one paternal); humans 2n=46.",
+      "Polyploid: more than two sets (3n, 4n, etc.); common in plants; rare in animals.",
+      "Homologous chromosomes: carry same genes in same order; one from each parent.",
+      "Sister chromatids: identical copies joined at centromere after DNA replication.",
+      "Karyotype: organized display of chromosome pairs; detects trisomies, monosomies, translocations."
+    ]},
+    {heading:"Mitosis",items:[
+      "PMAT: Prophase → Metaphase → Anaphase → Telophase.",
+      "Purpose: somatic cell division for growth and tissue repair; produces 2 identical diploid daughter cells.",
+      "Chromosomes condense, sister chromatids separate at Anaphase, cell divides.",
+      "No crossing over in mitosis → daughter cells genetically identical to parent (barring mutation)."
+    ]},
+    {heading:"Meiosis",items:[
+      "Two sequential divisions: Meiosis I (reductional) + Meiosis II (equational).",
+      "Prophase I: homologs synapse → crossing over (genetic recombination) → new allele combinations.",
+      "Meiosis I: separates HOMOLOGS → 2 haploid cells (but still 2 chromatids each).",
+      "Meiosis II: separates SISTER CHROMATIDS → 4 haploid cells (gametes).",
+      "Result: 4 genetically unique haploid gametes from one diploid cell.",
+      "Nondisjunction in Meiosis I: both homologs → one cell (n+1 and n-1); more severe, affects all gametes.",
+      "Nondisjunction in Meiosis II: sister chromatids fail to separate (n+1, n-1, and 2 normal).",
+      "Trisomy 21 (Down syndrome): extra chr 21, usually from maternal meiotic nondisjunction.",
+      "XXY (Klinefelter's): extra X, typically male phenotype, infertile.",
+      "45,X (Turner's): single X chromosome; female phenotype; short stature, gonadal dysgenesis."
+    ]}
+  ]},
+  {id:7,title:"Sex Determination & Dosage Compensation",tags:["SRY","X-inactivation","Barr Body","Dosage Compensation","Lyon Hypothesis","ZW"],
+   images:[
+    {src:"images/xist_tsix.jpg", caption:"X Inactivation Center (XIC): Xist lncRNA (pink) coats and silences the inactive X. Tsix (blue) represses Xist on the active X."},
+   ],
+   sections:[
+    {heading:"Sex Determination",items:[
+      "Mammals: XY system — SRY gene on Y triggers testes development; XX → ovarian default.",
+      "SRY → Sertoli cells → anti-Müllerian hormone → suppresses female structures; Leydig cells → testosterone.",
+      "Individuals with SRY deletions/mutations can be 46,XY females; SRY translocations → 46,XX males.",
+      "Birds/some reptiles: ZW system — females are ZW (heterogametic), males are ZZ.",
+      "Drosophila: ratio of X chromosomes to autosomes determines sex (X:A = 1 → female; 0.5 → male).",
+      "C. elegans: XX = hermaphrodite; X0 = male."
+    ]},
+    {heading:"X-Inactivation (Lyon Hypothesis)",items:[
+      "In mammalian females (XX): one X is randomly inactivated in each somatic cell during early embryogenesis.",
+      "Inactive X = Barr body (dense condensed structure visible at nuclear periphery).",
+      "Xist lncRNA: transcribed from the Xinactivation center (XIC) → coats inactive X → recruits silencing machinery.",
+      "Tsix: antisense repressor of Xist on the ACTIVE X — prevents Xist from coating the active X.",
+      "X-inactivation is random but stable: all mitotic descendants have the same X inactive.",
+      "Mosaic phenotype: females heterozygous for X-linked traits show patches of expression (e.g., calico cats).",
+      "Not all genes on Xi are silenced: PAR (pseudoautosomal regions) and ~15% of X genes escape inactivation."
+    ]},
+    {heading:"Dosage Compensation Mechanisms",items:[
+      "Mammals: X-inactivation (one X silenced) → 1 active X in both sexes.",
+      "Drosophila: hyperactivation of single X in males → doubles transcription from male's single X.",
+      "C. elegans: dosage compensation complex halves expression from BOTH X chromosomes in XX hermaphrodites."
+    ]}
+  ]},
+  {id:8,title:"Genetic Linkage & Recombination",tags:["Linkage","Recombination Frequency","Crossing Over","cM","Three-point Cross","Map Distance"],
+   images:[],
+   sections:[
+    {heading:"Linkage Basics",items:[
+      "Genes on the same chromosome are LINKED and tend to be inherited together.",
+      "Unlinked genes (different chromosomes OR far apart on same chromosome): RF = 50% (independent assortment).",
+      "Linked genes: RF < 50%; the closer together, the lower the RF.",
+      "Recombinant gametes arise from crossing over between two loci in Prophase I.",
+      "Parental classes: most frequent gamete types (original allele combinations).",
+      "Recombinant classes: new allele combinations from crossover events."
+    ]},
+    {heading:"Calculating Map Distance",items:[
+      "RF = (recombinant offspring) / (total offspring) × 100%.",
+      "1 cM (centimorgan) = 1% recombination frequency.",
+      "RF underestimates true map distance for distant loci (double crossovers are not detected as recombinants).",
+      "Corrected map distance uses mapping functions (Haldane, Kosambi)."
+    ]},
+    {heading:"Three-point Cross",items:[
+      "Cross involving three linked genes → determine gene order and map distances.",
+      "Double crossover (DCO) class: rarest; always involves a MIDDLE gene being flipped relative to the two flanking genes.",
+      "Gene order: the class with fewest individuals = DCO → middle gene is the one that differs from parental types.",
+      "Coefficient of coincidence (COC) = observed DCO / expected DCO.",
+      "Interference (I) = 1 − COC. Positive interference means one crossover inhibits nearby crossovers.",
+      "Map distances: add single crossover regions; DCOs counted in each interval separately."
+    ]}
+  ]},
+  {id:9,title:"Chromosome Rearrangements",tags:["Deletion","Duplication","Inversion","Translocation","Robertsonian","CNV","Paracentric","Pericentric"],
+   images:[
+    {src:"images/reciprocal_translocation.png", caption:"Reciprocal translocation — segments exchanged between two non-homologous chromosomes. Balanced carriers are often phenotypically normal; unbalanced offspring have partial trisomy/monosomy."},
+   ],
+   sections:[
+    {heading:"Types of Rearrangements",items:[
+      "Deletion: loss of a chromosomal segment. Hemizygous for the deleted region.",
+      "Duplication: extra copy of a chromosomal segment. Can alter gene dosage.",
+      "Inversion: segment reversed 180° within the same chromosome.",
+      "Paracentric inversion: inversion does NOT include the centromere.",
+      "Pericentric inversion: inversion INCLUDES the centromere → changes arm ratio (detectable in karyotype).",
+      "Translocation: segment moved between non-homologous chromosomes.",
+      "Reciprocal translocation: mutual exchange between two non-homologs.",
+      "Robertsonian translocation: two acrocentric chromosomes fuse at centromere (e.g., chr 14;21 → can cause familial Down syndrome)."
+    ]},
+    {heading:"Effects on Meiosis & Phenotype",items:[
+      "Deletion: deletion loop forms during meiosis I; hemizygous → recessive alleles on normal homolog exposed.",
+      "Duplication: duplication loop in meiosis I; gene dosage effects; evolution source (paralogs).",
+      "Inversion heterozygote: inversion loop forms; crossover WITHIN the loop → unbalanced gametes → inviable offspring (acts as recombination suppressor).",
+      "Reciprocal translocation carrier: adjacent-1 or adjacent-2 segregation → unbalanced gametes with partial trisomy or monosomy.",
+      "Balanced translocation carriers: normal phenotype; ~50% unbalanced offspring if adjacent segregation.",
+      "Copy number variants (CNVs): microdeletions/duplications detected by array CGH or read depth; common in autism, schizophrenia."
+    ]}
+  ]},
+  {id:10,title:"Extensions to Single-Gene Inheritance",tags:["Incomplete Dominance","Codominance","Multiple Alleles","Penetrance","Expressivity","Pleiotropy","Epistasis","Lethal Allele"],
+   images:[
+    {src:"images/rabbit_color.png", caption:"Allelic series for rabbit coat color (C > c^ch > c^h > c) — multiple alleles at one locus produce a dominance hierarchy with graded phenotypes."},
+   ],
+   sections:[
+    {heading:"Dominance Variations",items:[
+      "Complete dominance: Aa indistinguishable from AA phenotypically.",
+      "Incomplete dominance: Aa has intermediate phenotype (e.g., red × white → pink).",
+      "Codominance: both alleles independently expressed in heterozygote (e.g., ABO blood type AB — both A and B antigens present).",
+      "Multiple alleles: more than 2 alleles exist in population at a locus (e.g., ABO: I^A, I^B, i; coat color: C > c^ch > c^h > c).",
+      "Dominant negative: mutant protein interferes with WT protein function in same cell (heterozygote worse than null)."
+    ]},
+    {heading:"Penetrance & Expressivity",items:[
+      "Penetrance: fraction of individuals with a given genotype who show the phenotype (0–100%).",
+      "Incomplete penetrance: some individuals with the dominant allele do NOT show the phenotype.",
+      "Expressivity: degree to which a phenotype is expressed among individuals who DO show it (variable vs. constant).",
+      "Variable expressivity: same genotype but different severity of phenotype in different individuals (e.g., NF1).",
+      "Modifiers: other genes, environment alter penetrance and expressivity."
+    ]},
+    {heading:"Pleiotropy & Lethal Alleles",items:[
+      "Pleiotropy: one gene affects multiple seemingly unrelated phenotypic traits (e.g., PKU affects brain, pigment, and other pathways).",
+      "Lethal allele: homozygous genotype causes death (often embryonic); shifts ratio in survivors.",
+      "Example: yellow coat color in mice — A^y is dominant for coat but lethal when homozygous (A^y/A^y die before birth); so A^y/A × A^y/A gives 2:1 yellow:non-yellow among surviving pups."
+    ]}
+  ]},
+  {id:11,title:"Two-gene Interactions (Epistasis)",tags:["Epistasis","Dihybrid","9:3:3:1","9:3:4","12:3:1","15:1","9:7","Suppressor","Recessive Epistasis","Dominant Epistasis"],
+   images:[
+    {src:"images/colorless_purple_to_blue.jpg", caption:"Pathway epistasis — two genes act sequentially in a pigment pathway. Homozygous recessive at either gene blocks the pathway, giving a white/colorless phenotype instead of the expected color."},
+   ],
+   sections:[
+    {heading:"Standard Dihybrid (9:3:3:1)",items:[
+      "Two unlinked genes with dominant/recessive alleles → AaBb × AaBb → 9 A_B_ : 3 A_bb : 3 aaB_ : 1 aabb.",
+      "This is the baseline. Any deviation from 9:3:3:1 indicates gene interaction (epistasis)."
+    ]},
+    {heading:"Epistasis Ratios",items:[
+      "Recessive epistasis (9:3:4): aa masks B gene; aaB_ = aabb → combine 4. Example: Labrador coat color.",
+      "Dominant epistasis (12:3:1): A_ masks B gene; A_B_ + A_bb = 12, aaB_ = 3, aabb = 1.",
+      "Dominant epistasis, both (13:3): A_ masks B; aaB_ = 3; aabb combines with A_ → 13. (Rare).",
+      "Duplicate recessive epistasis (9:7): both aa AND bb → same (white) phenotype; A_B_=9, rest=7.",
+      "Duplicate dominant epistasis (15:1): either A_ OR B_ → same dominant phenotype; only aabb = 1 distinct.",
+      "Additive / codominant (1:2:1:2:4:2:1:2:1): two genes with quantitative additive effects.",
+      "The PATHWAY determines the ratio: identify which gene is upstream/downstream."
+    ]},
+    {heading:"Suppressor Mutations",items:[
+      "A suppressor mutation restores (partially or fully) the wild-type phenotype in an organism that already carries a mutation.",
+      "Intragenic suppressor: second mutation in the SAME gene (e.g., second frameshift restores reading frame).",
+      "Intergenic suppressor: second mutation in a DIFFERENT gene compensates for the original phenotype.",
+      "Example: tRNA suppressor — mutant tRNA reads through a nonsense codon."
+    ]}
+  ]},
+  {id:12,title:"Protein-coding & Non-coding Mutations",tags:["Missense","Nonsense","Silent","Frameshift","Splice Site","LOF","GOF","Dominant Negative","Suppressor"],
+   images:[],
+   sections:[
+    {heading:"Mutation Types by Effect on Sequence",items:[
+      "Silent (synonymous) mutation: nucleotide change does NOT change the amino acid (due to degeneracy of genetic code). No phenotypic effect.",
+      "Missense mutation: nucleotide change → different amino acid; may or may not affect protein function.",
+      "Conservative missense: chemically similar amino acid substituted → usually mild effect.",
+      "Non-conservative missense: chemically different amino acid → likely disrupts structure/function.",
+      "Nonsense mutation: nucleotide change → premature stop codon → truncated (nonfunctional) protein.",
+      "Frameshift: insertion or deletion of non-multiple-of-3 nucleotides → shifts reading frame → garbled downstream sequence + premature stop.",
+      "Splice-site mutation: alters consensus splice donor (GT) or acceptor (AG) → intron retention or exon skipping → aberrant protein."
+    ]},
+    {heading:"Non-coding Mutations",items:[
+      "Promoter mutation: disrupts TF binding → changes gene expression level (up or down).",
+      "Enhancer/silencer mutation: alters tissue-specific regulation without changing coding sequence.",
+      "UTR mutations: affect mRNA stability (3' UTR miRNA binding sites) or translation efficiency (5' UTR Kozak context).",
+      "Most GWAS hits are in non-coding regulatory regions — most variation is regulatory, not coding."
+    ]},
+    {heading:"Functional Categories",items:[
+      "Loss-of-function (LOF): mutation reduces or eliminates gene product activity. Usually recessive (one functional copy sufficient = haploinsufficiency if both needed).",
+      "Haploinsufficiency: heterozygous LOF is sufficient to cause disease because one copy cannot provide enough product.",
+      "Gain-of-function (GOF): mutation creates new or enhanced activity → usually DOMINANT.",
+      "Dominant negative: mutant protein interferes with WT protein function in same cell; heterozygote has worse phenotype than null homozygote.",
+      "Null allele: complete loss of gene function (e.g., large deletion, nonsense, or frameshifting indel)."
+    ]}
+  ]},
   {id:13,title:"Linking Genotype to Phenotype",tags:["Forward Genetics","Reverse Genetics","Complementation"],
    images:[
     {src:"images/ai_genotype_phenotype.png", caption:"AI overview: DNA (genotype) → transcription/translation → phenotype (purple vs. white flowers). Visualizes the full genotype-to-phenotype pathway."},
@@ -1412,6 +1744,107 @@ const lectures = [
 ];
 
 const glossary = [
+  // ── L1: Mendel ──
+  {lec:1,term:"Gene",def:"A segment of DNA encoding a functional product (usually protein); exists at a specific chromosomal locus."},
+  {lec:1,term:"Allele",def:"One of two or more alternative forms of a gene (e.g., A or a). Each diploid organism carries two alleles per autosomal locus."},
+  {lec:1,term:"Dominant allele",def:"Allele whose phenotypic effect is expressed in heterozygous (Aa) individuals. Masks the recessive allele."},
+  {lec:1,term:"Recessive allele",def:"Allele whose phenotypic effect is expressed ONLY in homozygous (aa) individuals; masked by dominant allele in heterozygotes."},
+  {lec:1,term:"Genotype",def:"The specific allele combination an organism carries at a locus (e.g., AA, Aa, aa)."},
+  {lec:1,term:"Phenotype",def:"The observable physical/biochemical characteristic produced by the genotype interacting with the environment."},
+  {lec:1,term:"Homozygous",def:"Both alleles at a locus are identical (AA or aa)."},
+  {lec:1,term:"Heterozygous",def:"Two different alleles at a locus (Aa)."},
+  {lec:1,term:"Law of Segregation",def:"Mendel's 1st law: the two alleles of a gene separate during gamete formation so each gamete carries exactly one allele."},
+  {lec:1,term:"Law of Independent Assortment",def:"Mendel's 2nd law: alleles at different (unlinked) genes assort independently into gametes, producing a 9:3:3:1 dihybrid ratio."},
+  {lec:1,term:"Testcross",def:"A cross of an unknown genotype with a homozygous recessive individual (aa or aabb) to determine the unknown genotype from offspring ratios."},
+  {lec:1,term:"Product rule",def:"P(A and B) = P(A) × P(B) for independent events. Used to calculate probability of multiple independent outcomes occurring together."},
+  {lec:1,term:"Sum rule",def:"P(A or B) = P(A) + P(B) for mutually exclusive events. Used when any of several alternative outcomes satisfies the requirement."},
+  // ── L2: Pedigrees ──
+  {lec:2,term:"Pedigree",def:"Diagram showing the inheritance of a trait across multiple generations. Squares=males, circles=females, filled=affected."},
+  {lec:2,term:"Autosomal dominant",def:"One copy of the mutant allele is sufficient for disease. Trait appears in every generation; no unaffected carriers; equal in both sexes."},
+  {lec:2,term:"Autosomal recessive",def:"Two copies of mutant allele required for disease. Can skip generations; both parents of affected child must carry at least one copy; consanguinity increases risk."},
+  {lec:2,term:"X-linked recessive",def:"Mutant allele on X chromosome; predominantly affects males (hemizygous); carrier females are unaffected. Affected father cannot pass X-linked trait to sons."},
+  {lec:2,term:"X-linked dominant",def:"One copy of mutant allele on X is sufficient for disease. Affected females (milder) AND affected males (often more severe or lethal). No male-to-male transmission of X."},
+  {lec:2,term:"Consanguinity",def:"Mating between related individuals. Increases probability of homozygous recessive offspring because relatives share alleles by descent."},
+  // ── L3: Conditional probability ──
+  {lec:3,term:"Conditional probability",def:"P(A|B) = P(A and B)/P(B). Probability of event A given that B has occurred. Key tool in pedigree analysis to update carrier probabilities."},
+  {lec:3,term:"Bayes' theorem",def:"Posterior probability = (prior × likelihood) / normalization. Updates the probability of a genotype after observing offspring or other data."},
+  {lec:3,term:"Prior probability",def:"Probability of a genotype before observing offspring data — derived from Mendelian ratios alone."},
+  {lec:3,term:"Posterior probability",def:"Updated probability of a genotype after incorporating observed offspring data via Bayes' theorem."},
+  // ── L4: Genetic variants ──
+  {lec:4,term:"SNP (Single Nucleotide Polymorphism)",def:"A single base-pair substitution that occurs in ≥1% of the population. Most common type of genetic variant."},
+  {lec:4,term:"Indel",def:"Insertion or deletion of one or more bases. In coding sequence, a non-multiple-of-3 indel causes a frameshift."},
+  {lec:4,term:"STR / Microsatellite",def:"Short tandem repeat — 2–6 bp motif repeated in tandem. Highly polymorphic in repeat number; used in forensics and paternity testing."},
+  {lec:4,term:"RFLP",def:"Restriction Fragment Length Polymorphism — SNP creates or destroys a restriction site → different band patterns on gel after restriction digestion."},
+  {lec:4,term:"PCR (Polymerase Chain Reaction)",def:"Exponential amplification of a specific DNA region using primers flanking the target. Powers most molecular genetic assays."},
+  {lec:4,term:"Sanger sequencing",def:"Chain-termination sequencing using dideoxynucleotides. Reads ~1 kb per reaction; gold standard for single-gene variant confirmation."},
+  {lec:4,term:"CNV (Copy Number Variant)",def:"Large-scale deletion or duplication of a chromosomal segment (typically >1 kb). Can alter gene dosage; associated with many diseases."},
+  // ── L5: HTS ──
+  {lec:5,term:"Illumina sequencing",def:"Sequencing-by-synthesis — fluorescent dNTPs incorporated into cluster-amplified fragments on a flow cell; images each cycle. Reads ~150 bp, very high throughput."},
+  {lec:5,term:"Read depth (coverage)",def:"Average number of sequencing reads covering a genomic position. Higher depth = better variant calling confidence. ~30× for WGS."},
+  {lec:5,term:"Variant calling",def:"Bioinformatic process of identifying SNPs, indels, and structural variants from aligned sequencing reads by comparing to a reference genome."},
+  {lec:5,term:"Cell-free DNA (cfDNA)",def:"Fragmented DNA shed from dying cells into blood. Fetal cfDNA in maternal plasma enables non-invasive prenatal diagnosis (NIPT) for chromosomal abnormalities."},
+  {lec:5,term:"Exome sequencing",def:"Targeted sequencing of all protein-coding exons (~1–2% of genome). Cost-effective for rare Mendelian disease diagnosis."},
+  // ── L6: Chromosomes, mitosis, meiosis ──
+  {lec:6,term:"Haploid (n)",def:"One set of chromosomes. Gametes in humans are haploid (n=23)."},
+  {lec:6,term:"Diploid (2n)",def:"Two sets of chromosomes, one maternal and one paternal. Somatic human cells are diploid (2n=46)."},
+  {lec:6,term:"Homologous chromosomes",def:"Chromosome pairs that carry the same genes in the same order; one from each parent. Synapse during Meiosis I."},
+  {lec:6,term:"Sister chromatids",def:"Identical copies of a chromosome produced by DNA replication; joined at the centromere. Separated at Anaphase II of meiosis (or Anaphase of mitosis)."},
+  {lec:6,term:"Mitosis",def:"Cell division producing 2 genetically identical diploid daughter cells from one diploid parent. Purpose: growth and repair."},
+  {lec:6,term:"Meiosis",def:"Two-division process producing 4 haploid gametes from one diploid cell. Includes crossing over (Prophase I) → genetic diversity."},
+  {lec:6,term:"Crossing over",def:"Exchange of segments between non-sister chromatids of homologous chromosomes during Prophase I of meiosis. Source of recombinant chromosomes."},
+  {lec:6,term:"Nondisjunction",def:"Failure of chromosomes or chromatids to separate correctly during meiosis → aneuploid gametes (n+1 or n-1)."},
+  {lec:6,term:"Trisomy 21 (Down syndrome)",def:"Extra copy of chromosome 21 (2n=47). Caused by maternal nondisjunction. Features: intellectual disability, facial features, heart defects."},
+  // ── L7: Sex determination ──
+  {lec:7,term:"SRY gene",def:"Sex-determining Region Y — triggers testes development in mammals. 46,XY with SRY deletion → female phenotype; 46,XX with SRY translocation → male phenotype."},
+  {lec:7,term:"X-inactivation",def:"Random silencing of one X chromosome in each somatic cell of female mammals during early embryogenesis. Produces mosaic expression of X-linked genes."},
+  {lec:7,term:"Barr body",def:"The condensed inactive X chromosome visible at the nuclear periphery in female cells. Number of Barr bodies = number of X chromosomes − 1."},
+  {lec:7,term:"Xist lncRNA",def:"Long non-coding RNA transcribed from the X-inactivation center (XIC). Coats the inactive X → recruits Polycomb complexes → silences the chromosome."},
+  {lec:7,term:"Lyon hypothesis",def:"The proposal that X-inactivation is random, occurs early in development, and is clonally maintained — explaining mosaic phenotypes in X-linked heterozygous females."},
+  {lec:7,term:"Dosage compensation",def:"Mechanism to equalize X-linked gene expression between sexes. Mammals: X-inactivation. Drosophila: hypertranscription of male X. C. elegans: halving expression of both X chromosomes in XX."},
+  // ── L8: Linkage ──
+  {lec:8,term:"Linkage",def:"Two genes on the same chromosome tend to be inherited together (linked); they do not assort independently like unlinked genes."},
+  {lec:8,term:"Recombination frequency (RF)",def:"Fraction of gametes that are recombinant = (recombinants / total offspring) × 100%. RF = 0–50%; equals 50% for unlinked genes."},
+  {lec:8,term:"Genetic map / centimorgan (cM)",def:"Centimorgan: unit of genetic distance; 1 cM = 1% recombination frequency. Gene map shows order and distances between loci."},
+  {lec:8,term:"Parental class",def:"Gamete type with the original (parental) allele combination — most frequent gametes in a cross involving linked genes."},
+  {lec:8,term:"Recombinant class",def:"Gamete type with a new allele combination produced by crossing over between linked genes — less frequent."},
+  {lec:8,term:"Double crossover (DCO)",def:"Two crossover events between the same pair of homologs in a single meiosis. The rarest class in a three-point cross; identifies the middle gene."},
+  {lec:8,term:"Coefficient of coincidence (COC)",def:"Observed DCO frequency / expected DCO frequency. Measures whether the two crossover events occur independently."},
+  {lec:8,term:"Interference (I)",def:"I = 1 − COC. Positive interference (I > 0) means one crossover inhibits nearby crossovers; negative interference (rare) = crossovers stimulate nearby crossovers."},
+  // ── L9: Chromosome rearrangements ──
+  {lec:9,term:"Chromosomal deletion",def:"Loss of a chromosomal segment. Hemizygous for genes in the deleted region → recessive alleles on normal homolog are exposed."},
+  {lec:9,term:"Chromosomal duplication",def:"Extra copy of a chromosomal segment. Can alter gene dosage; source of new genes in evolution (paralogs) via subfunctionalization or neofunctionalization."},
+  {lec:9,term:"Inversion",def:"A chromosomal segment reversed 180° within the chromosome. Heterozygotes form inversion loops in meiosis; crossovers within the loop produce unbalanced gametes."},
+  {lec:9,term:"Paracentric inversion",def:"Inversion that does NOT include the centromere. Crossing over within the loop → dicentric or acentric fragments → usually unviable gametes."},
+  {lec:9,term:"Pericentric inversion",def:"Inversion that INCLUDES the centromere → changes chromosome arm ratio. Detectable in karyotype. Crossing over in loop → duplications/deletions in gametes."},
+  {lec:9,term:"Reciprocal translocation",def:"Exchange of segments between two non-homologous chromosomes. Balanced carriers phenotypically normal; at meiosis, alternate segregation → balanced; adjacent-1 → unbalanced gametes."},
+  {lec:9,term:"Robertsonian translocation",def:"Fusion of two acrocentric chromosomes at their centromeres (long arms fused). Carrier has 45 chromosomes but normal gene content; can produce trisomy 21 offspring."},
+  // ── L10: Extensions to single-gene ──
+  {lec:10,term:"Incomplete dominance",def:"Heterozygote (Aa) shows an intermediate phenotype between the two homozygotes. Neither allele fully dominates; e.g., red × white = pink snapdragons."},
+  {lec:10,term:"Codominance",def:"Both alleles in a heterozygote are independently and fully expressed simultaneously. Example: ABO blood type — I^A I^B individuals have both A and B antigens."},
+  {lec:10,term:"Multiple alleles",def:"More than two allelic forms exist at a locus in the population (though each individual still has only two). Example: ABO blood type locus (I^A, I^B, i)."},
+  {lec:10,term:"Penetrance",def:"The proportion of individuals with a given genotype who show the expected phenotype. Incomplete penetrance means some carriers don't express the trait."},
+  {lec:10,term:"Expressivity",def:"The degree to which a phenotype is expressed among individuals that DO show the trait. Variable expressivity = same genotype, different severity."},
+  {lec:10,term:"Pleiotropy",def:"One gene affects multiple seemingly unrelated phenotypic traits. Example: PKU — PAH enzyme deficiency affects brain development, skin pigmentation, and other systems."},
+  {lec:10,term:"Lethal allele",def:"A mutant allele that causes death when homozygous (often embryonic lethality). Shifts observed live-offspring ratio (e.g., A^y/A^y mice die → 2:1 yellow:non-yellow among survivors)."},
+  {lec:10,term:"Dominant negative",def:"A mutant protein that interferes with the function of the wild-type protein produced from the other allele. Heterozygotes may have a worse phenotype than homozygous null mutants."},
+  // ── L11: Two-gene interactions ──
+  {lec:11,term:"Epistasis",def:"Interaction between genes where the alleles at one locus mask or modify the expression of alleles at another locus. Produces non-9:3:3:1 dihybrid ratios."},
+  {lec:11,term:"Recessive epistasis (9:3:4)",def:"The aa homozygote masks expression of the B gene (aaB_ = aabb). The 4 class = aaB_ + aabb combined. Example: Labrador retriever coat color."},
+  {lec:11,term:"Dominant epistasis (12:3:1)",def:"A single A allele masks expression of the B gene. A_B_ + A_bb = 12; aaB_ = 3; aabb = 1."},
+  {lec:11,term:"Duplicate recessive epistasis (9:7)",def:"Homozygous recessive at EITHER locus → same (e.g., white) phenotype. A_B_=9; all other genotypes combined = 7. Example: sweet pea flower color."},
+  {lec:11,term:"Duplicate dominant epistasis (15:1)",def:"A dominant allele at EITHER locus is sufficient for the dominant phenotype. Only aabb shows the alternative phenotype."},
+  {lec:11,term:"Suppressor mutation",def:"A second mutation (in same or different gene) that restores the wild-type phenotype in a mutant background. Intragenic: same gene; intergenic: different gene."},
+  // ── L12: Mutations ──
+  {lec:12,term:"Silent (synonymous) mutation",def:"Nucleotide change that does NOT alter the amino acid sequence (due to genetic code degeneracy). No phenotypic effect."},
+  {lec:12,term:"Missense mutation",def:"Nucleotide change that changes one amino acid to a different one. Functional effect depends on chemical similarity and location in protein."},
+  {lec:12,term:"Nonsense mutation",def:"Nucleotide change that creates a premature stop codon → truncated, usually nonfunctional protein. Causes loss-of-function."},
+  {lec:12,term:"Frameshift mutation",def:"Insertion or deletion of non-multiple-of-3 nucleotides → shifts the reading frame → altered amino acid sequence + usually premature stop codon downstream."},
+  {lec:12,term:"Splice-site mutation",def:"Alters the conserved GT (donor) or AG (acceptor) splice sites → intron retention or exon skipping → aberrant protein or nonsense-mediated decay."},
+  {lec:12,term:"Loss-of-function (LOF)",def:"Mutation that reduces or eliminates gene product activity. Usually recessive; haploinsufficient genes cause disease with one LOF copy."},
+  {lec:12,term:"Gain-of-function (GOF)",def:"Mutation that creates a new activity, increases existing activity, or misexpresses the gene. Usually dominant; e.g., constitutively active receptor."},
+  {lec:12,term:"Haploinsufficiency",def:"When one functional copy of a gene is not enough to maintain normal phenotype. Heterozygous LOF mutations at haploinsufficient loci cause disease."},
+  {lec:12,term:"Null allele",def:"A complete loss-of-function allele — the gene product is absent or completely non-functional. Caused by large deletions, frameshift, or nonsense mutations."},
+  // ── L13+ (existing) ──
   {lec:13,term:"Forward genetics",def:"A phenotype-first approach: screen for mutants with an interesting phenotype, then identify the underlying gene."},
   {lec:13,term:"Reverse genetics",def:"A genotype-first approach: start with a known gene, modify it (e.g., CRISPR KO), then observe the resulting phenotype."},
   {lec:13,term:"Complementation test",def:"Cross two homozygous recessive mutants in trans. Mutant F1 → same gene (fail to complement). WT F1 → different genes."},
@@ -1493,6 +1926,11 @@ const glossary = [
 ];
 
 const formulaData = [
+  {title:"Product Rule",eqs:["P(A and B) = P(A) × P(B)"],desc:"For independent events occurring together. Use when asking for the probability of TWO things both happening (e.g., offspring inheriting specific alleles from both parents).",keywords:"product rule probability independent events A and B multiply punnett cross"},
+  {title:"Sum Rule",eqs:["P(A or B) = P(A) + P(B)"],desc:"For mutually exclusive outcomes. Use when asking for the probability of ONE of several alternative outcomes (e.g., P(AA or Aa)).",keywords:"sum rule probability mutually exclusive A or B add outcomes"},
+  {title:"Mendel's F2 Ratios",eqs:["Monohybrid: 3:1 (dominant:recessive)","Dihybrid: 9:3:3:1","Testcross: 1:1 (Aa×aa)"],desc:"Monohybrid Aa×Aa → 1AA:2Aa:1aa. Dihybrid AaBb×AaBb → 9A_B_:3A_bb:3aaB_:1aabb. Both assume unlinked loci and complete dominance.",keywords:"mendel f2 monohybrid dihybrid ratio 3:1 9:3:3:1 testcross 1:1 cross punnett"},
+  {title:"Recombination Frequency",eqs:["RF = recombinants / total offspring","1 cM ≈ 1% recombination"],desc:"Unlinked loci: RF = 50%. RF limits fine-scale mapping resolution.",keywords:"recombination frequency cM centimorgan linkage map distance rf mapping fine-scale"},
+  {title:"Three-point Cross Map Distances",eqs:["d(A-B) = SCO(A-B) + DCO","d(B-C) = SCO(B-C) + DCO","COC = observed DCO / expected DCO","I = 1 − COC"],desc:"Add single crossovers + double crossovers for each interval. DCO = double crossover frequency. Positive interference reduces DCO below expected.",keywords:"three point cross map distance interval double crossover COC interference linkage"},
   {title:"Hardy-Weinberg Equilibrium",eqs:["p² + 2pq + q² = 1","p + q = 1"],desc:"p=freq(A), q=freq(a). p²=AA, 2pq=Aa, q²=aa. 5 assumptions: random mating, no mutation, no migration, no selection, infinite N.",keywords:"hardy weinberg hwe equilibrium allele frequency genotype p q biallelic population"},
   {title:"Chi-Squared Test",eqs:["χ² = Σ (O − E)² / E"],desc:"df = genotype classes − 1 (=1 for biallelic). χ² > critical value → reject HWE. E = expected frequency × total N.",keywords:"chi squared chi-squared test hwe deviation observed expected goodness fit"},
   {title:"Recombination Frequency",eqs:["RF = recombinants / total offspring","1 cM ≈ 1% recombination"],desc:"Unlinked loci: RF = 50%. RF limits fine-scale mapping resolution. Limits QTL mapping precision.",keywords:"recombination frequency cM centimorgan linkage map distance rf mapping fine-scale"},
@@ -1510,6 +1948,60 @@ const formulaData = [
 const allFlashcards = glossary.map(g => ({lec:g.lec, q:g.term, a:g.def}));
 
 const allQuestions = [
+  // ── L1 ──
+  {lec:1,q:"Mendel's Law of Independent Assortment states that alleles at different unlinked genes:",options:["Always co-segregate","Assort independently into gametes","Show 1:1 ratios","Are always linked on the same chromosome"],correct:1,exp:"Independent assortment: unlinked genes assort independently → 9:3:3:1 dihybrid ratio."},
+  {lec:1,q:"A dihybrid cross AaBb × AaBb produces what phenotypic ratio (assuming complete dominance, no linkage)?",options:["1:2:1","3:1","9:3:3:1","1:1:1:1"],correct:2,exp:"Standard dihybrid: 9 A_B_ : 3 A_bb : 3 aaB_ : 1 aabb."},
+  {lec:1,q:"A testcross of an individual showing the dominant phenotype yields 50% dominant and 50% recessive offspring. The tested individual is:",options:["Homozygous dominant (AA)","Heterozygous (Aa)","Homozygous recessive (aa)","Cannot be determined"],correct:1,exp:"Aa × aa → 1/2 Aa (dominant) : 1/2 aa (recessive). AA × aa would give all dominant."},
+  {lec:1,q:"If P(tall) = 3/4 and P(round) = 3/4 in a dihybrid F2, what is P(tall AND round) by the product rule?",options:["3/4","1/2","9/16","6/16"],correct:2,exp:"Product rule: 3/4 × 3/4 = 9/16."},
+  // ── L2 ──
+  {lec:2,q:"A rare disease appears in every generation, affects both sexes equally, and every affected person has an affected parent. Most likely inheritance:",options:["Autosomal recessive","X-linked recessive","Autosomal dominant","Mitochondrial"],correct:2,exp:"Vertical pattern (every generation), equal in both sexes, no carriers → autosomal dominant."},
+  {lec:2,q:"A pedigree shows two unaffected parents with an affected son. The trait is autosomal recessive. Both parents are most likely:",options:["Homozygous dominant","Carriers (Aa)","One affected, one unaffected","X-linked carriers"],correct:1,exp:"AR: both parents must be Aa (carriers) to produce an affected (aa) child."},
+  {lec:2,q:"An X-linked recessive trait can be transmitted from an unaffected carrier female to:",options:["Only daughters","Only sons","Both sons and daughters","Only affected fathers"],correct:1,exp:"X^A X^a mother → each son gets X^a with 50% probability → 50% of sons affected."},
+  {lec:2,q:"Which finding would EXCLUDE autosomal recessive inheritance?",options:["Affected parents have unaffected children","Unaffected parents have affected children","An affected father has an affected son","Consanguinity in pedigree"],correct:0,exp:"If both parents are affected (aa), all children should be aa. Unaffected children from two affected parents is inconsistent with simple autosomal recessive."},
+  // ── L3 ──
+  {lec:3,q:"P(A | B) means:",options:["Probability of A and B together","Probability of A given B is true","Probability of B given A","Probability of A or B"],correct:1,exp:"Conditional probability P(A|B) = P(A∩B)/P(B)."},
+  {lec:3,q:"In a Bayesian pedigree calculation, the 'prior probability' is:",options:["Calculated from observed children","Based on Mendelian ratios alone before observing children","The probability of disease in the population","The posterior after 3 unaffected children"],correct:1,exp:"Prior probability comes from Mendelian ratios before any data about offspring are incorporated."},
+  {lec:3,q:"Two Aa carriers have 2 unaffected children. Among unaffected children of Aa × Aa, the probability that a child is Aa is:",options:["1/2","2/3","1/4","3/4"],correct:1,exp:"Among unaffected offspring of Aa × Aa: 1 AA : 2 Aa. So P(Aa | unaffected) = 2/3."},
+  // ── L4 ──
+  {lec:4,q:"A SNP that destroys a restriction enzyme recognition site will produce:",options:["Two fragments instead of one","One fragment instead of two","A frameshift","No detectable change"],correct:0,exp:"RFLP: losing a restriction site means the DNA is no longer cut at that position → two fragments become one larger fragment."},
+  {lec:4,q:"Microsatellite (STR) markers are useful in forensics because they are:",options:["Always homozygous","Highly polymorphic in repeat number between individuals","Located only on autosomes","Never inherited from parents"],correct:1,exp:"STR loci have many alleles differing in repeat number → high heterozygosity → powerful individual identification."},
+  {lec:4,q:"Sanger sequencing uses dideoxynucleotides to:",options:["Amplify target DNA exponentially","Terminate chain elongation at specific nucleotides","Detect methylation","Map restriction sites"],correct:1,exp:"ddNTPs lack the 3'-OH → chain termination → nested fragments that reveal sequence by size."},
+  // ── L5 ──
+  {lec:5,q:"In Illumina sequencing, a heterozygous SNP in a diploid sample typically appears as:",options:["100% reference reads","~50% alternate reads","0% alternate reads","Random distribution impossible to call"],correct:1,exp:"Each chromosome is sequenced independently; ~50% reads carry the alt allele for a heterozygous SNP."},
+  {lec:5,q:"Cell-free fetal DNA in maternal plasma is used clinically for:",options:["Sanger sequencing of single genes","Non-invasive prenatal testing for fetal chromosomal abnormalities","Measuring fetal epigenome","Detecting maternal SNPs"],correct:1,exp:"cfDNA from placental cells in maternal blood → NIPT detects trisomies 21, 18, 13 and sex chromosome aneuploidies."},
+  {lec:5,q:"A genomic region showing significantly lower read depth than expected in a diploid sample most likely represents:",options:["A heterozygous SNP","A genomic deletion in that region","A sequencing error at one base","High GC-content"],correct:1,exp:"Deletions reduce the number of template copies → fewer reads align → lower depth compared to diploid baseline."},
+  // ── L6 ──
+  {lec:6,q:"The primary purpose of mitosis is:",options:["Production of haploid gametes","Generating genetic diversity via crossing over","Growth and repair of somatic tissues","Halving chromosomal number"],correct:0,exp:"Mitosis produces 2 genetically identical diploid daughter cells for growth and tissue repair."},
+  {lec:6,q:"During which phase of meiosis does crossing over occur?",options:["Metaphase I","Prophase II","Anaphase I","Prophase I"],correct:3,exp:"Crossing over occurs during Prophase I when homologous chromosomes synapse to form bivalents."},
+  {lec:6,q:"Nondisjunction during Meiosis I produces gametes that are:",options:["All haploid","All diploid","n+1 and n-1, all from the same affected pair","Entirely normal"],correct:2,exp:"Meiosis I nondisjunction: homologs fail to separate → one cell gets both copies of a pair → ALL gametes from that meiosis are aneuploid."},
+  {lec:6,q:"Trisomy 21 (Down syndrome) is most often caused by:",options:["Paternal nondisjunction in Meiosis II","Maternal nondisjunction in Meiosis I","Chromosomal inversion","X-chromosome nondisjunction"],correct:1,exp:"~95% of Down syndrome cases result from maternal nondisjunction in Meiosis I."},
+  // ── L7 ──
+  {lec:7,q:"X-inactivation in female mammals is best described as:",options:["Preferential silencing of paternal X in all cells","Random silencing of one X, stable in all mitotic descendants","Permanent loss of one X chromosome","Equal partial silencing of both X chromosomes"],correct:1,exp:"Lyon hypothesis: random X inactivation early in development; inactive X maintained clonally → mosaic females."},
+  {lec:7,q:"A female calico cat's patchy coat coloration is an example of:",options:["Codominance","X-inactivation mosaic expression","Autosomal incomplete dominance","Maternal effect"],correct:1,exp:"Orange vs. black coat color is X-linked; random X inactivation → patches where different X is active."},
+  {lec:7,q:"In Drosophila, dosage compensation is achieved by:",options:["Silencing one X in females","Hypertranscribing the single X in males","Methylating the extra X","Halving transcription of both X chromosomes in XX flies"],correct:1,exp:"Drosophila males increase transcription ~2× from their single X chromosome to match female expression."},
+  // ── L8 ──
+  {lec:8,q:"Two genes showing 50% recombination are most likely:",options:["Tightly linked on same chromosome","Far apart on same chromosome or on different chromosomes","On the X chromosome","In the same operon"],correct:1,exp:"RF=50% is indistinguishable from independent assortment — genes are either on different chromosomes or very far apart."},
+  {lec:8,q:"In a three-point cross, the gene order is determined by identifying:",options:["The most frequent class","The parental class","The double crossover class — it reveals which gene is in the middle","The class with equal frequencies"],correct:2,exp:"DCOs arise from crossing over on BOTH sides of the middle gene → middle gene has a flipped allele relative to parental types. Rarest class = DCO."},
+  {lec:8,q:"An interference value of 1 means:",options:["One crossover always occurs","No crossovers occur","One crossover COMPLETELY inhibits a second crossover in the same region","Crossovers occur randomly with no interference"],correct:2,exp:"I = 1 − COC. If I = 1, then COC = 0 → observed DCOs = 0 → one crossover completely prevents a second."},
+  // ── L9 ──
+  {lec:9,q:"A heterozygous pericentric inversion carrier is phenotypically normal BUT has reduced fertility because:",options:["Both chromosomes are deleted","Crossover within the loop produces unbalanced gametes","The inversion creates a new gene fusion","The centromere is duplicated"],correct:1,exp:"Crossing over within the inversion loop → recombinant chromosomes with duplications and deletions → unviable offspring."},
+  {lec:9,q:"A Robertsonian translocation between chromosomes 14 and 21 typically gives a carrier with:",options:["48 chromosomes","46 chromosomes with normal gene content","45 chromosomes with normal gene content","47 chromosomes"],correct:2,exp:"The two acrocentric chromosomes fuse → carrier has 45 chromosomes but essentially normal gene dosage (acrocentric short arms contain mostly rDNA)."},
+  {lec:9,q:"Which rearrangement most commonly SUPPRESSES recombination within the rearranged region?",options:["Deletion","Translocation","Inversion","Duplication"],correct:2,exp:"Inversion heterozygotes: crossing over within the inversion loop produces unbalanced (lethal) gametes → acts as a recombination suppressor, as crossovers there are not recovered."},
+  // ── L10 ──
+  {lec:10,q:"Red snapdragon (RR) × white snapdragon (WW) → all pink (RW) offspring. This is:",options:["Codominance","Complete dominance","Incomplete dominance","Epistasis"],correct:2,exp:"Incomplete dominance: neither R nor W fully dominates → intermediate pink phenotype in heterozygotes."},
+  {lec:10,q:"ABO blood type is an example of codominance because:",options:["O is dominant over A and B","AB individuals have both A and B antigens independently expressed","A and B are recessive to each other","All blood types are phenotypically identical"],correct:1,exp:"I^A I^B → both A and B antigens present on red blood cells — both alleles expressed simultaneously."},
+  {lec:10,q:"A disease allele has 70% penetrance. If 100 people are genotype AA (affected allele dominant), how many will show the phenotype?",options:["100","70","30","50"],correct:1,exp:"Penetrance = fraction who show phenotype. 70% × 100 = 70 affected individuals."},
+  {lec:10,q:"The yellow coat color allele A^y in mice is lethal when homozygous (A^y A^y die). A^y/A × A^y/A cross produces surviving offspring in what phenotypic ratio?",options:["1:1","3:1","2:1 yellow:non-yellow","1:2:1"],correct:2,exp:"Expected: 1 A^y A^y (die) : 2 A^y A (yellow) : 1 AA (non-yellow). Among survivors: 2 yellow : 1 non-yellow."},
+  // ── L11 ──
+  {lec:11,q:"A dihybrid cross yields a 9:7 phenotypic ratio. This is most consistent with:",options:["Independent assortment without epistasis","Recessive epistasis (aa masks B)","Duplicate recessive epistasis — homozygous recessive at EITHER locus → same phenotype","Dominant epistasis"],correct:2,exp:"9:7 = duplicate recessive epistasis: 9 A_B_ (one phenotype) vs. 3 A_bb + 3 aaB_ + 1 aabb (all same alternative phenotype)."},
+  {lec:11,q:"A 12:3:1 ratio from an AaBb × AaBb cross indicates:",options:["Duplicate dominant epistasis","Recessive epistasis","Dominant epistasis — A_ masks the B locus","Complementation"],correct:2,exp:"Dominant epistasis: A_ epistatic to B; A_B_ + A_bb = 12; aaB_ = 3; aabb = 1."},
+  {lec:11,q:"An intergenic suppressor mutation:",options:["Causes two frameshift mutations in the same gene","Restores WT phenotype via a mutation in a DIFFERENT gene","Is always a missense mutation","Eliminates the original mutation from the genome"],correct:1,exp:"Intergenic suppressor: second mutation in a different gene compensates for the phenotypic effect of the original mutation."},
+  // ── L12 ──
+  {lec:12,q:"A mutation changes codon GGA (Gly) to GTA (Val). This is a:",options:["Silent mutation","Missense mutation","Nonsense mutation","Frameshift mutation"],correct:1,exp:"One amino acid changed to another = missense mutation. Protein function may or may not be affected."},
+  {lec:12,q:"A single base deletion early in a coding sequence most often causes:",options:["A missense mutation","No change in protein","A frameshift → premature stop codon → LOF","A gain-of-function"],correct:2,exp:"Single-base deletion → non-multiple-of-3 change → frameshift → all downstream codons altered + usually premature stop."},
+  {lec:12,q:"Haploinsufficiency means:",options:["Heterozygous individuals are carriers but unaffected","One functional copy of a gene is insufficient for normal phenotype → heterozygous LOF causes disease","Both copies must be mutated for disease","The mutant protein gains a new toxic function"],correct:1,exp:"Haploinsufficient genes require both copies for sufficient product. One LOF allele → disease, even heterozygous."},
+  {lec:12,q:"A dominant negative mutation is distinguished from a simple dominant LOF because:",options:["It only affects homozygotes","The mutant protein interferes with WT protein function → worse than having no protein at all","It requires both alleles to be mutant","It only affects non-coding regions"],correct:1,exp:"Dominant negative: mutant protein physically interferes with WT protein → heterozygote phenotype can be WORSE than homozygous null."},
+  // ── L13+ (existing) ──
   {lec:13,q:"A researcher screens thousands of flies for abnormal wings, then clones the mutated gene. This is:",options:["Reverse genetics","Forward genetics","Complementation testing","QTL mapping"],correct:1,exp:"Forward genetics: phenotype → gene. The screen for mutant phenotype comes first."},
   {lec:13,q:"Two white-eyed mutant fly lines are crossed. All F1 have white eyes. This means:",options:["Mutations complement → different genes","Mutations fail to complement → same gene","The trait is dominant","The trait is X-linked"],correct:1,exp:"If F1 show mutant phenotype, the two alleles can't produce WT protein together → same gene."},
   {lec:13,q:"Fine-scale genetic mapping is limited by:",options:["Number of SNPs","Recombination frequency between loci","Sequencing depth","Population size"],correct:1,exp:"Recombination events between marker and causal variant are needed to resolve them — rare recombination = poor resolution."},
@@ -1546,6 +2038,64 @@ const allQuestions = [
 ];
 
 const matchingPairs = [
+  // L1
+  {lec:1,term:"Law of Segregation",def:"Two alleles separate into gametes — each gamete gets one"},
+  {lec:1,term:"Law of Independent Assortment",def:"Unlinked genes assort independently → 9:3:3:1 dihybrid ratio"},
+  {lec:1,term:"Dominant allele",def:"Expressed in heterozygote; masks recessive allele"},
+  {lec:1,term:"Testcross",def:"Cross with homozygous recessive to reveal unknown genotype"},
+  {lec:1,term:"Product rule",def:"P(A and B) = P(A) × P(B) for independent events"},
+  {lec:1,term:"Sum rule",def:"P(A or B) = P(A) + P(B) for mutually exclusive events"},
+  // L2
+  {lec:2,term:"Autosomal dominant",def:"Trait in every generation; every affected has an affected parent"},
+  {lec:2,term:"Autosomal recessive",def:"Can skip generations; two unaffected carriers → affected child"},
+  {lec:2,term:"X-linked recessive",def:"Mostly affects males; carrier females unaffected"},
+  // L3
+  {lec:3,term:"Conditional probability",def:"P(A|B) = P(A and B) / P(B)"},
+  {lec:3,term:"Bayesian update",def:"Prior × likelihood → posterior probability of genotype"},
+  // L4
+  {lec:4,term:"SNP",def:"Single nucleotide polymorphism — most common variant type"},
+  {lec:4,term:"RFLP",def:"SNP creates/destroys restriction site → gel band pattern"},
+  {lec:4,term:"STR / Microsatellite",def:"Repeated 2–6 bp motif; highly variable repeat number"},
+  {lec:4,term:"Sanger sequencing",def:"ddNTP chain termination → reads up to ~1 kb"},
+  // L5
+  {lec:5,term:"Read depth",def:"Average reads per base position; higher = better variant calling"},
+  {lec:5,term:"Cell-free DNA",def:"Fetal DNA in maternal blood → non-invasive prenatal testing"},
+  {lec:5,term:"Illumina sequencing",def:"Sequencing-by-synthesis; short reads, very high throughput"},
+  // L6
+  {lec:6,term:"Mitosis",def:"Growth/repair — 2 identical diploid daughter cells"},
+  {lec:6,term:"Meiosis",def:"Gamete production — 4 haploid cells, crossing over"},
+  {lec:6,term:"Nondisjunction",def:"Chromosomes fail to separate → n+1 or n-1 gametes"},
+  {lec:6,term:"Crossing over",def:"Prophase I exchange between non-sister chromatids → recombinants"},
+  // L7
+  {lec:7,term:"X-inactivation",def:"Random silencing of one X in female mammalian cells"},
+  {lec:7,term:"Barr body",def:"The condensed inactive X visible at nuclear periphery"},
+  {lec:7,term:"SRY gene",def:"Y-linked trigger of testes development in mammals"},
+  // L8
+  {lec:8,term:"Recombination frequency",def:"Recombinants / total × 100%; 1% = 1 cM"},
+  {lec:8,term:"Double crossover class",def:"Rarest gamete type; identifies the middle gene in a three-point cross"},
+  {lec:8,term:"Interference",def:"I = 1 − COC; positive = one crossover inhibits nearby crossovers"},
+  // L9
+  {lec:9,term:"Pericentric inversion",def:"Inversion including centromere → changes arm ratio"},
+  {lec:9,term:"Reciprocal translocation",def:"Segment exchange between two non-homologous chromosomes"},
+  {lec:9,term:"Robertsonian translocation",def:"Acrocentric chromosome fusion; 45 chromosomes but normal gene content"},
+  // L10
+  {lec:10,term:"Incomplete dominance",def:"Heterozygote has intermediate phenotype between two homozygotes"},
+  {lec:10,term:"Codominance",def:"Both alleles independently expressed in heterozygote"},
+  {lec:10,term:"Penetrance",def:"Fraction of individuals with genotype who show the phenotype"},
+  {lec:10,term:"Expressivity",def:"Degree of phenotype expression among those who show it"},
+  {lec:10,term:"Pleiotropy",def:"One gene affects multiple unrelated traits"},
+  // L11
+  {lec:11,term:"Recessive epistasis (9:3:4)",def:"aa masks B gene; aaB_ combines with aabb → 4 class"},
+  {lec:11,term:"Duplicate recessive (9:7)",def:"Homozygous recessive at either locus → same phenotype"},
+  {lec:11,term:"Suppressor mutation",def:"Restores WT phenotype in a mutant background — intragenic or intergenic"},
+  // L12
+  {lec:12,term:"Missense mutation",def:"Nucleotide change → different amino acid"},
+  {lec:12,term:"Nonsense mutation",def:"Nucleotide change → premature stop codon → truncated protein"},
+  {lec:12,term:"Frameshift mutation",def:"Non-multiple-of-3 indel → shifts reading frame → LOF"},
+  {lec:12,term:"Loss-of-function (LOF)",def:"Reduces/eliminates gene product activity; usually recessive"},
+  {lec:12,term:"Gain-of-function (GOF)",def:"Creates new/enhanced activity; usually dominant"},
+  {lec:12,term:"Haploinsufficiency",def:"One functional copy insufficient → heterozygous LOF causes disease"},
+  // L13 original entries start:
   {lec:13,term:"Forward genetics",def:"Phenotype first → identify gene"},
   {lec:13,term:"Complementation test",def:"Mutant F1 → same gene; WT F1 → different gene"},
   {lec:14,term:"Epigenetics",def:"Heritable expression change without DNA mutation"},
